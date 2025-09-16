@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Brain, Shield, Zap, Target, Settings, TrendingUp } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { ModelViewer } from "./ModelViewer";
 
 const features = [
   {
@@ -109,10 +108,6 @@ export const FeaturesSection = () => {
           </p>
         </div>
 
-        {/* Fixed 3D model viewer on top */}
-        <div className="w-full max-w-4xl mx-auto mb-12">
-          <ModelViewer />
-        </div>
 
         {/* Carousel below */}
         <div className="relative w-full max-w-4xl mx-auto">

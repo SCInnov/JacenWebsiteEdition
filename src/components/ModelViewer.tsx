@@ -9,7 +9,7 @@ export const ModelViewer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
-  const [useOriginalMaterials, setUseOriginalMaterials] = useState(false);
+  const [useOriginalMaterials] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -453,19 +453,6 @@ export const ModelViewer = () => {
       transition={{ duration: 0.8, delay: 0.3 }}
       viewport={{ once: true }}
     >
-      {/* Material Toggle */}
-      <div className="mb-4 flex justify-center">
-        <button
-          onClick={() => setUseOriginalMaterials(!useOriginalMaterials)}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            useOriginalMaterials
-              ? 'bg-primary text-white'
-              : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-          }`}
-        >
-          {useOriginalMaterials ? 'Original Materials' : 'Brand Colors'}
-        </button>
-      </div>
       
       {/* 3D Viewer */}
       <div
