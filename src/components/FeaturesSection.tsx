@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Brain, Shield, Zap, Target, Settings, TrendingUp } from "lucide-react";
+import { Card } from "@/components/ui/card";
 import { ModelViewer } from "./ModelViewer";
 
 const features = [
@@ -8,7 +9,7 @@ const features = [
     icon: Brain,
     title: "Machine Learning Adaptation",
     description: "EMG sensors use machine learning to iterate and improve, providing personalized assistance that adapts to your unique stroke pattern.",
-    color: "text-primary"
+    color: "text-medical-blue"
   },
   {
     icon: Zap,
@@ -19,20 +20,20 @@ const features = [
   {
     icon: Shield,
     title: "Safety & Stability",
-    description: "110° range of motion with automatic disengagement and 2× safety factor, ensuring secure operation during all rehabilitation activities.",
-    color: "text-primary"
+    description: "110° range of motion with automatic disengagement and 2× safety factor for the advertised carrying capacity.",
+    color: "text-medical-blue"
   },
   {
     icon: Target,
-    title: "Precision Control",
-    description: "Advanced EMG sensors provide precise muscle activity detection and response for natural movement assistance.",
+    title: "Precision Targeting",
+    description: "Secondary sensors adapt to different stroke types, ensuring the device works effectively for your specific rehabilitation needs.",
     color: "text-medical-teal"
   },
   {
     icon: Settings,
-    title: "Customizable Settings",
-    description: "Adjustable resistance levels and personalized configurations to match your specific rehabilitation needs and progress.",
-    color: "text-primary"
+    title: "Easy Setup",
+    description: "Users can put the device on in seconds, making it practical for daily use without complex setup procedures.",
+    color: "text-medical-blue"
   },
   {
     icon: TrendingUp,
@@ -95,16 +96,10 @@ export const FeaturesSection = () => {
   };
 
   return (
-    <section id="features" className="py-20 bg-muted/20">
-      <div className="container mx-auto px-6 flex flex-col items-center">
+    <section id="features" className="py-20 bg-background">
+      <div className="container mx-auto px-6">
         {/* Section Header */}
-        <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             The <span className="bg-gradient-primary bg-clip-text text-transparent">Second-Arm</span>
           </h2>
@@ -112,23 +107,16 @@ export const FeaturesSection = () => {
             A revolutionary assistive device that adapts to you, enhances your strength,
             and provides safe, stable support for daily activities.
           </p>
-        </motion.div>
-
-        {/* Fixed 3D model viewer on top */}
-        <div className="w-full max-w-4xl mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <ModelViewer />
-          </motion.div>
         </div>
 
-        {/* Slider below */}
-        <div className="relative w-full max-w-2xl">
-          {/* Feature panel */}
+        {/* Fixed 3D model viewer on top */}
+        <div className="w-full max-w-4xl mx-auto mb-12">
+          <ModelViewer />
+        </div>
+
+        {/* Carousel below */}
+        <div className="relative w-full max-w-4xl mx-auto">
+          {/* Feature panel using Card component */}
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
@@ -136,25 +124,26 @@ export const FeaturesSection = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
               transition={{ duration: 0.5 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
-              <div className="text-center">
-                <div className={`p-6 rounded-2xl bg-gradient-primary/10 ${features[current].color} inline-block mb-8`}>
-                  {(() => {
-                    const IconComponent = features[current].icon;
-                    return <IconComponent className="w-12 h-12" />;
-                  })()}
+              <Card className="p-8 hover:shadow-card transition-all duration-300 border-l-4 border-l-primary">
+                <div className="flex items-start space-x-6">
+                  <div className={`p-4 rounded-lg bg-gradient-primary/10 ${features[current].color}`}>
+                    {(() => {
+                      const IconComponent = features[current].icon;
+                      return <IconComponent className="w-8 h-8" />;
+                    })()}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-semibold mb-4">{features[current].title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-lg">
+                      {features[current].description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-                  {features[current].title}
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                  {features[current].description}
-                </p>
-              </div>
+              </Card>
             </motion.div>
           </AnimatePresence>
 
@@ -162,7 +151,7 @@ export const FeaturesSection = () => {
           <div className="flex justify-between items-center mt-8">
             <button
               onClick={prev}
-              className="p-4 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
+              className="p-3 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
               aria-label="Previous feature"
             >
               <ChevronLeft className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
@@ -177,7 +166,7 @@ export const FeaturesSection = () => {
                   className={`w-3 h-3 rounded-full transition-colors duration-200 ${
                     index === current 
                       ? 'bg-primary' 
-                      : 'bg-gray-300 dark:bg-gray-600 hover:bg-primary/50'
+                      : 'bg-muted-foreground/30 hover:bg-primary/50'
                   }`}
                   aria-label={`Go to feature ${index + 1}`}
                 />
@@ -186,11 +175,27 @@ export const FeaturesSection = () => {
 
             <button
               onClick={next}
-              className="p-4 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
+              className="p-3 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
               aria-label="Next feature"
             >
               <ChevronRight className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
             </button>
+          </div>
+        </div>
+        
+        {/* Key Benefits - keeping original structure */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center">
+            <div className="text-4xl font-bold text-primary mb-2">Adapts to You</div>
+            <p className="text-muted-foreground">Personalized assistance for every patient</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-primary mb-2">Enhanced Strength</div>
+            <p className="text-muted-foreground">Regain confidence in daily activities</p>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl font-bold text-primary mb-2">Safe and Stable</div>
+            <p className="text-muted-foreground">Built with safety as the top priority</p>
           </div>
         </div>
       </div>
