@@ -97,8 +97,10 @@ export const ModelViewer = () => {
 
     let model: THREE.Group | null = null;
 
-    // Load model
+    // Load model with fallback
     const loader = new GLTFLoader();
+    console.log('🔄 Starting to load 3D model...');
+    
     loader.load(
       '/SecondArmModel1.glb',
       (gltf) => {
@@ -110,10 +112,14 @@ export const ModelViewer = () => {
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         
+        console.log('📐 Model dimensions:', { center, size });
+        
         model.position.sub(center);
         const maxDim = Math.max(size.x, size.y, size.z);
         const scale = 2.5 / maxDim;
         model.scale.setScalar(scale);
+        
+        console.log('🎯 Model scaled by:', scale);
         
         // Apply materials
         let materialCount = 0;
@@ -155,9 +161,59 @@ export const ModelViewer = () => {
         }
       },
       (error) => {
-        console.error('Error loading model:', error);
-        setError('Failed to load 3D model');
-        setLoading(false);
+        console.error('❌ Error loading GLB model:', error);
+        console.log('🔄 Trying GLTF fallback...');
+        
+        // Try GLTF fallback
+        loader.load(
+          '/SecondArmModel1.gltf',
+          (gltf) => {
+            console.log('✅ GLTF Model loaded successfully');
+            model = gltf.scene;
+            
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            const size = box.getSize(new THREE.Vector3());
+            
+            model.position.sub(center);
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 2.5 / maxDim;
+            model.scale.setScalar(scale);
+            
+            // Apply materials for GLTF
+            let materialCount = 0;
+            const colors = [
+              0x006d8f, 0xff6b6b, 0x4ecdc4, 0x45b7d1,
+              0x96ceb4, 0xffeaa7, 0xdda0dd, 0x98d8c8
+            ];
+            
+            model.traverse((child) => {
+              if (child instanceof THREE.Mesh) {
+                if (!useOriginalMaterials) {
+                  const color = colors[materialCount % colors.length];
+                  child.material = new THREE.MeshStandardMaterial({
+                    color: color,
+                    metalness: 0.4,
+                    roughness: 0.3,
+                    envMapIntensity: 1,
+                  });
+                }
+                child.castShadow = true;
+                child.receiveShadow = true;
+                materialCount++;
+              }
+            });
+            
+            scene.add(model);
+            setLoading(false);
+          },
+          undefined,
+          (gltfError) => {
+            console.error('❌ Error loading both GLB and GLTF:', gltfError);
+            setError('Failed to load 3D model - files may be missing or corrupted');
+            setLoading(false);
+          }
+        );
       }
     );
 
