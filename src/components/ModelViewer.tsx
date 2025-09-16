@@ -209,8 +209,8 @@ export const ModelViewer = () => {
                   // Create new material with different color for each mesh
                   child.material = new THREE.MeshStandardMaterial({
                     color: meshColor,
-                    metalness: 0.5, // Moderately metallic (not too dark)
-                    roughness: 0.2, // Much smoother/shiner
+                    metalness: 0.8, // More metallic for better reflections
+                    roughness: 0.1, // Very smooth and reflective
                     side: THREE.DoubleSide,
                     wireframe: false // Solid material
                   });
@@ -374,8 +374,8 @@ export const ModelViewer = () => {
                   // Create new material with different color for each mesh
                   child.material = new THREE.MeshStandardMaterial({
                     color: meshColor,
-                    metalness: 0.5, // Moderately metallic (not too dark)
-                    roughness: 0.2, // Much smoother/shiner
+                    metalness: 0.8, // More metallic for better reflections
+                    roughness: 0.1, // Very smooth and reflective
                     side: THREE.DoubleSide,
                     wireframe: false // Solid material
                   });
