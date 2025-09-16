@@ -1,82 +1,208 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Canvas, useLoader, useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, PerspectiveCamera } from '@react-three/drei';
+import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib';
 import { Button } from "@/components/ui/button";
 import { RotateCcw, Palette, Zap, Heart, ArrowRight, Loader2 } from "lucide-react";
-import * as THREE from 'three';
-
-const ModelDisplay = ({ useOriginalMaterials }: { useOriginalMaterials: boolean }) => {
-  const gltf = useLoader(GLTFLoader, '/SecondArmModel1.glb');
-  const modelRef = useRef<THREE.Group>(null);
-  
-  useEffect(() => {
-    if (gltf && modelRef.current) {
-      const model = gltf.scene.clone();
-      
-      // Clear previous children
-      while (modelRef.current.children.length > 0) {
-        modelRef.current.remove(modelRef.current.children[0]);
-      }
-      
-      // Center and scale the model
-      const box = new THREE.Box3().setFromObject(model);
-      const center = box.getCenter(new THREE.Vector3());
-      const size = box.getSize(new THREE.Vector3());
-      
-      model.position.sub(center);
-      const maxDim = Math.max(size.x, size.y, size.z);
-      const scale = 2 / maxDim;
-      model.scale.setScalar(scale);
-      
-      // Apply materials
-      let materialCount = 0;
-      const meshColors = [
-        0x006d8f, // Company Blue
-        0xff6b6b, // Coral Red
-        0x4ecdc4, // Teal
-        0x45b7d1, // Sky Blue
-        0x96ceb4, // Sage Green
-        0xffeaa7, // Warm Yellow
-        0xdda0dd, // Plum
-        0x98d8c8  // Mint
-      ];
-      
-      model.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          if (!useOriginalMaterials) {
-            const colorIndex = materialCount % meshColors.length;
-            const meshColor = meshColors[colorIndex];
-            
-            child.material = new THREE.MeshStandardMaterial({
-              color: meshColor,
-              metalness: 0.3,
-              roughness: 0.4,
-              envMapIntensity: 1,
-            });
-          }
-          materialCount++;
-        }
-      });
-      
-      modelRef.current.add(model);
-    }
-  }, [gltf, useOriginalMaterials]);
-
-  useFrame((state) => {
-    if (modelRef.current) {
-      modelRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
-    }
-  });
-
-  return <group ref={modelRef} />;
-};
 
 export const ModelViewer = () => {
-  const [useOriginalMaterials, setUseOriginalMaterials] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [useOriginalMaterials, setUseOriginalMaterials] = useState(false);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0f0f0f);
+
+    // Camera setup
+    const camera = new THREE.PerspectiveCamera(
+      50,
+      containerRef.current.clientWidth / containerRef.current.clientHeight,
+      0.1,
+      1000
+    );
+    camera.position.set(0, 2, 5);
+
+    // Renderer setup
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setClearColor(0x000000, 0);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    containerRef.current.appendChild(renderer.domElement);
+
+    // Lighting setup - iPhone-style dramatic lighting
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    keyLight.position.set(10, 10, 5);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0x6699ff, 0.5);
+    fillLight.position.set(-5, 0, -5);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.DirectionalLight(0xff9999, 0.8);
+    rimLight.position.set(-10, 5, -10);
+    scene.add(rimLight);
+
+    // Controls (manual implementation for smooth interaction)
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+    let rotation = { x: 0, y: 0 };
+    let targetRotation = { x: 0, y: 0 };
+
+    const handleMouseDown = (event: MouseEvent) => {
+      isDragging = true;
+      previousMousePosition = { x: event.clientX, y: event.clientY };
+    };
+
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!isDragging) return;
+      
+      const deltaMove = {
+        x: event.clientX - previousMousePosition.x,
+        y: event.clientY - previousMousePosition.y
+      };
+
+      targetRotation.y += deltaMove.x * 0.01;
+      targetRotation.x += deltaMove.y * 0.01;
+      targetRotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, targetRotation.x));
+
+      previousMousePosition = { x: event.clientX, y: event.clientY };
+    };
+
+    const handleMouseUp = () => {
+      isDragging = false;
+    };
+
+    const handleWheel = (event: WheelEvent) => {
+      camera.position.z += event.deltaY * 0.01;
+      camera.position.z = Math.max(2, Math.min(10, camera.position.z));
+    };
+
+    renderer.domElement.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    renderer.domElement.addEventListener('wheel', handleWheel);
+
+    let model: THREE.Group | null = null;
+
+    // Load model
+    const loader = new GLTFLoader();
+    loader.load(
+      '/SecondArmModel1.glb',
+      (gltf) => {
+        console.log('✅ Model loaded successfully');
+        model = gltf.scene;
+        
+        // Center and scale the model
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+        
+        model.position.sub(center);
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 2.5 / maxDim;
+        model.scale.setScalar(scale);
+        
+        // Apply materials
+        let materialCount = 0;
+        const colors = [
+          0x006d8f, // Primary blue
+          0xff6b6b, // Coral
+          0x4ecdc4, // Teal
+          0x45b7d1, // Sky blue
+          0x96ceb4, // Sage
+          0xffeaa7, // Warm yellow
+          0xdda0dd, // Plum
+          0x98d8c8  // Mint
+        ];
+        
+        model.traverse((child) => {
+          if (child instanceof THREE.Mesh) {
+            if (!useOriginalMaterials) {
+              const color = colors[materialCount % colors.length];
+              child.material = new THREE.MeshStandardMaterial({
+                color: color,
+                metalness: 0.4,
+                roughness: 0.3,
+                envMapIntensity: 1,
+              });
+            }
+            child.castShadow = true;
+            child.receiveShadow = true;
+            materialCount++;
+          }
+        });
+        
+        scene.add(model);
+        setLoading(false);
+      },
+      (progressEvent) => {
+        if (progressEvent.lengthComputable) {
+          const percent = (progressEvent.loaded / progressEvent.total) * 100;
+          setProgress(percent);
+        }
+      },
+      (error) => {
+        console.error('Error loading model:', error);
+        setError('Failed to load 3D model');
+        setLoading(false);
+      }
+    );
+
+    // Animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+      
+      // Smooth rotation interpolation
+      rotation.x += (targetRotation.x - rotation.x) * 0.1;
+      rotation.y += (targetRotation.y - rotation.y) * 0.1;
+      
+      if (model) {
+        model.rotation.x = rotation.x;
+        model.rotation.y = rotation.y;
+        
+        // Subtle floating animation
+        model.position.y = Math.sin(Date.now() * 0.001) * 0.1;
+      }
+      
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Handle resize
+    const handleResize = () => {
+      if (!containerRef.current) return;
+      camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      if (containerRef.current && renderer.domElement) {
+        containerRef.current.removeChild(renderer.domElement);
+      }
+      renderer.dispose();
+      window.removeEventListener('resize', handleResize);
+      renderer.domElement.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+      renderer.domElement.removeEventListener('wheel', handleWheel);
+    };
+  }, [useOriginalMaterials]);
 
   const toggleMaterials = () => {
     setUseOriginalMaterials(!useOriginalMaterials);
@@ -120,42 +246,40 @@ export const ModelViewer = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background pointer-events-none z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/30 to-background pointer-events-none z-10" />
           
-          <Canvas
-            camera={{ position: [0, 0, 5], fov: 50 }}
-            style={{ height: '70vh' }}
-            onCreated={() => setLoading(false)}
+          <div 
+            ref={containerRef} 
+            className="h-[70vh] relative cursor-grab active:cursor-grabbing"
+            style={{ 
+              background: 'radial-gradient(circle at center, hsl(var(--muted)/0.3) 0%, hsl(var(--background)) 70%)'
+            }}
           >
-            <PerspectiveCamera makeDefault position={[0, 0, 5]} />
-            <ambientLight intensity={0.5} />
-            <directionalLight position={[10, 10, 5]} intensity={1} />
-            <directionalLight position={[-10, -10, -5]} intensity={0.5} />
-            
-            <Environment preset="studio" />
-            
-            <ModelDisplay useOriginalMaterials={useOriginalMaterials} />
-            
-            <OrbitControls 
-              enablePan={false}
-              enableZoom={true}
-              enableRotate={true}
-              minDistance={3}
-              maxDistance={8}
-              autoRotate={false}
-              dampingFactor={0.05}
-              enableDamping
-            />
-          </Canvas>
-
-          {loading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-              <div className="text-center">
-                <Loader2 className="w-12 h-12 animate-spin text-primary mb-4 mx-auto" />
-                <p className="text-lg font-medium text-foreground">Loading 3D Model...</p>
+            {loading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-20">
+                <div className="text-center">
+                  <Loader2 className="w-12 h-12 animate-spin text-primary mb-4 mx-auto" />
+                  <p className="text-lg font-medium text-foreground mb-2">Loading 3D Model...</p>
+                  <div className="w-64 h-2 bg-muted rounded-full overflow-hidden mx-auto">
+                    <div 
+                      className="h-full bg-gradient-primary transition-all duration-300"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">{Math.round(progress)}%</p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+            
+            {error && (
+              <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-20">
+                <div className="text-center p-6 bg-card rounded-lg border shadow-lg max-w-md">
+                  <p className="text-destructive mb-4 font-medium">Model Loading Error</p>
+                  <p className="text-muted-foreground text-sm">{error}</p>
+                </div>
+              </div>
+            )}
+          </div>
         </motion.div>
 
         {/* Feature Cards */}
