@@ -12,31 +12,31 @@ interface InfoNode {
 
 const productInfoNodes: InfoNode[] = [
   {
-    id: 'support-system',
-    title: 'Advanced Support System',
-    description: 'Ergonomic design provides stable support for daily activities with adaptive strength enhancement.',
-    position: { x: '25%', y: '35%' },
+    id: 'emg-sensors',
+    title: 'EMG Muscle Sensors',
+    description: 'Advanced electromyography sensors detect muscle signals and translate them into precise device movements with real-time processing.',
+    position: { x: '30%', y: '40%' },
     triggerScrollProgress: 0.1
   },
   {
-    id: 'sensors',
-    title: 'Smart Sensors',
-    description: 'EMG sensors detect muscle activity and adjust assistance levels in real-time for optimal performance.',
-    position: { x: '70%', y: '45%' },
+    id: 'intelligent-processing',
+    title: 'Intelligent Processing',
+    description: 'Custom AI algorithms process muscle signals and adapt to different stroke patterns with pattern recognition and predictive assistance.',
+    position: { x: '65%', y: '30%' },
     triggerScrollProgress: 0.15
   },
   {
-    id: 'comfort-grip',
-    title: 'Comfort Grip',
-    description: 'Soft, medical-grade materials ensure comfortable extended use while maintaining secure control.',
-    position: { x: '45%', y: '65%' },
+    id: 'safety-systems',
+    title: 'Safety Systems',
+    description: 'Multiple safety mechanisms ensure user protection with automatic disengagement, force limiting, and emergency stops.',
+    position: { x: '70%', y: '60%' },
     triggerScrollProgress: 0.2
   },
   {
-    id: 'power-unit',
-    title: 'Compact Power Unit',
-    description: 'Long-lasting battery with wireless charging capability provides all-day assistance without interruption.',
-    position: { x: '30%', y: '55%' },
+    id: 'performance-monitoring',
+    title: 'Performance Monitoring',
+    description: 'Real-time tracking of progress, range of motion, and strength improvements with milestone detection and recovery analytics.',
+    position: { x: '25%', y: '65%' },
     triggerScrollProgress: 0.25
   }
 ];
@@ -51,7 +51,7 @@ export const ProductInfoNodes = ({ scrollProgress, isVisible }: ProductInfoNodes
 
   useEffect(() => {
     const newActiveNodes = productInfoNodes
-      .filter(node => scrollProgress >= node.triggerScrollProgress && scrollProgress <= 0.3)
+      .filter(node => scrollProgress >= node.triggerScrollProgress && scrollProgress <= 0.4)
       .map(node => node.id);
     
     setActiveNodes(newActiveNodes);
@@ -115,21 +115,21 @@ export const ProductInfoNodes = ({ scrollProgress, isVisible }: ProductInfoNodes
                         }}
                       />
                       
-                      {/* Main node */}
-                      <div className="w-4 h-4 bg-primary rounded-full border-2 border-background shadow-lg cursor-pointer">
-                        <div className="w-2 h-2 bg-primary-foreground rounded-full m-0.5 animate-pulse" />
+                      {/* Main node - larger for accessibility */}
+                      <div className="w-6 h-6 bg-primary rounded-full border-3 border-background shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                        <div className="w-3 h-3 bg-primary-foreground rounded-full m-0.75 animate-pulse" />
                       </div>
                     </motion.div>
                   </TooltipTrigger>
                   
                   <TooltipContent 
                     side="right" 
-                    className="max-w-xs p-4 bg-card/95 backdrop-blur-sm border-primary/20"
-                    sideOffset={15}
+                    className="max-w-sm p-6 bg-card/98 backdrop-blur-md border-2 border-primary/30 shadow-xl rounded-xl"
+                    sideOffset={20}
                   >
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-sm text-foreground">{node.title}</h4>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{node.description}</p>
+                    <div className="space-y-3">
+                      <h4 className="font-bold text-lg text-foreground tracking-tight">{node.title}</h4>
+                      <p className="text-sm text-muted-foreground leading-relaxed font-medium">{node.description}</p>
                     </div>
                   </TooltipContent>
                 </Tooltip>
