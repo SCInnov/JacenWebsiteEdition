@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib';
 import { applyMedicalDeviceColors } from '../utils/modelColors';
+import { ProductInfoNodes } from './ProductInfoNodes';
 
 interface ScrollRotate3DProps {
   modelPath: string;
@@ -28,6 +29,7 @@ export const ScrollRotate3D = ({
   const [dominantColor, setDominantColor] = useState("#000000");
   const [scrollBlurIntensity, setScrollBlurIntensity] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentScrollProgress, setCurrentScrollProgress] = useState(0);
 
   useEffect(() => {
     if (!mountRef.current) return;
@@ -279,6 +281,9 @@ export const ScrollRotate3D = ({
       const maxScroll = document.documentElement.scrollHeight - windowHeight;
       const scrollProgress = Math.min(scrollY / maxScroll, 1);
       
+      // Update scroll progress state for info nodes
+      setCurrentScrollProgress(scrollProgress);
+      
       // Hide model based on scroll progress
       let modelShouldShow = true;
       if (scrollProgress > 0.3) {
@@ -370,16 +375,24 @@ export const ScrollRotate3D = ({
   }, [modelPath, rotationSpeed, blurIntensity]);
 
   return (
-    <div 
-      ref={mountRef} 
-      className={`fixed inset-0 -z-10 pointer-events-none transition-opacity duration-1000 ease-in-out ${className}`}
-      style={{ 
-        background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
-        opacity: isModelReady && shouldShowModel ? (isDarkMode ? 0.3 : 0.15) : (isDarkMode ? 0.1 : 0.05), // Theme-specific opacity
-        filter: `blur(${scrollBlurIntensity}px)`, // Progressive blur based on scroll
-        transition: 'filter 0.1s ease-out' // Smooth blur transition
-      }}
-    >
-    </div>
+    <>
+      <div 
+        ref={mountRef} 
+        className={`fixed inset-0 -z-10 pointer-events-none transition-opacity duration-1000 ease-in-out ${className}`}
+        style={{ 
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
+          opacity: isModelReady && shouldShowModel ? (isDarkMode ? 0.3 : 0.15) : (isDarkMode ? 0.1 : 0.05), // Theme-specific opacity
+          filter: `blur(${scrollBlurIntensity}px)`, // Progressive blur based on scroll
+          transition: 'filter 0.1s ease-out' // Smooth blur transition
+        }}
+      >
+      </div>
+      
+      {/* Product Information Nodes */}
+      <ProductInfoNodes 
+        scrollProgress={currentScrollProgress}
+        isVisible={isModelReady && shouldShowModel}
+      />
+    </>
   );
 };
