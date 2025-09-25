@@ -284,9 +284,9 @@ export const ScrollRotate3D = ({
       // Update scroll progress state for info nodes
       setCurrentScrollProgress(scrollProgress);
       
-      // Hide model based on scroll progress - extended range
+      // Hide model based on scroll progress - extended range for more interaction time
       let modelShouldShow = true;
-      if (scrollProgress > 0.4) {
+      if (scrollProgress > 0.6) {
         modelShouldShow = false;
       }
       
@@ -302,7 +302,7 @@ export const ScrollRotate3D = ({
         y = -0.5 - scrollProgress * 2;
         z = 0;
         
-        if (scrollProgress > 0.3 && modelRef.current) {
+        if (scrollProgress > 0.6 && modelRef.current) {
           modelRef.current.visible = false;
         }
         
