@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib';
 import { OrbitControls } from 'three-stdlib';
+import { applyMedicalDeviceColors } from '../utils/modelColors';
 
 export const ModelViewer = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [progress, setProgress] = useState(0);
-  const [useOriginalMaterials] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -36,22 +36,18 @@ export const ModelViewer = () => {
     renderer.shadowMap.enabled = false; // Disabled shadows for cleaner view
     containerRef.current.appendChild(renderer.domElement);
 
-    // Lighting setup
-    const ambientLight = new THREE.AmbientLight(0x404040, 2.5);
+    // Lighting setup (matching ScrollRotate3D)
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.6);
     scene.add(ambientLight);
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 3.0);
-    directionalLight.position.set(5, 10, 7.5);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    directionalLight.position.set(5, 5, 5);
     directionalLight.castShadow = false; // Disabled shadows
     scene.add(directionalLight);
 
-    const light2 = new THREE.DirectionalLight(0xffffff, 2.0);
-    light2.position.set(-5, -10, -7.5);
-    scene.add(light2);
-
-    const light3 = new THREE.PointLight(0x006d8f, 0.5, 100);
-    light3.position.set(0, 0, 5);
-    scene.add(light3);
+    const pointLight = new THREE.PointLight(0x3b82f6, 0.5, 100);
+    pointLight.position.set(-5, 5, 5);
+    scene.add(pointLight);
     
     // Ground plane removed for cleaner view
 
@@ -61,10 +57,10 @@ export const ModelViewer = () => {
     controls.dampingFactor = 0.05;
     controls.autoRotate = false; // Disabled auto-rotation - model stays still
     controls.autoRotateSpeed = 0.3; // Slower rotation for better viewing
-    controls.minDistance = 2; // Minimum zoom distance
-    controls.maxDistance = 20; // Maximum zoom distance
+    controls.minDistance = 5; // Fixed minimum distance
+    controls.maxDistance = 5; // Fixed maximum distance (same as min = no zoom)
     controls.enablePan = true; // Allow panning
-    controls.enableZoom = true; // Allow zooming
+    controls.enableZoom = false; // Disable zooming
     controls.enableRotate = true; // Allow rotation
 
             // Add a test cube first (will be removed when model loads)
@@ -107,6 +103,9 @@ export const ModelViewer = () => {
 
         // Remove the test cube
         scene.remove(cube);
+
+        // Apply medical device colors using shared function
+        applyMedicalDeviceColors(model, 'ModelViewer');
 
         // Center and scale the model
         const box = new THREE.Box3().setFromObject(model);
@@ -169,69 +168,7 @@ export const ModelViewer = () => {
         console.log('Model scale:', scale);
         console.log('Scale factor:', scale);
 
-            // Handle materials based on preference
-            console.log('Processing materials...');
-            let materialCount = 0;
-            
-            // Define radically different colors for each mesh part
-            const meshColors = [
-              0xff0000, // Red
-              0x00ff00, // Green
-              0x0000ff, // Blue
-              0x000080, // Dark Blue (was Yellow)
-              0x006d8f, // Company Blue (was Magenta)
-              0xffffff, // White (was Cyan)
-              0xff8000, // Orange
-              0x000000  // Black (was Purple)
-            ];
-            
-            model.traverse((child) => {
-              if (child instanceof THREE.Mesh) {
-                materialCount++;
-                console.log(`Mesh ${materialCount} - Original material:`, child.material);
-                console.log(`Material type:`, child.material?.type);
-                console.log(`Material color:`, child.material?.color);
-                console.log(`Material color hex:`, child.material?.color?.getHexString());
-                console.log(`Material map:`, child.material?.map);
-                console.log(`Material metallic:`, child.material?.metallic);
-                console.log(`Material roughness:`, child.material?.roughness);
-                
-                if (useOriginalMaterials) {
-                  // Keep original materials completely unchanged
-                  console.log('Using original materials');
-                } else {
-                  // Apply different colors to each mesh part
-                  const colorIndex = (materialCount - 1) % meshColors.length;
-                  const meshColor = meshColors[colorIndex];
-                  
-                  console.log(`Applying color ${colorIndex + 1} to mesh ${materialCount}: #${meshColor.toString(16)}`);
-                  
-                  // Create new material with different color for each mesh
-                  child.material = new THREE.MeshStandardMaterial({
-                    color: meshColor,
-                    metalness: 0.8, // More metallic for better reflections
-                    roughness: 0.1, // Very smooth and reflective
-                    side: THREE.DoubleSide,
-                    wireframe: false // Solid material
-                  });
-                  
-                  // Add wireframe edges for better definition
-                  const edges = new THREE.EdgesGeometry(child.geometry);
-                  const wireframe = new THREE.LineSegments(
-                    edges,
-                    new THREE.LineBasicMaterial({ 
-                      color: 0x000000, // Black wireframe lines
-                      linewidth: 1
-                    })
-                  );
-                  child.add(wireframe);
-                }
-                
-                // Shadows disabled for cleaner view
-                child.castShadow = false;
-                child.receiveShadow = false;
-              }
-            });
+            // Materials are now handled by the shared applyMedicalDeviceColors function
 
         scene.add(model);
         setLoading(false);
@@ -334,69 +271,7 @@ export const ModelViewer = () => {
             console.log('GLTF Model scale:', scale);
             console.log('GLTF Camera distance:', distance);
 
-            // Handle materials based on preference
-            console.log('Processing materials...');
-            let gltfMaterialCount = 0;
-            
-            // Define radically different colors for each mesh part (GLTF)
-            const gltfMeshColors = [
-              0xff0000, // Red
-              0x00ff00, // Green
-              0x0000ff, // Blue
-              0x000080, // Dark Blue (was Yellow)
-              0x006d8f, // Company Blue (was Magenta)
-              0xffffff, // White (was Cyan)
-              0xff8000, // Orange
-              0x000000  // Black (was Purple)
-            ];
-            
-            model.traverse((child) => {
-              if (child instanceof THREE.Mesh) {
-                gltfMaterialCount++;
-                console.log(`GLTF Mesh ${gltfMaterialCount} - Original material:`, child.material);
-                console.log(`GLTF Material type:`, child.material?.type);
-                console.log(`GLTF Material color:`, child.material?.color);
-                console.log(`GLTF Material color hex:`, child.material?.color?.getHexString());
-                console.log(`GLTF Material map:`, child.material?.map);
-                console.log(`GLTF Material metallic:`, child.material?.metallic);
-                console.log(`GLTF Material roughness:`, child.material?.roughness);
-                
-                if (useOriginalMaterials) {
-                  // Keep original materials completely unchanged
-                  console.log('Using original materials');
-                } else {
-                  // Apply different colors to each mesh part (GLTF)
-                  const colorIndex = (gltfMaterialCount - 1) % gltfMeshColors.length;
-                  const meshColor = gltfMeshColors[colorIndex];
-                  
-                  console.log(`GLTF Applying color ${colorIndex + 1} to mesh ${gltfMaterialCount}: #${meshColor.toString(16)}`);
-                  
-                  // Create new material with different color for each mesh
-                  child.material = new THREE.MeshStandardMaterial({
-                    color: meshColor,
-                    metalness: 0.8, // More metallic for better reflections
-                    roughness: 0.1, // Very smooth and reflective
-                    side: THREE.DoubleSide,
-                    wireframe: false // Solid material
-                  });
-                  
-                  // Add wireframe edges for better definition
-                  const edges = new THREE.EdgesGeometry(child.geometry);
-                  const wireframe = new THREE.LineSegments(
-                    edges,
-                    new THREE.LineBasicMaterial({ 
-                      color: 0x000000, // Black wireframe lines
-                      linewidth: 1
-                    })
-                  );
-                  child.add(wireframe);
-                }
-                
-                // Shadows disabled for cleaner view
-                child.castShadow = false;
-                child.receiveShadow = false;
-              }
-            });
+            // Materials are now handled by the shared applyMedicalDeviceColors function
 
             scene.add(model);
             setLoading(false);

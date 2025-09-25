@@ -95,18 +95,8 @@ export const FeaturesSection = () => {
   };
 
   return (
-    <section id="features" className="py-20 bg-background">
+    <section id="features" className="pt-2 pb-8 bg-background">
       <div className="container mx-auto px-6">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            The <span className="bg-gradient-primary bg-clip-text text-transparent">Second-Arm</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            A revolutionary assistive device that adapts to you, enhances your strength,
-            and provides safe, stable support for daily activities.
-          </p>
-        </div>
 
 
         {/* Carousel below */}
@@ -178,21 +168,6 @@ export const FeaturesSection = () => {
           </div>
         </div>
         
-        {/* Key Benefits - keeping original structure */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">Adapts to You</div>
-            <p className="text-muted-foreground">Personalized assistance for every patient</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">Enhanced Strength</div>
-            <p className="text-muted-foreground">Regain confidence in daily activities</p>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">Safe and Stable</div>
-            <p className="text-muted-foreground">Built with safety as the top priority</p>
-          </div>
-        </div>
       </div>
     </section>
   );

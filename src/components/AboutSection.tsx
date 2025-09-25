@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Users, Heart, Award } from "lucide-react";
+import { Mail, Linkedin, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 export const AboutSection = () => {
@@ -50,63 +50,12 @@ export const AboutSection = () => {
           </Card>
         </motion.div>
         
-        {/* Key Statistics */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Card className="p-6 text-center hover:shadow-card transition-all duration-300">
-              <Users className="w-10 h-10 text-primary mx-auto mb-4" />
-              <div className="text-3xl font-bold text-primary mb-2">11.6M</div>
-              <div className="text-muted-foreground">Hemiparesis Patients in US</div>
-              <div className="text-sm text-muted-foreground mt-1">(2025 projection)</div>
-            </Card>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <Card className="p-6 text-center hover:shadow-card transition-all duration-300">
-              <Heart className="w-10 h-10 text-destructive mx-auto mb-4" />
-              <div className="text-3xl font-bold text-destructive mb-2">71%</div>
-              <div className="text-muted-foreground">Experience Depression</div>
-              <div className="text-sm text-muted-foreground mt-1">Post-treatment</div>
-            </Card>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <Card className="p-6 text-center hover:shadow-card transition-all duration-300">
-              <Award className="w-10 h-10 text-secondary mx-auto mb-4" />
-              <div className="text-3xl font-bold text-secondary mb-2">#1</div>
-              <div className="text-muted-foreground">Leading Cause</div>
-              <div className="text-sm text-muted-foreground mt-1">Of disability in US</div>
-            </Card>
-          </motion.div>
-        </motion.div>
-        
         {/* Team Background */}
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
         >
           <h3 className="text-2xl font-semibold mb-4">Multidisciplinary Expertise</h3>
@@ -123,7 +72,7 @@ export const AboutSection = () => {
           className="text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
         >
           <h3 className="text-2xl font-semibold mb-6">Connect With Us</h3>

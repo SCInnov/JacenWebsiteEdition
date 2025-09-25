@@ -9,6 +9,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Dark mode (default) */
     --background: 0 0% 5%;
     --foreground: 0 0% 95%;
 
@@ -44,19 +45,12 @@ All colors MUST be HSL.
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 5%;
-
     --sidebar-foreground: 0 0% 95%;
-
     --sidebar-primary: 195 100% 28%;
-
     --sidebar-primary-foreground: 0 0% 100%;
-
     --sidebar-accent: 0 0% 12%;
-
     --sidebar-accent-foreground: 0 0% 95%;
-
     --sidebar-border: 0 0% 15%;
-
     --sidebar-ring: 195 100% 28%;
     
     /* Medical gradients inspired by pitch deck */
@@ -72,6 +66,60 @@ All colors MUST be HSL.
     /* Smooth transitions for medical UI */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .light {
+    /* Light mode - Pitch deck colors */
+    --background: 45 100% 98%; /* #fffcf7 */
+    --foreground: 195 100% 28%; /* #006d8f */
+
+    --card: 45 100% 97%;
+    --card-foreground: 195 100% 28%;
+
+    --popover: 45 100% 97%;
+    --popover-foreground: 195 100% 28%;
+
+    /* Logo and highlights - #afc8a0 */
+    --primary: 95 30% 70%; /* #afc8a0 */
+    --primary-foreground: 45 100% 98%;
+    --primary-light: 95 30% 75%;
+    --primary-dark: 95 30% 65%;
+
+    /* Words - #006d8f */
+    --secondary: 195 100% 28%; /* #006d8f */
+    --secondary-foreground: 45 100% 98%;
+
+    --muted: 45 100% 95%;
+    --muted-foreground: 195 100% 28%;
+
+    --accent: 95 30% 70%;
+    --accent-foreground: 45 100% 98%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 45 100% 98%;
+
+    --border: 45 100% 90%;
+    --input: 45 100% 90%;
+    --ring: 95 30% 70%;
+
+    --sidebar-background: 45 100% 98%;
+    --sidebar-foreground: 195 100% 28%;
+    --sidebar-primary: 95 30% 70%;
+    --sidebar-primary-foreground: 45 100% 98%;
+    --sidebar-accent: 45 100% 95%;
+    --sidebar-accent-foreground: 195 100% 28%;
+    --sidebar-border: 45 100% 90%;
+    --sidebar-ring: 95 30% 70%;
+    
+    /* Light mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--secondary)), hsl(var(--primary-light)));
+    
+    /* Light mode shadows */
+    --shadow-primary: 0 10px 30px -10px hsl(var(--primary) / 0.2);
+    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.1);
+    --shadow-hero: 0 20px 60px -20px hsl(var(--primary) / 0.25);
   }
 
 }

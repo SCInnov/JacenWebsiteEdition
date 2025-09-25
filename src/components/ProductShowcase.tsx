@@ -3,9 +3,9 @@ import { ModelViewer } from './ModelViewer';
 
 export const ProductShowcase = () => {
   return (
-    <section id="product" className="relative py-20 bg-background">
+    <section id="product" className="relative pt-8 pb-2 bg-background">
       <div className="container mx-auto px-6">
-        {/* Title and Description Overlay */}
+        {/* Title and Description Above 3D Model */}
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: 50 }}

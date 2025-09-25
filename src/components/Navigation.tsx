@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Logo } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Navigation = () => {
   return (
@@ -23,7 +24,7 @@ export const Navigation = () => {
           
           {/* Navigation Links */}
           <motion.div 
-            className="hidden md:flex items-center space-x-8"
+            className="hidden md:flex items-center space-x-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -37,6 +38,7 @@ export const Navigation = () => {
             <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
               About
             </a>
+            <ThemeToggle />
             <Button variant="default" className="bg-gradient-primary hover:opacity-90">
               Contact
             </Button>
@@ -44,11 +46,12 @@ export const Navigation = () => {
           
           {/* Mobile Menu Button */}
           <motion.div 
-            className="md:hidden"
+            className="md:hidden flex items-center space-x-2"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
+            <ThemeToggle />
             <Button variant="ghost" size="sm">
               <div className="w-5 h-5 flex flex-col justify-center items-center">
                 <span className="block w-4 h-0.5 bg-foreground mb-1"></span>
