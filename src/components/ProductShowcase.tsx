@@ -3,11 +3,11 @@ import { ModelViewer } from './ModelViewer';
 
 export const ProductShowcase = () => {
   return (
-    <section id="product" className="relative pt-8 pb-2 bg-background">
+    <section id="product" className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out">
       <div className="container mx-auto px-6">
         {/* Title and Description Above 3D Model */}
         <motion.div 
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}

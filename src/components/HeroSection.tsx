@@ -2,10 +2,70 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart, Users, Zap, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { ScrollRotate3D } from "./ScrollRotate3D";
-import { useState } from "react";
+import { MeasurementOverlay } from "./MeasurementOverlay";
+import { useState, useEffect } from "react";
 
 export const HeroSection = () => {
   const [isCopied, setIsCopied] = useState(false);
+  const [showMeasurements, setShowMeasurements] = useState(false);
+  // WIP 3D Project - Scroll functionality commented out for later work
+  // const [isSticky, setIsSticky] = useState(true);
+  // const [heroTransform, setHeroTransform] = useState(0);
+  // const [stickyProgress, setStickyProgress] = useState(0);
+  // const [textOpacity, setTextOpacity] = useState(1);
+  
+  // WIP 3D Project - Scroll effect for sticky hero
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollY = window.scrollY;
+  //     const windowHeight = window.innerHeight;
+  //     const stickyDuration = windowHeight * 20; // Hero stays sticky for 20 viewport heights (much longer scroll)
+      
+  //     // Debug logging
+  //     if (scrollY % 100 === 0) { // Log every 100px of scroll
+  //       console.log('Scroll Y:', scrollY, 'Sticky Duration:', stickyDuration, 'Progress:', (scrollY / stickyDuration * 100).toFixed(1) + '%');
+  //     }
+      
+  //     if (scrollY < stickyDuration) {
+  //       // Hero is sticky - don't move
+  //       setIsSticky(true);
+  //       setHeroTransform(0);
+  //       // Calculate progress through sticky phase (0 to 1)
+  //       const progress = scrollY / stickyDuration;
+  //       setStickyProgress(progress);
+        
+  //       // All text fades out together at 10% progress with faster transition
+  //       if (progress > 0.1) {
+  //         const fadeProgress = Math.min((progress - 0.1) / 0.1, 1); // Fade from 10% to 20% (faster transition)
+  //         const newOpacity = 1 - fadeProgress;
+  //         setTextOpacity(newOpacity);
+  //         console.log('Text fade progress:', progress, 'fadeProgress:', fadeProgress, 'textOpacity:', newOpacity);
+  //       } else {
+  //         setTextOpacity(1);
+  //       }
+  //     } else {
+  //       // Hero starts scrolling away
+  //       setIsSticky(false);
+  //       setStickyProgress(1); // Full progress when scrolling away
+  //       setTextOpacity(0); // Text is completely hidden when scrolling away
+        
+  //       // Smooth fade out when scroll progress hits 100%
+  //       const scrollProgress = (scrollY - stickyDuration) / windowHeight;
+  //       const fadeOutProgress = Math.min(scrollProgress, 1);
+  //       const heroOpacity = 1 - fadeOutProgress;
+  //       setHeroTransform(-scrollProgress * windowHeight);
+        
+  //       // Apply fade out to the entire hero section
+  //       const heroElement = document.querySelector('#hero');
+  //       if (heroElement) {
+  //         (heroElement as HTMLElement).style.opacity = heroOpacity.toString();
+  //       }
+  //     }
+  //   };
+
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
   
   const scrollToNext = () => {
     const nextSection = document.getElementById("about");
@@ -33,28 +93,28 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-[250vh] flex flex-col justify-start items-center bg-background isolate">
+    <section 
+      id="hero"
+      className="relative h-screen w-full flex flex-col justify-start items-center bg-background isolate overflow-hidden"
+      // WIP 3D Project - Scroll styling commented out for later work
+      // style={{
+      //   transform: `translateY(${heroTransform}px)`,
+      //   transition: isSticky ? 'none' : 'transform 0.2s ease-out, opacity 0.6s ease-out'
+      // }}
+    >
       {/* Background Layers - Back layer */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90 z-[-2]" />
-      <div className="absolute inset-0 bg-black/30 dark:bg-black/30 bg-white/20 dark:bg-primary/10 z-[-2]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-transparent z-[-2]" />
+      <div className="absolute inset-0 bg-sky-200/30 dark:bg-black/30 bg-sky-100/40 dark:bg-primary/10 z-[-2]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-sky-300/20 to-transparent dark:from-primary/20 dark:to-transparent z-[-2]" />
       
-      {/* 3D Model - Middle layer */}
-      <ScrollRotate3D 
+      {/* WIP 3D Project - 3D Model - COMMENTED OUT FOR LATER WORK */}
+      {/* <ScrollRotate3D 
         className="fixed inset-0 z-[1]"
         modelPath="/SecondArmModel1.glb"
         rotationSpeed={0.5}
         blurIntensity={0.3}
-      />
+      /> */}
       
-      {/* Progressive Blur Background - Green for Light Mode - Back layer */}
-      <div className="absolute inset-0 z-[-2] backdrop-blur-sm dark:backdrop-blur-none transition-all duration-1000" />
-      <div className="absolute inset-0 z-[-2] bg-gradient-to-br from-green-400/15 via-green-500/8 to-green-600/12 dark:from-transparent dark:via-transparent dark:to-transparent" />
-      
-      {/* Additional Green Blur Layers for Light Mode - Back layer */}
-      <div className="absolute inset-0 z-[-2] bg-gradient-to-t from-green-300/20 via-green-400/10 to-green-500/15 dark:from-transparent dark:via-transparent dark:to-transparent" />
-      <div className="absolute inset-0 z-[-2] bg-gradient-to-l from-green-200/25 via-green-300/15 to-green-400/18 dark:from-transparent dark:via-transparent dark:to-transparent" />
-      <div className="absolute inset-0 z-[-2] bg-gradient-to-r from-transparent via-green-300/12 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent" />
       
       <div className="absolute inset-0 opacity-10 z-[-2]"
            style={{
@@ -70,12 +130,10 @@ export const HeroSection = () => {
       
       
       {/* Main Content */}
-      <motion.div
-        className="relative z-[100] isolate text-center px-6 space-y-8 max-w-4xl"
-        style={{ marginTop: '35vh' }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+      <div 
+        className="relative z-[100] isolate text-center px-6 space-y-8 max-w-4xl flex flex-col justify-center items-center h-full"
+        // WIP 3D Project - Text opacity styling commented out for later work
+        // style={{ opacity: textOpacity, transition: 'opacity 0.3s ease-out' }}
       >
 
         {/* Headline */}
@@ -127,7 +185,51 @@ export const HeroSection = () => {
             {isCopied && <Heart className="ml-2 w-5 h-5" />}
           </Button>
         </motion.div>
-      </motion.div>
+      </div>
+      
+      {/* WIP 3D Project - Measurement Overlay - COMMENTED OUT FOR LATER WORK */}
+      {/* <MeasurementOverlay 
+        isVisible={showMeasurements} 
+        onToggle={() => setShowMeasurements(!showMeasurements)} 
+      /> */}
+      
+      {/* WIP 3D Project - Toggle Measurements Button - COMMENTED OUT FOR LATER WORK */}
+      {/* <button
+        onClick={() => {
+          console.log('Toggle measurements clicked, current state:', showMeasurements);
+          setShowMeasurements(!showMeasurements);
+        }}
+        className="fixed top-20 left-4 z-50 bg-red-600 text-white px-6 py-3 rounded-lg shadow-xl hover:bg-red-700 transition-colors flex items-center gap-2 border-2 border-white"
+        style={{ 
+          fontSize: '16px',
+          fontWeight: 'bold',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
+        }}
+      >
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+        {showMeasurements ? 'Hide Grid' : 'Show Grid'}
+      </button> */}
+
+      {/* WIP 3D Project - Progress Bar - COMMENTED OUT FOR LATER WORK */}
+      {/* <div className="fixed top-20 left-80 z-50 bg-black/80 text-white px-4 py-3 rounded-lg shadow-xl border-2 border-white">
+        <div className="flex items-center gap-3">
+          <div className="text-sm font-medium">Scroll Progress:</div>
+          <div className="w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-100 ease-out"
+              style={{ width: `${stickyProgress * 100}%` }}
+            />
+          </div>
+          <div className="text-xs text-gray-300">
+            {Math.round(stickyProgress * 100)}%
+          </div>
+        </div>
+        <div className="text-xs text-gray-400 mt-1">
+          {isSticky ? 'Hero Fixed' : 'Hero Scrolling'}
+        </div>
+      </div> */}
       
     </section>
   );

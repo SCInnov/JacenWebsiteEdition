@@ -16,7 +16,7 @@ export const ModelViewer = () => {
 
     // Scene setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0a0a); // Match website background
+    scene.background = null; // Transparent background
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(
@@ -28,12 +28,13 @@ export const ModelViewer = () => {
     camera.position.set(0, 0, 3); // Much closer to the model
 
     // Renderer setup
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(
       containerRef.current.clientWidth,
       containerRef.current.clientHeight
     );
     renderer.shadowMap.enabled = false; // Disabled shadows for cleaner view
+    renderer.setClearColor(0x000000, 0); // Transparent background
     containerRef.current.appendChild(renderer.domElement);
 
     // Lighting setup (matching ScrollRotate3D)

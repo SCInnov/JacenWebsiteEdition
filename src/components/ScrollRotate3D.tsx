@@ -99,8 +99,6 @@ export const ScrollRotate3D = ({
     pointLight.position.set(-5, 5, 5);
     scene.add(pointLight);
 
-
-
     // Load GLTF model
     const loader = new GLTFLoader();
     loader.load(
@@ -263,12 +261,10 @@ export const ScrollRotate3D = ({
       
       // Find the HeroSection to determine when to start zoom effect
       const heroSection = document.querySelector('#hero');
-      const heroHeight = heroSection ? heroSection.getBoundingClientRect().height : windowHeight;
+      const heroHeight = windowHeight; // Fixed screen height
       
-      // Calculate scroll progress within HeroSection for blur effect
-      const heroScrollProgress = Math.min(scrollY / heroHeight, 1);
-      const heroBlurIntensity = heroScrollProgress * 10; // Max blur of 10px
-      setScrollBlurIntensity(heroBlurIntensity);
+      // No blur effect for 3D model - keep it sharp at all times
+      setScrollBlurIntensity(0);
       
       // Find the StatsSection for color application
       const statsSection = document.querySelector('#stats, [data-section="stats"]');
@@ -277,16 +273,16 @@ export const ScrollRotate3D = ({
       const heroProgress = Math.max(0, (scrollY - heroHeight) / (document.documentElement.scrollHeight - heroHeight - windowHeight));
       const heroProgressClamped = Math.min(heroProgress, 1);
       
-      // Use overall page scroll for basic movement
-      const maxScroll = document.documentElement.scrollHeight - windowHeight;
-      const scrollProgress = Math.min(scrollY / maxScroll, 1);
+      // Use sticky duration for model visibility (same as hero section)
+      const stickyDuration = windowHeight * 20; // Same as hero section sticky duration
+      const modelScrollProgress = Math.min(scrollY / stickyDuration, 1);
       
       // Update scroll progress state for info nodes
-      setCurrentScrollProgress(scrollProgress);
+      setCurrentScrollProgress(modelScrollProgress);
       
-      // Hide model based on scroll progress - extended range for more interaction time
+      // Hide model based on scroll progress - keep visible until 95%
       let modelShouldShow = true;
-      if (scrollProgress > 0.6) {
+      if (modelScrollProgress > 0.95) { // Keep visible until 95% of sticky duration
         modelShouldShow = false;
       }
       
@@ -299,10 +295,10 @@ export const ScrollRotate3D = ({
         let x, z, y;
         
         x = 0;
-        y = -0.5 - scrollProgress * 2;
+        y = -0.5; // Keep model at fixed Y position - no vertical movement
         z = 0;
         
-        if (scrollProgress > 0.6 && modelRef.current) {
+        if (modelScrollProgress > 0.95 && modelRef.current) { // Keep visible until 95% of sticky duration
           modelRef.current.visible = false;
         }
         
@@ -312,16 +308,40 @@ export const ScrollRotate3D = ({
         
         modelRef.current.scale.setScalar(0.1);
         
-        const rotationAmount = scrollProgress * Math.PI * 2;
+        // Calculate rotation with multiple speed changes
+        let rotationAmount;
+        if (modelScrollProgress >= 0.21) {
+          const speedUpProgress = (modelScrollProgress - 0.21) / (1 - 0.21); // Progress from 21% to 100%
+          
+          // Complete 360 degrees during the speed-up phase (21% to ~36%)
+          const speedUpDuration = 0.19; // Complete 360° in 19% of the remaining scroll (21% to 36%)
+          const speedUpEnd = 0.21 + speedUpDuration * (1 - 0.21); // ~36%
+          
+          if (modelScrollProgress <= speedUpEnd) {
+            // Speed up by 2x and complete 360 degrees (21% to 36%)
+            const speedUpPhaseProgress = (modelScrollProgress - 0.21) / (speedUpEnd - 0.21);
+            const speedUpRotation = speedUpPhaseProgress * Math.PI * 2; // Complete 360° during speed-up
+            const baseRotation = 0.21 * Math.PI * 2; // Rotation up to 21%
+            rotationAmount = baseRotation + speedUpRotation;
+          } else {
+            // Slow down even more from 36% onwards (0.5x speed)
+            const slowDownProgress = (modelScrollProgress - speedUpEnd) / (1 - speedUpEnd);
+            const slowDownRotation = slowDownProgress * Math.PI * 2 * 0.5; // 0.5x speed for remaining rotation
+            const baseRotation = 0.21 * Math.PI * 2; // Rotation up to 21%
+            const speedUpRotation = Math.PI * 2; // Complete 360° during speed-up
+            rotationAmount = baseRotation + speedUpRotation + slowDownRotation;
+          }
+        } else {
+          // Normal speed for first 21%
+          rotationAmount = modelScrollProgress * Math.PI * 2;
+        }
+        
         modelRef.current.rotation.y = baseAngle + Math.PI / 2 + (110 * Math.PI) / 180 + rotationAmount;
         modelRef.current.rotation.x = 0;
         modelRef.current.rotation.z = 0;
         
-        if (heroProgressClamped > 0) {
-          camera.position.z = 2 - heroProgressClamped * 1.5;
-        } else {
-          camera.position.z = 2;
-        }
+        // Keep camera at fixed distance - no zoom effect
+        camera.position.z = 2;
         
         if (heroProgressClamped > 0.8 && statsSection) {
           const nextSection = statsSection as HTMLElement;
@@ -379,12 +399,18 @@ export const ScrollRotate3D = ({
       <div 
         ref={mountRef} 
         className={`fixed inset-0 -z-10 pointer-events-none transition-opacity duration-1000 ease-in-out ${className}`}
-        style={{ 
-          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)',
-          opacity: isModelReady && shouldShowModel ? (isDarkMode ? 0.3 : 0.15) : (isDarkMode ? 0.1 : 0.05), // Theme-specific opacity
-          filter: `blur(${scrollBlurIntensity}px)`, // Progressive blur based on scroll
-          transition: 'filter 0.1s ease-out' // Smooth blur transition
-        }}
+      style={{ 
+        background: isDarkMode 
+          ? 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%)'
+          : 'linear-gradient(135deg, rgba(135, 206, 250, 0.8) 0%, rgba(176, 224, 230, 0.6) 100%)', // More visible pastel sky blue for light mode
+        opacity: isModelReady && shouldShowModel ? 
+          (currentScrollProgress > 0.1 ? 
+            Math.min(1, (currentScrollProgress - 0.1) / 0.1 + (isDarkMode ? 0.2 : 0.1)) : // Gradual fade from more transparent to full opacity (10-20%)
+            (isDarkMode ? 0.2 : 0.1)) : // More transparent theme-specific opacity before fade starts
+          (isDarkMode ? 0.05 : 0.03), // More transparent when hidden
+        filter: `blur(${scrollBlurIntensity}px)`, // Progressive blur based on scroll
+        transition: 'opacity 0.3s ease-out, filter 0.1s ease-out' // Smooth opacity and blur transition
+      }}
       >
       </div>
       

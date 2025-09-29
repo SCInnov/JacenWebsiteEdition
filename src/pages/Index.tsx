@@ -9,14 +9,16 @@ import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen scroll-smooth">
       <Navigation />
-      <main>
-        <HeroSection />
+      <HeroSection />
+      {/* WIP 3D Project - Spacer for sticky hero - 20 viewport heights to account for much longer sticky duration */}
+      {/* <div style={{ height: '2000vh' }} /> */}
+      <main className="transition-all duration-1000 ease-in-out">
         <StatsSection />
         <ProductShowcase />
         <FeaturesSection />
-        
+        <TechnologySection />
         <AboutSection />
       </main>
       <Footer />

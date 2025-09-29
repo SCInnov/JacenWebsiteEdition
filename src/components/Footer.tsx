@@ -5,7 +5,7 @@ import { Logo } from "./Logo";
 
 export const Footer = () => {
   return (
-    <footer className="py-12 relative bg-background">
+    <footer className="min-h-screen flex items-center justify-center relative bg-background transition-all duration-1000 ease-in-out">
       {/* Light Blue Gradient at Bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
       <div className="container mx-auto px-6">
@@ -24,9 +24,9 @@ export const Footer = () => {
             viewport={{ once: true }}
           >
             <div className="mb-1 relative z-10">
-              <Logo size="xxl" className="text-white mb-1" />
+              <Logo size="xxl" className="text-primary mb-1" />
             </div>
-            <p className="text-white mb-4 leading-relaxed relative z-10">
+            <p className="text-primary mb-4 leading-relaxed relative z-10">
               Reimagining stroke care through innovative assistive technology 
               that helps people regain their independence.
             </p>
@@ -43,18 +43,18 @@ export const Footer = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-semibold text-lg mb-4 text-white relative z-10">Quick Links</h4>
+            <h4 className="font-semibold text-lg mb-4 text-primary relative z-10">Quick Links</h4>
             <div className="space-y-2 relative z-10">
-              <a href="#features" className="block text-white hover:text-primary transition-colors">
+              <a href="#features" className="block text-primary hover:text-primary/80 transition-colors">
                 Features
               </a>
-              <a href="#technology" className="block text-white hover:text-primary transition-colors">
+              <a href="#technology" className="block text-primary hover:text-primary/80 transition-colors">
                 Technology
               </a>
-              <a href="#about" className="block text-white hover:text-primary transition-colors">
+              <a href="#about" className="block text-primary hover:text-primary/80 transition-colors">
                 About Us
               </a>
-              <a href="#contact" className="block text-white hover:text-primary transition-colors">
+              <a href="#contact" className="block text-primary hover:text-primary/80 transition-colors">
                 Contact
               </a>
             </div>
@@ -67,23 +67,27 @@ export const Footer = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-semibold text-lg mb-4 text-white relative z-10">Get in Touch</h4>
+            <h4 className="font-semibold text-lg mb-4 text-primary relative z-10">Get in Touch</h4>
             <div className="space-y-3 relative z-10">
-              <Button 
-                variant="ghost" 
-                className="justify-start p-0 text-white hover:text-primary hover:bg-transparent"
-              >
-                <Mail className="w-4 h-4 mr-2" />
-                info@secchance.com
-              </Button>
-              
-              <Button 
-                variant="ghost"
-                className="justify-start p-0 text-white hover:text-primary hover:bg-transparent"
-              >
-                <Linkedin className="w-4 h-4 mr-2" />
-                LinkedIn
-              </Button>
+              <div>
+                <Button 
+                  variant="ghost" 
+                  className="justify-start p-0 text-primary hover:text-primary/80 hover:bg-transparent"
+                >
+                  <Mail className="w-4 h-4 mr-2" />
+                  info@secchance.com
+                </Button>
+                
+                <div className="mt-2">
+                  <Button 
+                    variant="ghost"
+                    className="justify-start p-0 text-primary hover:text-primary/80 hover:bg-transparent"
+                  >
+                    <Linkedin className="w-4 h-4 mr-2" />
+                    LinkedIn
+                  </Button>
+                </div>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -95,7 +99,7 @@ export const Footer = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <p className="text-white">
+          <p className="text-primary">
             © 2024 Second Chance Innovations. All rights reserved.
           </p>
         </motion.div>

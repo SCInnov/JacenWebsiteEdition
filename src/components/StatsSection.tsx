@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export const StatsSection = () => {
   return (
-    <section id="stats" className="py-20 bg-background relative">
+    <section id="stats" className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out">
       {/* Dark gray device background effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-800/30 via-gray-700/50 to-gray-900/70 z-0" />
       <div className="absolute inset-0 bg-gradient-to-r from-gray-600/40 via-transparent to-gray-600/40 z-0" />
@@ -17,7 +17,7 @@ export const StatsSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-24"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -34,7 +34,7 @@ export const StatsSection = () => {
         
         {/* Key Statistics */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -47,7 +47,7 @@ export const StatsSection = () => {
             viewport={{ once: true }}
           >
             <div 
-              className="p-6 text-center bg-card border rounded-lg shadow-sm cursor-pointer group"
+              className="p-8 text-center bg-card border rounded-lg shadow-sm cursor-pointer group"
               style={{
                 transition: 'all 0.3s ease',
                 transform: 'scale(1) translateY(0)',
@@ -79,7 +79,7 @@ export const StatsSection = () => {
             viewport={{ once: true }}
           >
             <div 
-              className="p-6 text-center bg-card border rounded-lg shadow-sm cursor-pointer group"
+              className="p-8 text-center bg-card border rounded-lg shadow-sm cursor-pointer group"
               style={{
                 transition: 'all 0.3s ease',
                 transform: 'scale(1) translateY(0)',
@@ -111,7 +111,7 @@ export const StatsSection = () => {
             viewport={{ once: true }}
           >
             <div 
-              className="p-6 text-center bg-card border rounded-lg shadow-sm cursor-pointer group"
+              className="p-8 text-center bg-card border rounded-lg shadow-sm cursor-pointer group"
               style={{
                 transition: 'all 0.3s ease',
                 transform: 'scale(1) translateY(0)',
@@ -136,6 +136,7 @@ export const StatsSection = () => {
             </div>
           </motion.div>
         </motion.div>
+        
       </div>
     </section>
   );
