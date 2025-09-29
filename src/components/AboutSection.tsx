@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export const AboutSection = () => {
   return (
-    <section id="about" className="h-screen flex items-center justify-center bg-background relative transition-all duration-500 ease-in-out">
+    <section id="about" className="h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out">
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-5" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`

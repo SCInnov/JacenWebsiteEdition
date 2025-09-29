@@ -95,7 +95,7 @@ export const HeroSection = () => {
   return (
     <section 
       id="hero"
-      className="relative h-screen w-full flex flex-col justify-center items-center bg-background isolate overflow-hidden transition-all duration-500 ease-in-out"
+      className="relative h-screen w-full flex flex-col justify-center items-center bg-background isolate overflow-hidden transition-all duration-1000 ease-in-out"
       // WIP 3D Project - Scroll styling commented out for later work
       // style={{
       //   transform: `translateY(${heroTransform}px)`,

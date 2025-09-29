@@ -3,7 +3,7 @@ import { ModelViewer } from './ModelViewer';
 
 export const ProductShowcase = () => {
   return (
-    <section id="product" className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out">
+    <section id="product" className="h-screen flex items-center justify-center bg-transparent relative transition-all duration-1000 ease-in-out">
       <div className="container mx-auto px-6">
         {/* Title and Description Above 3D Model */}
         <motion.div 

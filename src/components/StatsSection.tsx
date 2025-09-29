@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export const StatsSection = () => {
   return (
-    <section id="stats" className="h-screen flex items-center justify-center bg-background relative transition-all duration-500 ease-in-out">
+    <section id="stats" className="h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out">
       {/* Dark gray device background effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-800/30 via-gray-700/50 to-gray-900/70 z-0" />
       <div className="absolute inset-0 bg-gradient-to-r from-gray-600/40 via-transparent to-gray-600/40 z-0" />
@@ -14,10 +14,10 @@ export const StatsSection = () => {
       <div className="absolute inset-0 opacity-5 z-1" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 py-16 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-24"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -34,7 +34,7 @@ export const StatsSection = () => {
         
         {/* Key Statistics */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-6xl mx-auto"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
