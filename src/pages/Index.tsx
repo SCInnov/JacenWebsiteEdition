@@ -14,7 +14,7 @@ const Index = () => {
       <HeroSection />
       {/* WIP 3D Project - Spacer for sticky hero - 20 viewport heights to account for much longer sticky duration */}
       {/* <div style={{ height: '2000vh' }} /> */}
-      <main className="transition-all duration-1000 ease-in-out">
+      <main className="transition-all duration-500 ease-in-out">
         <StatsSection />
         <ProductShowcase />
         <FeaturesSection />

@@ -5,7 +5,7 @@ import { Logo } from "./Logo";
 
 export const Footer = () => {
   return (
-    <footer className="min-h-screen flex items-center justify-center relative bg-background transition-all duration-1000 ease-in-out">
+    <footer className="h-screen flex items-center justify-center relative bg-background transition-all duration-500 ease-in-out">
       {/* Light Blue Gradient at Bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
       <div className="container mx-auto px-6">

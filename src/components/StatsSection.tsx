@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export const StatsSection = () => {
   return (
-    <section id="stats" className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out">
+    <section id="stats" className="h-screen flex items-center justify-center bg-background relative transition-all duration-500 ease-in-out">
       {/* Dark gray device background effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-800/30 via-gray-700/50 to-gray-900/70 z-0" />
       <div className="absolute inset-0 bg-gradient-to-r from-gray-600/40 via-transparent to-gray-600/40 z-0" />

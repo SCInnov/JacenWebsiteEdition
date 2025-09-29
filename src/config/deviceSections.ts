@@ -1,4 +1,12 @@
-import { Section } from '../components/SpinTour';
+// Section type definition
+type Section = {
+  id: string;
+  camPos: [number, number, number];
+  lookAt?: [number, number, number];
+  labelPos: [number, number, number];
+  title: string;
+  body: string;
+};
 
 export const deviceSections: Section[] = [
   {

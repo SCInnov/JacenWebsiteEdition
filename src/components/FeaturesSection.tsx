@@ -95,7 +95,7 @@ export const FeaturesSection = () => {
   };
 
   return (
-    <section id="features" className="min-h-screen flex items-center justify-center bg-background transition-all duration-1000 ease-in-out">
+    <section id="features" className="h-screen flex items-center justify-center bg-background transition-all duration-500 ease-in-out">
       <div className="container mx-auto px-6">
 
 
