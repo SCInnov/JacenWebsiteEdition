@@ -155,13 +155,16 @@ export const TechnologySection = () => {
   };
 
   return (
-    <section id="technology" className="relative bg-background min-h-screen flex items-center justify-center transition-all duration-1000 ease-in-out">
+    <section 
+      id="technology" 
+      className="relative bg-background h-screen w-full transition-all duration-1000 ease-in-out"
+    >
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-4 pointer-events-none" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
       
-      <div className="container mx-auto px-6 min-h-screen flex items-center justify-center">
+      <div className="container mx-auto px-6 h-full flex items-center justify-center">
         <div className="max-w-6xl mx-auto w-full">
           
           {/* Header Section - Only visible when no feature is selected */}
@@ -189,13 +192,16 @@ export const TechnologySection = () => {
                   {techFeatures.map((tech, index) => (
                     <div
                       key={index}
-                      className={`text-center cursor-pointer bg-card border-2 rounded-2xl p-6 pb-10 hover:border-primary hover:shadow-xl hover:bg-primary/5 transition-all duration-300 w-full relative z-20 group border-border hover:scale-105 ${
+                      className={`text-center cursor-pointer bg-card border-2 border-green-200 dark:border-green-800 rounded-2xl p-6 pb-10 hover:border-primary hover:shadow-xl hover:bg-primary/5 transition-all duration-300 w-full relative z-20 group hover:scale-105 ${
                         isZooming && clickedButtonIndex === index 
                           ? 'scale-150 z-50 shadow-2xl border-primary bg-primary/10' 
                           : isZooming && clickedButtonIndex !== index 
                             ? 'opacity-0 scale-75' 
                             : ''
                       }`}
+                      style={{
+                        backgroundColor: 'rgba(34, 197, 94, 0.02)',
+                      }}
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
@@ -304,7 +310,7 @@ export const TechnologySection = () => {
                         : 'opacity-100 scale-100 translate-y-0'
                   }`}
                 >
-                  <Card className="p-12 hover:shadow-card transition-all duration-300 max-w-4xl w-full">
+                  <Card className="p-12 hover:shadow-card transition-all duration-300 max-w-4xl w-full border-2 border-green-200 dark:border-green-800" style={{ backgroundColor: 'rgba(34, 197, 94, 0.02)' }}>
                     <div className="text-center mb-8">
                       <button
                         className="mb-6 px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg border border-transparent hover:border-primary/20 transition-all duration-300 font-medium"

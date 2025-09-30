@@ -16,7 +16,8 @@ export const ModelViewer = () => {
 
     // Scene setup
     const scene = new THREE.Scene();
-    scene.background = null; // Transparent background
+    // Transparent background so CSS layers can show through
+    scene.background = null;
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(
@@ -29,10 +30,10 @@ export const ModelViewer = () => {
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(
-      containerRef.current.clientWidth,
-      containerRef.current.clientHeight
-    );
+    // Force fixed width for wider 3D model (extended to 1100px)
+    const renderWidth = 1100;
+    const renderHeight = 400;
+    renderer.setSize(renderWidth, renderHeight);
     renderer.shadowMap.enabled = false; // Disabled shadows for cleaner view
     renderer.setClearColor(0x000000, 0); // Transparent background
     containerRef.current.appendChild(renderer.domElement);
@@ -129,7 +130,7 @@ export const ModelViewer = () => {
 
         // Apply uniform scaling to fit model into scene
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 5 / maxDim;
+        const scale = 5 / maxDim; // Back to original scale
         model.scale.setScalar(scale);
         
         // Set default starting rotation (270 degrees around X-axis)
@@ -242,7 +243,7 @@ export const ModelViewer = () => {
 
             // Apply uniform scaling to fit model into scene
             const maxDim = Math.max(size.x, size.y, size.z);
-            const scale = 5 / maxDim;
+            const scale = 5 / maxDim; // Back to original scale
             model.scale.setScalar(scale);
             
             // Set default starting rotation (270 degrees around X-axis) - GLTF
@@ -302,8 +303,8 @@ export const ModelViewer = () => {
     // Handle resize
     const handleResize = () => {
       if (!containerRef.current) return;
-      const width = containerRef.current.clientWidth;
-      const height = containerRef.current.clientHeight;
+      const width = 1100;
+      const height = 400;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
@@ -333,18 +334,28 @@ export const ModelViewer = () => {
       {/* 3D Viewer */}
       <div
         ref={containerRef}
-        className="w-full h-96 bg-gray-900 rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center"
-        style={{ minHeight: '400px' }}
+        className="h-[400px] rounded-2xl overflow-hidden shadow-lg flex items-center justify-center backdrop-blur-sm relative bg-sky-200/30 dark:bg-black/30"
+        style={{ 
+          minHeight: '400px', 
+          width: '1100px', 
+          maxWidth: 'none', 
+          marginLeft: '-210px',
+          position: 'relative'
+        }}
       >
+        {/* Background Layers - Exact same as HeroSection */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90 z-[-2]" />
+        <div className="absolute inset-0 bg-sky-200/30 dark:bg-black/30 bg-sky-100/40 dark:bg-primary/10 z-[-2]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-300/20 to-transparent dark:from-primary/20 dark:to-transparent z-[-2]" />
         {loading && (
-          <div className="text-white text-center">
+          <div className="text-white text-center relative z-10">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
             <p>Loading 3D Model...</p>
             <p className="text-sm text-gray-400 mt-2">{Math.round(progress)}%</p>
           </div>
         )}
         {error && (
-          <div className="text-red-400 text-center">
+          <div className="text-red-400 text-center relative z-10">
             <p className="text-lg font-semibold mb-2">⚠️ {error}</p>
             <p className="text-sm">Check the browser console for more details.</p>
           </div>

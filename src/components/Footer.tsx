@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Mail, Linkedin, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { Logo } from "./Logo";
 
 export const Footer = () => {
   return (
-    <footer className="h-screen flex items-center justify-center relative bg-background transition-all duration-1000 ease-in-out">
+    <footer 
+      className="h-screen flex items-center justify-center relative bg-background transition-all duration-1000 ease-in-out"
+    >
       {/* Light Blue Gradient at Bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
       <div className="container mx-auto px-6">
@@ -60,34 +62,24 @@ export const Footer = () => {
             </div>
           </motion.div>
           
-          {/* Contact */}
+          {/* Company Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <h4 className="font-semibold text-lg mb-4 text-primary relative z-10">Get in Touch</h4>
-            <div className="space-y-3 relative z-10">
-              <div>
-                <Button 
-                  variant="ghost" 
-                  className="justify-start p-0 text-primary hover:text-primary/80 hover:bg-transparent"
-                >
-                  <Mail className="w-4 h-4 mr-2" />
-                  info@secchance.com
-                </Button>
-                
-                <div className="mt-2">
-                  <Button 
-                    variant="ghost"
-                    className="justify-start p-0 text-primary hover:text-primary/80 hover:bg-transparent"
-                  >
-                    <Linkedin className="w-4 h-4 mr-2" />
-                    LinkedIn
-                  </Button>
-                </div>
-              </div>
+            <h4 className="font-semibold text-lg mb-4 text-primary relative z-10">Company</h4>
+            <div className="space-y-2 relative z-10">
+              <p className="text-primary text-sm">
+                Second Chance Innovations
+              </p>
+              <p className="text-primary text-sm">
+                Transforming stroke rehabilitation
+              </p>
+              <p className="text-primary text-sm">
+                through innovative technology
+              </p>
             </div>
           </motion.div>
         </motion.div>
@@ -100,7 +92,7 @@ export const Footer = () => {
           viewport={{ once: true }}
         >
           <p className="text-primary">
-            © 2024 Second Chance Innovations. All rights reserved.
+            © 2025 Second Chance Innovations. All rights reserved.
           </p>
         </motion.div>
       </div>

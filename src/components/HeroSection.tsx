@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 export const HeroSection = () => {
   const [isCopied, setIsCopied] = useState(false);
   const [showMeasurements, setShowMeasurements] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   // WIP 3D Project - Scroll functionality commented out for later work
   // const [isSticky, setIsSticky] = useState(true);
   // const [heroTransform, setHeroTransform] = useState(0);
@@ -92,20 +94,65 @@ export const HeroSection = () => {
     }
   };
 
+  // True 360-degree infinite carousel - Always running
+  useEffect(() => {
+    const carousel = document.getElementById('carousel');
+    if (!carousel) return;
+
+    let animationId: number;
+    let startTime: number;
+    const duration = 20000; // 20 seconds for full cycle (slower, more elegant)
+    // Responsive width calculation - will be updated dynamically
+    const getSingleSetWidth = () => {
+      if (window.innerWidth < 640) return 3 * 300; // Mobile: 3 × 300px = 900px
+      if (window.innerWidth < 768) return 3 * 400; // Small: 3 × 400px = 1200px
+      return 3 * 576; // Desktop: 3 × 576px = 1728px
+    };
+    const singleSetWidth = getSingleSetWidth();
+
+    const animate = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      
+      // Calculate progress through the cycle (0 to 1)
+      const progress = (elapsed % duration) / duration;
+      
+      // True infinite scroll - resets every cycle for seamless loop
+      const translateX = -progress * singleSetWidth;
+      
+      carousel.style.transform = `translateX(${translateX}px)`;
+      
+      // Always continue animation - never stops
+      animationId = requestAnimationFrame(animate);
+    };
+
+    // Start animation immediately
+    animationId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, []);
+
   return (
     <section 
       id="hero"
-      className="relative h-screen w-full flex flex-col justify-center items-center bg-background isolate overflow-hidden transition-all duration-1000 ease-in-out"
+      className="relative min-h-screen w-full flex flex-col justify-center items-center bg-background isolate overflow-visible transition-all duration-1000 ease-in-out"
       // WIP 3D Project - Scroll styling commented out for later work
       // style={{
       //   transform: `translateY(${heroTransform}px)`,
       //   transition: isSticky ? 'none' : 'transform 0.2s ease-out, opacity 0.6s ease-out'
       // }}
     >
-      {/* Background Layers - Back layer */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90 z-[-2]" />
-      <div className="absolute inset-0 bg-sky-200/30 dark:bg-black/30 bg-sky-100/40 dark:bg-primary/10 z-[-2]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-300/20 to-transparent dark:from-primary/20 dark:to-transparent z-[-2]" />
+             {/* Background Layers - Back layer */}
+             <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90 z-[-2]" />
+             <div className="absolute inset-0 bg-sky-200/30 dark:bg-black/30 bg-sky-100/40 dark:bg-primary/10 z-[-2]" />
+             <div className="absolute inset-0 bg-gradient-to-b from-sky-300/20 to-transparent dark:from-primary/20 dark:to-transparent z-[-2]" />
+             
+             {/* Transition gradient to next section */}
+             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent z-[-1]" />
       
       {/* WIP 3D Project - 3D Model - COMMENTED OUT FOR LATER WORK */}
       {/* <ScrollRotate3D 
@@ -129,63 +176,188 @@ export const HeroSection = () => {
       />
       
       
-      {/* Main Content */}
-      <div 
-        className="relative z-[100] isolate text-center px-6 space-y-8 max-w-4xl flex flex-col justify-center items-center h-full"
-        // WIP 3D Project - Text opacity styling commented out for later work
-        // style={{ opacity: textOpacity, transition: 'opacity 0.3s ease-out' }}
-      >
+             {/* Main Content */}
+             <div 
+               className="relative z-[150] isolate text-center px-6 max-w-4xl flex flex-col justify-start items-center h-full pt-24 sm:pt-24 md:pt-32 lg:pt-48 xl:pt-96 pb-8"
+               // WIP 3D Project - Text opacity styling commented out for later work
+               // style={{ opacity: textOpacity, transition: 'opacity 0.3s ease-out' }}
+             >
 
-        {/* Headline */}
-        <motion.h1
-          className="text-5xl md:text-7xl font-bold leading-tight relative z-[100]"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-        >
-          <span className="bg-clip-text text-transparent" style={{ background: 'linear-gradient(135deg, hsl(195 100% 28%), hsl(195 100% 35%))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', textShadow: '0 4px 20px rgba(59, 130, 246, 0.6), 0 2px 8px rgba(59, 130, 246, 0.4), 0 0 0 2px rgba(255, 255, 255, 0.1)' }}>Reimagining</span> <span className="block" style={{ color: '#afc8a0 !important', WebkitTextFillColor: '#afc8a0' }}>Stroke Care</span>
-        </motion.h1>
+               {/* Headline */}
+               <motion.h1
+                 className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-normal relative z-[200] flex flex-col sm:flex-row items-center justify-center py-12 mb-0 mt-16"
+                 initial={{ opacity: 0, y: 40 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 1, delay: 0.4 }}
+               >
+                 <span className="text-blue-600 dark:text-blue-400" style={{ textShadow: '0 4px 20px rgba(59, 130, 246, 0.6), 0 2px 8px rgba(59, 130, 246, 0.4)' }}>Reimagining</span> 
+                 <motion.span 
+                   className="mt-2 sm:mt-0 sm:ml-4"
+                   style={{ 
+                     color: 'white !important', 
+                     WebkitTextFillColor: 'white',
+                     textShadow: '0 0 20px rgba(175, 200, 160, 0.8), 0 0 40px rgba(175, 200, 160, 0.6), 0 0 60px rgba(175, 200, 160, 0.4)',
+                     filter: 'drop-shadow(0 0 8px rgba(175, 200, 160, 0.6))'
+                   }}
+                   initial={{ opacity: 0, scale: 0.8 }}
+                   animate={{ 
+                     opacity: 1, 
+                     scale: 1
+                   }}
+                   transition={{ 
+                     duration: 1.2, 
+                     delay: 1.2,
+                     ease: "easeOut"
+                   }}
+                 >
+                   Stroke Care
+                 </motion.span>
+               </motion.h1>
 
-        {/* Subtitle */}
-        <motion.p
-          className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto relative z-[100]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.6 }}
-        >
-          Transforming rehabilitation through innovative technology and compassionate care
-        </motion.p>
+               {/* Subtitle */}
+               <motion.p
+                 className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto relative z-[100] px-4 -mt-4"
+                 initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 1, delay: 0.6 }}
+               >
+                 Empowering stroke survivors to reclaim their independence, one movement at a time
+               </motion.p>
 
 
-        {/* CTA */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center relative z-[100]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-        >
-          <Button 
-            size="lg" 
-            className={`bg-gradient-primary hover:opacity-90 text-lg px-8 py-4 shadow-lg transition-all duration-300 ${
-              isCopied ? 'bg-green-600 hover:bg-green-700' : ''
-            }`}
-            onClick={copyEmailToClipboard}
-          >
-            <motion.span
-              key={isCopied ? 'copied' : 'contact'}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="inline-block"
-            >
-              {isCopied ? 'Copied' : 'Contact Us'}
-            </motion.span>
-            {!isCopied && <ArrowRight className="ml-2 w-5 h-5" />}
-            {isCopied && <Heart className="ml-2 w-5 h-5" />}
-          </Button>
-        </motion.div>
-      </div>
+               {/* CTA */}
+               <motion.div
+                 className="flex flex-col sm:flex-row gap-4 justify-center relative z-[100] mt-6"
+                 initial={{ opacity: 0, y: 30 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 1, delay: 0.8 }}
+               >
+                 <Button 
+                   size="lg" 
+                   className={`bg-gradient-primary hover:opacity-90 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 shadow-lg transition-all duration-300 w-full sm:w-auto ${
+                     isCopied ? 'bg-green-600 hover:bg-green-700' : ''
+                   }`}
+                   onClick={copyEmailToClipboard}
+                 >
+                   <motion.span
+                     key={isCopied ? 'copied' : 'contact'}
+                     initial={{ opacity: 0, y: 10 }}
+                     animate={{ opacity: 1, y: 0 }}
+                     exit={{ opacity: 0, y: -10 }}
+                     transition={{ duration: 0.2 }}
+                     className="inline-block"
+                   >
+                     {isCopied ? 'Copied' : 'Contact Us'}
+                   </motion.span>
+                   {!isCopied && <ArrowRight className="ml-2 w-5 h-5" />}
+                   {isCopied && <Heart className="ml-2 w-5 h-5" />}
+                 </Button>
+               </motion.div>
+             </div>
+
+             {/* SCIModel Continuous Revolving Carousel */}
+             <motion.div
+               className="w-screen -mx-6 -mt-4 sm:-mt-8 md:-mt-12 lg:-mt-16 relative z-40"
+               initial={{ opacity: 0, y: 30 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 1, delay: 1.0 }}
+             >
+               <div className="relative h-[400px] sm:h-[400px] md:h-[500px] lg:h-[650px]">
+                 <div 
+                   className="flex" 
+                   id="carousel"
+                 >
+                   {/* True 360-degree infinite carousel - multiple sets for seamless scrolling */}
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel1.png" 
+                       alt="SCI Model 1" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel2.png" 
+                       alt="SCI Model 2" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel3.png" 
+                       alt="SCI Model 3" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   {/* Second set */}
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel1.png" 
+                       alt="SCI Model 1" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel2.png" 
+                       alt="SCI Model 2" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel3.png" 
+                       alt="SCI Model 3" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   {/* Third set */}
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel1.png" 
+                       alt="SCI Model 1" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel2.png" 
+                       alt="SCI Model 2" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel3.png" 
+                       alt="SCI Model 3" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   {/* Fourth set for extra smoothness */}
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel1.png" 
+                       alt="SCI Model 1" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel2.png" 
+                       alt="SCI Model 2" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                     <img 
+                       src="/SCIModel3.png" 
+                       alt="SCI Model 3" 
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                 </div>
+               </div>
+             </motion.div>
       
       {/* WIP 3D Project - Measurement Overlay - COMMENTED OUT FOR LATER WORK */}
       {/* <MeasurementOverlay 
