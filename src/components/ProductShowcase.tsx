@@ -5,6 +5,33 @@ import { Brain, Shield, Zap, Settings, Heart, Wrench } from 'lucide-react';
 
 export const ProductShowcase = () => {
   const [selectedFeature, setSelectedFeature] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
+
+  // Touch event handlers for swipe detection
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    
+    // If swiping left and a feature is selected, close the modal
+    if (isLeftSwipe && selectedFeature !== null) {
+      setSelectedFeature(null);
+    }
+  };
 
   const features = [
     {
@@ -49,6 +76,9 @@ export const ProductShowcase = () => {
     <section 
       id="product" 
       className="min-h-screen w-full bg-background relative transition-all duration-1000 ease-in-out flex items-center justify-center py-16"
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
     >
         <div className="container mx-auto px-4 sm:px-6 flex flex-col justify-center">
         {/* Title and Description */}
@@ -106,30 +136,30 @@ export const ProductShowcase = () => {
           >
             {/* 2D Design Image */}
             <motion.div 
-              className="mb-8 flex justify-center"
+              className="mb-8 flex justify-center items-center w-full"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <img 
-                src={`${import.meta.env.BASE_URL}2D Model.png`}
-                alt="Second-Arm 2D Model" 
-                className="w-full max-w-[162px] sm:max-w-[243px] md:max-w-[405px] lg:max-w-[567px] xl:max-w-[810px] h-auto object-contain"
-                style={{ 
-                  background: 'transparent',
-                  display: 'block',
-                  maxWidth: '100%',
-                  height: 'auto'
-                }}
-                onError={(e) => {
-                  console.log('Image failed to load:', e);
-                  e.currentTarget.style.display = 'none';
-                }}
-                onLoad={() => {
-                  console.log('2D Model image loaded successfully');
-                }}
-              />
+              <div className="w-full max-w-[216px] sm:max-w-[323px] md:max-w-[539px] lg:max-w-[754px] xl:max-w-[1077px]">
+                <img 
+                  src={`${import.meta.env.BASE_URL}2D Model.png`}
+                  alt="Second-Arm 2D Model" 
+                  className="w-full h-auto object-contain"
+                  style={{ 
+                    background: 'transparent',
+                    display: 'block'
+                  }}
+                  onError={(e) => {
+                    console.log('Image failed to load:', e);
+                    e.currentTarget.style.display = 'none';
+                  }}
+                  onLoad={() => {
+                    console.log('2D Model image loaded successfully');
+                  }}
+                />
+              </div>
             </motion.div>
             
           </motion.div>

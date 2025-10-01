@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Logo } from "./Logo";
-import { ThemeToggle } from "./ThemeToggle";
 
 export const Navigation = () => {
   return (
@@ -29,17 +28,43 @@ export const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <a href="#features" className="text-muted-foreground hover:text-primary transition-colors">
+            <a 
+              href="#product" 
+              className="text-muted-foreground hover:text-primary transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               Features
             </a>
-            <a href="#technology" className="text-muted-foreground hover:text-primary transition-colors">
+            <a 
+              href="#technology" 
+              className="text-muted-foreground hover:text-primary transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('technology')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               Technology
             </a>
-            <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+            <a 
+              href="#about" 
+              className="text-muted-foreground hover:text-primary transition-colors"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               About
             </a>
-            <ThemeToggle />
-            <Button variant="default" className="bg-gradient-primary hover:opacity-90">
+            <Button 
+              variant="default" 
+              className="bg-gradient-primary hover:opacity-90"
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               Contact
             </Button>
           </motion.div>
@@ -51,7 +76,6 @@ export const Navigation = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <ThemeToggle />
             <Button variant="ghost" size="sm">
               <div className="w-5 h-5 flex flex-col justify-center items-center">
                 <span className="block w-4 h-0.5 bg-foreground mb-1"></span>

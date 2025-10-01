@@ -178,7 +178,7 @@ export const HeroSection = () => {
       
              {/* Main Content */}
              <div 
-               className="relative z-[150] isolate text-center px-6 max-w-4xl flex flex-col justify-start items-center h-full pt-24 sm:pt-24 md:pt-32 lg:pt-48 xl:pt-96 pb-8"
+               className="relative z-[150] isolate text-center px-6 max-w-4xl flex flex-col justify-start items-center h-full pt-5 sm:pt-5 md:pt-8 lg:pt-13 xl:pt-27 pb-8"
                // WIP 3D Project - Text opacity styling commented out for later work
                // style={{ opacity: textOpacity, transition: 'opacity 0.3s ease-out' }}
              >
@@ -234,23 +234,13 @@ export const HeroSection = () => {
                >
                  <Button 
                    size="lg" 
-                   className={`bg-gradient-primary hover:opacity-90 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 shadow-lg transition-all duration-300 w-full sm:w-auto ${
-                     isCopied ? 'bg-green-600 hover:bg-green-700' : ''
-                   }`}
-                   onClick={copyEmailToClipboard}
+                   className="bg-gradient-primary hover:opacity-90 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 shadow-lg transition-all duration-300 w-full sm:w-auto"
+                   onClick={() => {
+                     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                   }}
                  >
-                   <motion.span
-                     key={isCopied ? 'copied' : 'contact'}
-                     initial={{ opacity: 0, y: 10 }}
-                     animate={{ opacity: 1, y: 0 }}
-                     exit={{ opacity: 0, y: -10 }}
-                     transition={{ duration: 0.2 }}
-                     className="inline-block"
-                   >
-                     {isCopied ? 'Copied' : 'Contact Us'}
-                   </motion.span>
-                   {!isCopied && <ArrowRight className="ml-2 w-5 h-5" />}
-                   {isCopied && <Heart className="ml-2 w-5 h-5" />}
+                   Contact Us
+                   <ArrowRight className="ml-2 w-5 h-5" />
                  </Button>
                </motion.div>
              </div>

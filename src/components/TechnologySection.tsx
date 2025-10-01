@@ -45,6 +45,11 @@ export const TechnologySection = () => {
   const [clickedButtonIndex, setClickedButtonIndex] = useState<number | null>(null);
   const [isZooming, setIsZooming] = useState(false);
   const [activeVideoIndex, setActiveVideoIndex] = useState<number | null>(null);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Minimum swipe distance (in px)
+  const minSwipeDistance = 50;
 
   // Reset all transition states
   const resetTransitionStates = () => {
@@ -83,6 +88,29 @@ export const TechnologySection = () => {
         }, 400);
       }, 600); // Back to original zoom duration
     }, 50); // Small delay to ensure clean state reset
+  };
+
+  // Touch event handlers for swipe detection
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    // If swiping left and not on overview, go back to overview
+    if (isLeftSwipe && activeFeature !== 0) {
+      handleBackToOverview();
+    }
   };
 
   // Handle back to overview with transition
@@ -166,7 +194,12 @@ export const TechnologySection = () => {
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
       
-      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-center">
+      <div 
+        className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-center"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
         <div className="max-w-6xl mx-auto w-full">
           
           {/* Header Section - Only visible when no feature is selected */}

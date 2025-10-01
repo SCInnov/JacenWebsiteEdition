@@ -47,16 +47,44 @@ export const Footer = () => {
           >
             <h4 className="font-semibold text-lg mb-4 text-primary relative z-10">Quick Links</h4>
             <div className="space-y-2 relative z-10">
-              <a href="#features" className="block text-primary hover:text-primary/80 transition-colors">
+              <a 
+                href="#product" 
+                className="block text-primary hover:text-primary/80 transition-colors cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Features
               </a>
-              <a href="#technology" className="block text-primary hover:text-primary/80 transition-colors">
+              <a 
+                href="#technology" 
+                className="block text-primary hover:text-primary/80 transition-colors cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('technology')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Technology
               </a>
-              <a href="#about" className="block text-primary hover:text-primary/80 transition-colors">
+              <a 
+                href="#about" 
+                className="block text-primary hover:text-primary/80 transition-colors cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 About Us
               </a>
-              <a href="#contact" className="block text-primary hover:text-primary/80 transition-colors">
+              <a 
+                href="#contact" 
+                className="block text-primary hover:text-primary/80 transition-colors cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 Contact
               </a>
             </div>
