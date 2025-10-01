@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Cpu, Activity, Shield, Gauge, Wifi, Battery } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useTheme } from '@/contexts/ThemeContext';
 
 const techFeatures = [
   {
@@ -35,6 +36,7 @@ const techFeatures = [
 ];
 
 export const TechnologySection = () => {
+  const { theme } = useTheme();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [activeFeature, setActiveFeature] = useState(0);
   const [videoPlayed, setVideoPlayed] = useState(false);
@@ -287,7 +289,11 @@ export const TechnologySection = () => {
                   onError={handleVideoError}
                 >
                   <source 
-                    src={activeVideoIndex === 0 ? "/EMGSensors.mp4" : "/Track your progress.mp4"} 
+                    src={
+                      activeVideoIndex === 0 
+                        ? (theme === 'light' ? "/EMGSensors Light Mode.mp4" : "/EMGSensors.mp4")
+                        : (theme === 'light' ? "/Track Your Progress Video Light Mode.mp4" : "/Track your progress.mp4")
+                    } 
                     type="video/mp4" 
                   />
                   Your browser does not support the video tag.

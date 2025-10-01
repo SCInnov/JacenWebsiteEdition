@@ -4,6 +4,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Cpu, Activity, Shield, Gauge, X, Play } from "lucide-react";
+import { useTheme } from '@/contexts/ThemeContext';
 
 interface InfoNode {
   id: string;
@@ -16,6 +17,7 @@ interface InfoNode {
   details: string[];
   hasVideo: boolean;
   videoPath?: string;
+  videoPathLight?: string;
 }
 
 const productInfoNodes: InfoNode[] = [
@@ -29,7 +31,8 @@ const productInfoNodes: InfoNode[] = [
     badge: 'Machine Learning',
     details: ['Real-time signal processing', 'Adaptive learning algorithms', 'Personalized calibration'],
     hasVideo: true,
-    videoPath: '/EMGSensors.mp4'
+    videoPath: '/EMGSensors.mp4',
+    videoPathLight: '/EMGSensors Light Mode.mp4'
   },
   {
     id: 'intelligent-processing',
@@ -63,7 +66,8 @@ const productInfoNodes: InfoNode[] = [
     badge: 'Progress Tracking',
     details: ['Milestone detection', 'Therapy insights', 'Recovery analytics'],
     hasVideo: true,
-    videoPath: '/Track your progress.mp4'
+    videoPath: '/Track your progress.mp4',
+    videoPathLight: '/Track Your Progress Video Light Mode.mp4'
   }
 ];
 
@@ -73,6 +77,7 @@ interface ProductInfoNodesProps {
 }
 
 export const ProductInfoNodes = ({ scrollProgress, isVisible }: ProductInfoNodesProps) => {
+  const { theme } = useTheme();
   const [activeNodes, setActiveNodes] = useState<string[]>([]);
   const [selectedNode, setSelectedNode] = useState<InfoNode | null>(null);
   const [showVideo, setShowVideo] = useState(false);
@@ -285,7 +290,7 @@ export const ProductInfoNodes = ({ scrollProgress, isVisible }: ProductInfoNodes
                     preload="metadata"
                     onEnded={handleVideoEnd}
                   >
-                    <source src={selectedNode.videoPath} type="video/mp4" />
+                    <source src={theme === 'light' && selectedNode.videoPathLight ? selectedNode.videoPathLight : selectedNode.videoPath} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </motion.div>
