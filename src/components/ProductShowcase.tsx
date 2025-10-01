@@ -50,10 +50,10 @@ export const ProductShowcase = () => {
       id="product" 
       className="h-screen w-full bg-background relative transition-all duration-1000 ease-in-out"
     >
-        <div className="container mx-auto px-4 sm:px-6 h-full flex flex-col justify-start pt-16 sm:pt-24 md:pt-32">
+        <div className="container mx-auto px-4 sm:px-6 h-full flex flex-col justify-start pt-8 sm:pt-12 md:pt-16">
         {/* Title and Description */}
         <motion.div 
-          className="text-center mb-4 sm:mb-6"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -115,7 +115,7 @@ export const ProductShowcase = () => {
               <img 
                 src={`${import.meta.env.BASE_URL}2D Model.png`}
                 alt="Second-Arm 2D Model" 
-                className="w-full max-w-[200px] sm:max-w-[300px] md:max-w-[500px] lg:max-w-[700px] xl:max-w-[1000px] h-auto object-contain"
+                className="w-full max-w-[162px] sm:max-w-[243px] md:max-w-[405px] lg:max-w-[567px] xl:max-w-[810px] h-auto object-contain"
                 style={{ 
                   background: 'transparent',
                   display: 'block',

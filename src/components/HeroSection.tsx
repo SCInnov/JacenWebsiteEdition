@@ -139,7 +139,7 @@ export const HeroSection = () => {
   return (
     <section 
       id="hero"
-      className="relative min-h-screen w-full flex flex-col justify-center items-center bg-background isolate overflow-visible transition-all duration-1000 ease-in-out"
+      className="relative min-h-screen w-full flex flex-col justify-center items-center bg-background isolate overflow-x-hidden transition-all duration-1000 ease-in-out"
       // WIP 3D Project - Scroll styling commented out for later work
       // style={{
       //   transform: `translateY(${heroTransform}px)`,
@@ -255,18 +255,18 @@ export const HeroSection = () => {
                </motion.div>
              </div>
 
-             {/* SCIModel Continuous Revolving Carousel */}
-             <motion.div
-               className="w-screen -mx-6 -mt-4 sm:-mt-8 md:-mt-12 lg:-mt-16 relative z-40"
-               initial={{ opacity: 0, y: 30 }}
-               animate={{ opacity: 1, y: 0 }}
-               transition={{ duration: 1, delay: 1.0 }}
-             >
-               <div className="relative h-[400px] sm:h-[400px] md:h-[500px] lg:h-[650px]">
-                 <div 
-                   className="flex" 
-                   id="carousel"
-                 >
+            {/* SCIModel Continuous Revolving Carousel */}
+            <motion.div
+              className="w-screen -mx-6 -mt-4 sm:-mt-8 md:-mt-12 lg:-mt-16 relative z-40"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.0 }}
+            >
+              <div className="relative h-[400px] sm:h-[400px] md:h-[500px] lg:h-[650px] overflow-hidden">
+                <div 
+                  className="flex" 
+                  id="carousel"
+                >
                    {/* True 360-degree infinite carousel - multiple sets for seamless scrolling */}
                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
                     <img 
