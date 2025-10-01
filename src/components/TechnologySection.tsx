@@ -166,35 +166,35 @@ export const TechnologySection = () => {
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
       
-      <div className="container mx-auto px-6 flex items-center justify-center">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 flex items-center justify-center">
         <div className="max-w-6xl mx-auto w-full">
           
           {/* Header Section - Only visible when no feature is selected */}
           {activeFeature === 0 && (
-            <div className={`text-center mb-16 transition-all duration-500 ease-in-out ${
+            <div className={`text-center mb-12 sm:mb-14 md:mb-16 transition-all duration-500 ease-in-out ${
               isMenuTransitioning ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100 translate-y-0'
             }`}>
-              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-5 md:mb-6">
                 A Device That <span className="bg-gradient-primary bg-clip-text text-transparent">Learns</span>
               </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12">
+              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 px-4">
                 Our advanced technology stack combines muscle sensing, machine learning, 
                 and safety systems to create a truly adaptive rehabilitation experience.
               </p>
-              <p className="text-sm text-muted-foreground mb-8">
+              <p className="text-xs sm:text-sm text-muted-foreground mb-6 sm:mb-8">
                 Click any feature below to explore in detail
               </p>
               
               {/* Feature Icons Overview - Connected Design */}
-              <div className="max-w-5xl mx-auto mb-12 relative z-10">
+              <div className="max-w-5xl mx-auto mb-8 sm:mb-10 md:mb-12 relative z-10">
                 {/* Connection lines for desktop */}
                 <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/20 to-transparent transform -translate-y-1/2"></div>
                 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
                   {techFeatures.map((tech, index) => (
                     <div
                       key={index}
-                      className={`text-center cursor-pointer bg-card border-2 border-green-200 dark:border-green-800 rounded-2xl p-6 pb-10 hover:border-primary hover:shadow-xl hover:bg-primary/5 transition-all duration-300 w-full relative z-20 group hover:scale-105 ${
+                      className={`text-center cursor-pointer bg-card border-2 border-green-200 dark:border-green-800 rounded-2xl p-4 sm:p-5 md:p-6 pb-8 sm:pb-9 md:pb-10 hover:border-primary hover:shadow-xl hover:bg-primary/5 transition-all duration-300 w-full relative z-20 group hover:scale-105 min-h-[180px] sm:min-h-[200px] md:min-h-[220px] flex flex-col justify-center ${
                         isZooming && clickedButtonIndex === index 
                           ? 'scale-150 z-50 shadow-2xl border-primary bg-primary/10' 
                           : isZooming && clickedButtonIndex !== index 
@@ -227,25 +227,25 @@ export const TechnologySection = () => {
                       <div className="md:hidden absolute -top-2 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-primary/30 rounded-full"></div>
                       
                       {/* Icon with enhanced styling */}
-                      <div className="p-5 rounded-2xl mx-auto mb-4 transition-all duration-300 relative bg-gradient-primary/10 text-primary hover:bg-gradient-primary hover:text-white hover:shadow-lg">
-                        <tech.icon className="w-8 h-8 mx-auto" />
+                      <div className="p-3 sm:p-4 md:p-5 rounded-2xl mx-auto mb-3 sm:mb-4 transition-all duration-300 relative bg-gradient-primary/10 text-primary hover:bg-gradient-primary hover:text-white hover:shadow-lg">
+                        <tech.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 mx-auto" />
                         {/* Subtle glow effect */}
                         <div className="absolute inset-0 rounded-2xl transition-opacity duration-300 bg-gradient-primary opacity-0 group-hover:opacity-10"></div>
                       </div>
                       
-                      <h3 className="text-lg font-semibold mb-2 transition-colors duration-300 hover:text-primary">{tech.title}</h3>
+                      <h3 className="text-sm sm:text-base md:text-lg font-semibold mb-2 transition-colors duration-300 hover:text-primary">{tech.title}</h3>
                       
                       <div className="relative">
                         <Badge 
                           variant="secondary" 
-                          className="text-xs transition-all duration-300 group-hover:bg-blue-500 group-hover:border-blue-500 group-hover:shadow-xl group-hover:shadow-blue-500/50 group-hover:scale-110 group-hover:text-white font-medium"
+                          className="text-[10px] sm:text-xs transition-all duration-300 group-hover:bg-blue-500 group-hover:border-blue-500 group-hover:shadow-xl group-hover:shadow-blue-500/50 group-hover:scale-110 group-hover:text-white font-medium"
                         >
                           {tech.badge}
                         </Badge>
                         
                         {/* "Learn more" text that appears on hover */}
-                        <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-150">
-                          <span className="text-xs font-semibold px-2 py-1 rounded-full bg-blue-500 text-white shadow-lg">
+                        <div className="absolute -bottom-5 sm:-bottom-6 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 delay-150">
+                          <span className="text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-full bg-blue-500 text-white shadow-lg whitespace-nowrap">
                             learn more
                           </span>
                         </div>
@@ -266,9 +266,9 @@ export const TechnologySection = () => {
               isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
             }`}>
               {/* Back to Overview Button */}
-              <div className="text-center mb-6">
+              <div className="text-center mb-4 sm:mb-6">
                 <button
-                  className="px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg border border-transparent hover:border-primary/20 transition-all duration-300 font-medium"
+                  className="px-3 sm:px-4 py-2 text-xs sm:text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg border border-transparent hover:border-primary/20 transition-all duration-300 font-medium"
                   onClick={handleBackToOverview}
                 >
                   ← Back to Overview
@@ -314,33 +314,33 @@ export const TechnologySection = () => {
                         : 'opacity-100 scale-100 translate-y-0'
                   }`}
                 >
-                  <Card className="p-12 hover:shadow-card transition-all duration-300 max-w-4xl w-full border-2 border-green-200 dark:border-green-800" style={{ backgroundColor: 'rgba(34, 197, 94, 0.02)' }}>
-                    <div className="text-center mb-8">
+                  <Card className="p-6 sm:p-8 md:p-10 lg:p-12 hover:shadow-card transition-all duration-300 max-w-4xl w-full border-2 border-green-200 dark:border-green-800" style={{ backgroundColor: 'rgba(34, 197, 94, 0.02)' }}>
+                    <div className="text-center mb-6 sm:mb-8">
                       <button
-                        className="mb-6 px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg border border-transparent hover:border-primary/20 transition-all duration-300 font-medium"
+                        className="mb-4 sm:mb-6 px-3 sm:px-4 py-2 text-xs sm:text-sm text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-lg border border-transparent hover:border-primary/20 transition-all duration-300 font-medium"
                         onClick={handleBackToOverview}
                       >
                         ← Back to Overview
                       </button>
-                      <div className="p-6 rounded-2xl bg-gradient-primary/10 text-primary mx-auto mb-6 w-fit">
-                        <tech.icon className="w-16 h-16" />
+                      <div className="p-4 sm:p-5 md:p-6 rounded-2xl bg-gradient-primary/10 text-primary mx-auto mb-4 sm:mb-5 md:mb-6 w-fit">
+                        <tech.icon className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16" />
                       </div>
-                      <h3 className="text-4xl font-bold mb-4">{tech.title}</h3>
-                      <Badge variant="secondary" className="text-lg px-4 py-2">{tech.badge}</Badge>
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">{tech.title}</h3>
+                      <Badge variant="secondary" className="text-sm sm:text-base md:text-lg px-3 sm:px-4 py-1.5 sm:py-2">{tech.badge}</Badge>
                     </div>
                     
-                    <p className="text-xl text-muted-foreground mb-8 leading-relaxed text-center max-w-3xl mx-auto">
+                    <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8 leading-relaxed text-center max-w-3xl mx-auto px-2 sm:px-4">
                       {tech.description}
                     </p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                       {tech.details.map((detail, detailIndex) => (
                         <div 
                           key={detailIndex} 
-                          className="flex items-center space-x-3 p-4 rounded-lg bg-muted/20"
+                          className="flex items-center space-x-3 p-3 sm:p-4 rounded-lg bg-muted/20"
                         >
                           <div className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
-                          <span className="text-muted-foreground">{detail}</span>
+                          <span className="text-sm sm:text-base text-muted-foreground">{detail}</span>
                         </div>
                       ))}
                     </div>

@@ -95,12 +95,12 @@ export const FeaturesSection = () => {
   };
 
   return (
-    <section id="features" className="min-h-screen flex items-center justify-center bg-background transition-all duration-1000 ease-in-out py-16">
-      <div className="container mx-auto px-6">
+    <section id="features" className="min-h-screen flex items-center justify-center bg-background transition-all duration-1000 ease-in-out py-8 sm:py-12 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
 
 
         {/* Carousel below */}
-        <div className="relative w-full max-w-4xl mx-auto">
+        <div className="relative w-full max-w-5xl mx-auto">
           {/* Feature panel using Card component */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -113,17 +113,17 @@ export const FeaturesSection = () => {
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
-              <Card className="p-8 hover:shadow-card transition-all duration-300 border-l-4 border-l-primary">
-                <div className="flex items-start space-x-6">
-                  <div className={`p-4 rounded-lg bg-gradient-primary/10 ${features[current].color}`}>
+              <Card className="p-4 sm:p-6 md:p-8 lg:p-10 hover:shadow-card transition-all duration-300 border-l-4 border-l-primary">
+                <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-6">
+                  <div className={`p-3 sm:p-4 rounded-lg bg-gradient-primary/10 ${features[current].color} flex-shrink-0`}>
                     {(() => {
                       const IconComponent = features[current].icon;
-                      return <IconComponent className="w-8 h-8" />;
+                      return <IconComponent className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" />;
                     })()}
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-semibold mb-4">{features[current].title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-lg">
+                  <div className="flex-1 w-full">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-3 sm:mb-4">{features[current].title}</h3>
+                    <p className="text-muted-foreground leading-relaxed text-base sm:text-lg md:text-xl">
                       {features[current].description}
                     </p>
                   </div>
@@ -133,22 +133,22 @@ export const FeaturesSection = () => {
           </AnimatePresence>
 
           {/* Navigation arrows */}
-          <div className="flex justify-between items-center mt-8">
+          <div className="flex justify-between items-center mt-6 sm:mt-8 md:mt-10 px-2">
             <button
               onClick={prev}
-              className="p-3 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
+              className="p-2 sm:p-3 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
               aria-label="Previous feature"
             >
-              <ChevronLeft className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-primary group-hover:scale-110 transition-transform" />
             </button>
             
             {/* Dots indicator */}
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 sm:space-x-2.5">
               {features.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrent(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                  className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-colors duration-200 ${
                     index === current 
                       ? 'bg-primary' 
                       : 'bg-muted-foreground/30 hover:bg-primary/50'
@@ -160,10 +160,10 @@ export const FeaturesSection = () => {
 
             <button
               onClick={next}
-              className="p-3 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
+              className="p-2 sm:p-3 rounded-full bg-primary/20 hover:bg-primary/30 transition-colors duration-200 group"
               aria-label="Next feature"
             >
-              <ChevronRight className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-primary group-hover:scale-110 transition-transform" />
             </button>
           </div>
         </div>

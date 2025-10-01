@@ -10,9 +10,9 @@ export const Footer = () => {
     >
       {/* Light Blue Gradient at Bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -85,7 +85,7 @@ export const Footer = () => {
         </motion.div>
         
         <motion.div 
-          className="border-t border-primary/20 mt-8 pt-8 text-center relative z-10"
+          className="border-t border-primary/20 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center relative z-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}

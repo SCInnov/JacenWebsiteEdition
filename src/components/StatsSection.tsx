@@ -15,10 +15,10 @@ export const StatsSection = () => {
       <div className="absolute inset-0 opacity-4 pointer-events-none" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
-      <div className="container mx-auto px-6 py-16 pt-32 sm:pt-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-8 sm:py-12 md:py-16 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -35,7 +35,7 @@ export const StatsSection = () => {
         
         {/* Key Statistics */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-6 md:gap-10 lg:gap-16 max-w-6xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 max-w-6xl mx-auto"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -48,7 +48,7 @@ export const StatsSection = () => {
             viewport={{ once: true }}
           >
             <div 
-              className="p-1 sm:p-3 md:p-5 lg:p-8 text-center bg-card border-2 border-green-200 dark:border-green-800 rounded-lg shadow-sm cursor-pointer group"
+              className="p-4 sm:p-5 md:p-6 lg:p-8 text-center bg-card border-2 border-green-200 dark:border-green-800 rounded-lg shadow-sm cursor-pointer group min-h-[200px] sm:min-h-[220px] md:min-h-[240px] flex flex-col justify-center"
               style={{
                 transition: 'all 0.3s ease',
                 transform: 'scale(1) translateY(0)',
@@ -67,10 +67,10 @@ export const StatsSection = () => {
                 e.currentTarget.style.backgroundColor = 'rgba(34, 197, 94, 0.02)';
               }}
             >
-              <Users className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-green-700 dark:text-green-300 mx-auto mb-1 sm:mb-2 md:mb-4 transition-transform duration-300 group-hover:scale-110" />
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-700 dark:text-green-300 mb-0.5 sm:mb-1 md:mb-2 transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-200">11.6M</div>
-              <div className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground">Hemiparesis Patients in US</div>
-              <div className="text-sm text-muted-foreground mt-1 transition-colors duration-300 group-hover:text-foreground/80">(2025 projection)</div>
+              <Users className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-green-700 dark:text-green-300 mx-auto mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110" />
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-700 dark:text-green-300 mb-2 transition-colors duration-300 group-hover:text-green-600 dark:group-hover:text-green-200">11.6M</div>
+              <div className="text-sm sm:text-base md:text-lg text-muted-foreground transition-colors duration-300 group-hover:text-foreground">Hemiparesis Patients in US</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2 transition-colors duration-300 group-hover:text-foreground/80">(2025 projection)</div>
             </div>
           </motion.div>
           
@@ -81,7 +81,7 @@ export const StatsSection = () => {
             viewport={{ once: true }}
           >
             <div 
-              className="p-1 sm:p-3 md:p-5 lg:p-8 text-center bg-card border-2 border-green-200 dark:border-green-800 rounded-lg shadow-sm cursor-pointer group"
+              className="p-4 sm:p-5 md:p-6 lg:p-8 text-center bg-card border-2 border-green-200 dark:border-green-800 rounded-lg shadow-sm cursor-pointer group min-h-[200px] sm:min-h-[220px] md:min-h-[240px] flex flex-col justify-center"
               style={{
                 transition: 'all 0.3s ease',
                 transform: 'scale(1) translateY(0)',
@@ -100,10 +100,10 @@ export const StatsSection = () => {
                 e.currentTarget.style.backgroundColor = 'rgba(34, 197, 94, 0.02)';
               }}
             >
-              <Heart className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-blue-600 dark:text-blue-400 mx-auto mb-1 sm:mb-2 md:mb-4 transition-transform duration-300 group-hover:scale-110" />
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400 mb-0.5 sm:mb-1 md:mb-2 transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-blue-300">71%</div>
-              <div className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground">Experience Depression</div>
-              <div className="text-sm text-muted-foreground mt-1 transition-colors duration-300 group-hover:text-foreground/80">Post-treatment</div>
+              <Heart className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-blue-600 dark:text-blue-400 mx-auto mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110" />
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2 transition-colors duration-300 group-hover:text-blue-500 dark:group-hover:text-blue-300">71%</div>
+              <div className="text-sm sm:text-base md:text-lg text-muted-foreground transition-colors duration-300 group-hover:text-foreground">Experience Depression</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2 transition-colors duration-300 group-hover:text-foreground/80">Post-treatment</div>
             </div>
           </motion.div>
           
@@ -114,7 +114,7 @@ export const StatsSection = () => {
             viewport={{ once: true }}
           >
             <div 
-              className="p-1 sm:p-3 md:p-5 lg:p-8 text-center bg-card border-2 border-green-200 dark:border-green-800 rounded-lg shadow-sm cursor-pointer group"
+              className="p-4 sm:p-5 md:p-6 lg:p-8 text-center bg-card border-2 border-green-200 dark:border-green-800 rounded-lg shadow-sm cursor-pointer group min-h-[200px] sm:min-h-[220px] md:min-h-[240px] flex flex-col justify-center"
               style={{
                 transition: 'all 0.3s ease',
                 transform: 'scale(1) translateY(0)',
@@ -133,10 +133,10 @@ export const StatsSection = () => {
                 e.currentTarget.style.backgroundColor = 'rgba(34, 197, 94, 0.02)';
               }}
             >
-              <Award className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 text-purple-600 dark:text-purple-400 mx-auto mb-1 sm:mb-2 md:mb-4 transition-transform duration-300 group-hover:scale-110" />
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400 mb-0.5 sm:mb-1 md:mb-2 transition-colors duration-300 group-hover:text-purple-500 dark:group-hover:text-purple-300">#1</div>
-              <div className="text-muted-foreground transition-colors duration-300 group-hover:text-foreground">Leading Cause</div>
-              <div className="text-sm text-muted-foreground mt-1 transition-colors duration-300 group-hover:text-foreground/80">Of disability in US</div>
+              <Award className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-purple-600 dark:text-purple-400 mx-auto mb-3 sm:mb-4 transition-transform duration-300 group-hover:scale-110" />
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2 transition-colors duration-300 group-hover:text-purple-500 dark:group-hover:text-purple-300">#1</div>
+              <div className="text-sm sm:text-base md:text-lg text-muted-foreground transition-colors duration-300 group-hover:text-foreground">Leading Cause</div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2 transition-colors duration-300 group-hover:text-foreground/80">Of disability in US</div>
             </div>
           </motion.div>
         </motion.div>

@@ -30,7 +30,7 @@ export const ContactSection = () => {
       className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out py-16"
     >
       
-      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 max-w-6xl">
         <motion.div 
           className="text-center max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 50 }}
@@ -65,7 +65,7 @@ export const ContactSection = () => {
           >
             {/* Email Contact */}
             <motion.div 
-              className="border-2 border-green-200 dark:border-green-800 rounded-lg p-4 sm:p-6 md:p-8 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-all duration-300"
+              className="border-2 border-green-200 dark:border-green-800 rounded-lg p-5 sm:p-6 md:p-8 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-all duration-300 min-h-[260px] sm:min-h-[280px] flex flex-col justify-center"
               style={{ backgroundColor: 'rgba(34, 197, 94, 0.02)' }}
               whileHover={{ scale: 1.02 }}
             >
@@ -89,7 +89,7 @@ export const ContactSection = () => {
 
             {/* LinkedIn Contact */}
             <motion.div 
-              className="border-2 border-green-200 dark:border-green-800 rounded-lg p-4 sm:p-6 md:p-8 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-all duration-300"
+              className="border-2 border-green-200 dark:border-green-800 rounded-lg p-5 sm:p-6 md:p-8 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-all duration-300 min-h-[260px] sm:min-h-[280px] flex flex-col justify-center"
               style={{ backgroundColor: 'rgba(34, 197, 94, 0.02)' }}
               whileHover={{ scale: 1.02 }}
             >
@@ -112,7 +112,7 @@ export const ContactSection = () => {
 
             {/* Newsletter Signup */}
             <motion.div 
-              className="border-2 border-green-200 dark:border-green-800 rounded-lg p-4 sm:p-6 md:p-8 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-all duration-300"
+              className="border-2 border-green-200 dark:border-green-800 rounded-lg p-5 sm:p-6 md:p-8 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-all duration-300 min-h-[260px] sm:min-h-[280px] flex flex-col justify-center"
               style={{ backgroundColor: 'rgba(34, 197, 94, 0.02)' }}
               whileHover={{ scale: 1.02 }}
             >
