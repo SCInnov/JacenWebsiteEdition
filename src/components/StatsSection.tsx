@@ -6,7 +6,7 @@ export const StatsSection = () => {
   return (
     <section 
       id="stats" 
-      className="h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out"
+      className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out py-16"
     >
       {/* Transition gradient from previous section */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-background via-background/80 to-transparent z-[-1]" />

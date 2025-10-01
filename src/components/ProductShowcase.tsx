@@ -48,9 +48,9 @@ export const ProductShowcase = () => {
   return (
     <section 
       id="product" 
-      className="h-screen w-full bg-background relative transition-all duration-1000 ease-in-out"
+      className="min-h-screen w-full bg-background relative transition-all duration-1000 ease-in-out flex items-center justify-center py-16"
     >
-        <div className="container mx-auto px-4 sm:px-6 h-full flex flex-col justify-start pt-8 sm:pt-12 md:pt-16">
+        <div className="container mx-auto px-4 sm:px-6 flex flex-col justify-center">
         {/* Title and Description */}
         <motion.div 
           className="text-center mb-8 sm:mb-10 md:mb-12"

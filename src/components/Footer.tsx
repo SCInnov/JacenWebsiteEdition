@@ -6,7 +6,7 @@ import { Logo } from "./Logo";
 export const Footer = () => {
   return (
     <footer 
-      className="h-screen flex items-center justify-center relative bg-background transition-all duration-1000 ease-in-out"
+      className="min-h-screen flex items-center justify-center relative bg-background transition-all duration-1000 ease-in-out py-16"
     >
       {/* Light Blue Gradient at Bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>

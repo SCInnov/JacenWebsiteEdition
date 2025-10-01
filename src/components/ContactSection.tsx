@@ -27,10 +27,10 @@ export const ContactSection = () => {
   return (
     <section 
       id="contact" 
-      className="h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out"
+      className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out py-16"
     >
       
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
         <motion.div 
           className="text-center max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 50 }}

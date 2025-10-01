@@ -9,39 +9,39 @@ import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="scroll-smooth">
+    <div className="relative">
       <Navigation />
       
-      {/* Fixed Scrolling Cards */}
-      <div className="fixed-scroll-container">
-        <div className="scroll-card">
+      {/* Enhanced Scrolling Experience */}
+      <main className="fixed-scroll-container">
+        <section className="scroll-card">
           <HeroSection />
-        </div>
+        </section>
         
-        <div className="scroll-card">
+        <section className="scroll-card">
           <StatsSection />
-        </div>
+        </section>
         
-        <div className="scroll-card">
+        <section className="scroll-card">
           <ProductShowcase />
-        </div>
+        </section>
         
-        <div className="scroll-card">
+        <section className="scroll-card">
           <TechnologySection />
-        </div>
+        </section>
         
-        <div className="scroll-card">
+        <section className="scroll-card">
           <AboutSection />
-        </div>
+        </section>
         
-        <div className="scroll-card">
+        <section className="scroll-card">
           <ContactSection />
-        </div>
+        </section>
         
-        <div className="scroll-card">
+        <section className="scroll-card">
           <Footer />
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };

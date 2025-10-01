@@ -159,14 +159,14 @@ export const TechnologySection = () => {
   return (
     <section 
       id="technology" 
-      className="relative bg-background h-screen w-full transition-all duration-1000 ease-in-out"
+      className="relative bg-background min-h-screen w-full transition-all duration-1000 ease-in-out flex items-center justify-center py-16"
     >
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 opacity-4 pointer-events-none" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='40' cy='40' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
       
-      <div className="container mx-auto px-6 h-full flex items-center justify-center">
+      <div className="container mx-auto px-6 flex items-center justify-center">
         <div className="max-w-6xl mx-auto w-full">
           
           {/* Header Section - Only visible when no feature is selected */}

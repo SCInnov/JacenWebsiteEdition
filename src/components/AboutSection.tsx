@@ -7,7 +7,7 @@ export const AboutSection = () => {
   return (
     <section 
       id="about" 
-      className="h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out"
+      className="min-h-screen flex items-center justify-center bg-background relative transition-all duration-1000 ease-in-out py-16"
     >
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-5" style={{
