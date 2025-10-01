@@ -113,7 +113,7 @@ export const ProductShowcase = () => {
               viewport={{ once: true }}
             >
               <img 
-                src="/2D Model.png" 
+                src={`${import.meta.env.BASE_URL}2D Model.png`}
                 alt="Second-Arm 2D Model" 
                 className="w-full max-w-[200px] sm:max-w-[300px] md:max-w-[500px] lg:max-w-[700px] xl:max-w-[1000px] h-auto object-contain"
                 style={{ 

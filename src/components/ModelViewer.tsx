@@ -75,7 +75,7 @@ export const ModelViewer = () => {
     // Load the GLB/GLTF model
     const loader = new GLTFLoader();
     loader.load(
-      '/SecondArmModel1.glb', // Try GLB first
+      `${import.meta.env.BASE_URL}SecondArmModel1.glb`, // Try GLB first
       (gltf) => {
         console.log('✅ GLB Model loaded successfully:', gltf);
         const model = gltf.scene;

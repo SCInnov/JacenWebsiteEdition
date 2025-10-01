@@ -21,7 +21,7 @@ export const Logo = ({ className = "", size = "md" }: LogoProps) => {
       transition={{ duration: 0.2 }}
     >
       <img 
-        src="/Second Chance Logo Wide.svg" 
+        src={`${import.meta.env.BASE_URL}Second Chance Logo Wide.svg`}
         alt="Second Chance Logo" 
         className={`${sizeClasses[size]} object-contain`}
       />

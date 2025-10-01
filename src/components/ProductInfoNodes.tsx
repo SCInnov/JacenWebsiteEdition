@@ -31,8 +31,8 @@ const productInfoNodes: InfoNode[] = [
     badge: 'Machine Learning',
     details: ['Real-time signal processing', 'Adaptive learning algorithms', 'Personalized calibration'],
     hasVideo: true,
-    videoPath: '/EMGSensors.mp4',
-    videoPathLight: '/EMGSensors Light Mode.mp4'
+    videoPath: `${import.meta.env.BASE_URL}EMGSensors.mp4`,
+    videoPathLight: `${import.meta.env.BASE_URL}EMGSensors Light Mode.mp4`
   },
   {
     id: 'intelligent-processing',
@@ -66,8 +66,8 @@ const productInfoNodes: InfoNode[] = [
     badge: 'Progress Tracking',
     details: ['Milestone detection', 'Therapy insights', 'Recovery analytics'],
     hasVideo: true,
-    videoPath: '/Track your progress.mp4',
-    videoPathLight: '/Track Your Progress Video Light Mode.mp4'
+    videoPath: `${import.meta.env.BASE_URL}Track your progress.mp4`,
+    videoPathLight: `${import.meta.env.BASE_URL}Track Your Progress Video Light Mode.mp4`
   }
 ];
 

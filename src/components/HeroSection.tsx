@@ -268,93 +268,93 @@ export const HeroSection = () => {
                    id="carousel"
                  >
                    {/* True 360-degree infinite carousel - multiple sets for seamless scrolling */}
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel1.png" 
-                       alt="SCI Model 1" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel2.png" 
-                       alt="SCI Model 2" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel3.png" 
-                       alt="SCI Model 3" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel1.png`}
+                      alt="SCI Model 1" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel2.png`}
+                      alt="SCI Model 2" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel3.png`}
+                      alt="SCI Model 3" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                    {/* Second set */}
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel1.png" 
-                       alt="SCI Model 1" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel2.png" 
-                       alt="SCI Model 2" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel3.png" 
-                       alt="SCI Model 3" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel1.png`}
+                      alt="SCI Model 1" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel2.png`}
+                      alt="SCI Model 2" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel3.png`}
+                      alt="SCI Model 3" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                    {/* Third set */}
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel1.png" 
-                       alt="SCI Model 1" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel2.png" 
-                       alt="SCI Model 2" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel3.png" 
-                       alt="SCI Model 3" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel1.png`}
+                      alt="SCI Model 1" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel2.png`}
+                      alt="SCI Model 2" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel3.png`}
+                      alt="SCI Model 3" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                    {/* Fourth set for extra smoothness */}
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel1.png" 
-                       alt="SCI Model 1" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel2.png" 
-                       alt="SCI Model 2" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
-                   <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
-                     <img 
-                       src="/SCIModel3.png" 
-                       alt="SCI Model 3" 
-                       className="w-full h-full object-contain"
-                     />
-                   </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel1.png`}
+                      alt="SCI Model 1" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel2.png`}
+                      alt="SCI Model 2" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[576px] md:h-[576px]">
+                    <img 
+                      src={`${import.meta.env.BASE_URL}SCIModel3.png`}
+                      alt="SCI Model 3" 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                  </div>
                </div>
              </motion.div>

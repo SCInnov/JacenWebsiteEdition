@@ -291,8 +291,8 @@ export const TechnologySection = () => {
                   <source 
                     src={
                       activeVideoIndex === 0 
-                        ? (theme === 'light' ? "/EMGSensors Light Mode.mp4" : "/EMGSensors.mp4")
-                        : (theme === 'light' ? "/Track Your Progress Video Light Mode.mp4" : "/Track your progress.mp4")
+                        ? (theme === 'light' ? `${import.meta.env.BASE_URL}EMGSensors Light Mode.mp4` : `${import.meta.env.BASE_URL}EMGSensors.mp4`)
+                        : (theme === 'light' ? `${import.meta.env.BASE_URL}Track Your Progress Video Light Mode.mp4` : `${import.meta.env.BASE_URL}Track your progress.mp4`)
                     } 
                     type="video/mp4" 
                   />
