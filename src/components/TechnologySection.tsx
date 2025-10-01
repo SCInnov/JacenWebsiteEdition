@@ -203,18 +203,16 @@ export const TechnologySection = () => {
                       }`}
                       style={{
                         backgroundColor: 'rgba(34, 197, 94, 0.02)',
+                        pointerEvents: isZooming ? 'none' : 'auto',
+                        position: 'relative',
+                        zIndex: isZooming && clickedButtonIndex === index ? 50 : 20,
+                        transition: isZooming ? 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'all 0.3s ease'
                       }}
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         console.log('Button clicked:', index);
                         handleFeatureClick(index);
-                      }}
-                      style={{ 
-                        pointerEvents: isZooming ? 'none' : 'auto',
-                        position: 'relative',
-                        zIndex: isZooming && clickedButtonIndex === index ? 50 : 20,
-                        transition: isZooming ? 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'all 0.3s ease'
                       }}
                       role="button"
                       tabIndex={0}
