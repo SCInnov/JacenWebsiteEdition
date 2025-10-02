@@ -81,7 +81,7 @@ export default {
         'bounce': 'var(--transition-bounce)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Oswald', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
