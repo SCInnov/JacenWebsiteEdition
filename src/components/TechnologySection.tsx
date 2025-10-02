@@ -295,9 +295,14 @@ export const TechnologySection = () => {
 
           {/* Video Section for EMG Muscle Sensors and Performance Monitoring */}
           {!videoPlayed && activeFeature === 5 && (
-            <div className={`w-full transition-all duration-500 ease-out ${
-              isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
-            }`}>
+            <div 
+              className={`w-full transition-all duration-500 ease-out ${
+                isTransitioning ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+              }`}
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               {/* Back to Overview Button */}
               <div className="text-center mb-4 sm:mb-6">
                 <button
@@ -308,7 +313,12 @@ export const TechnologySection = () => {
                 </button>
               </div>
               
-              <div className="relative w-full max-w-4xl mx-auto group">
+              <div 
+                className="relative w-full max-w-4xl mx-auto group"
+                onTouchStart={onTouchStart}
+                onTouchMove={onTouchMove}
+                onTouchEnd={onTouchEnd}
+              >
                 <video 
                   ref={videoRef}
                   className="w-full h-auto rounded-lg shadow-2xl"
@@ -346,6 +356,9 @@ export const TechnologySection = () => {
                         ? 'opacity-0 scale-95' 
                         : 'opacity-100 scale-100 translate-y-0'
                   }`}
+                  onTouchStart={onTouchStart}
+                  onTouchMove={onTouchMove}
+                  onTouchEnd={onTouchEnd}
                 >
                   <Card className="p-6 sm:p-8 md:p-10 lg:p-12 hover:shadow-card transition-all duration-300 max-w-4xl w-full border-2 border-green-200 dark:border-green-800" style={{ backgroundColor: 'rgba(34, 197, 94, 0.02)' }}>
                     <div className="text-center mb-6 sm:mb-8">

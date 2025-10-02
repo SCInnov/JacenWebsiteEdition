@@ -142,7 +142,7 @@ export const ProductShowcase = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="w-full max-w-[216px] sm:max-w-[323px] md:max-w-[539px] lg:max-w-[754px] xl:max-w-[1077px]">
+              <div className="w-full max-w-[665px] sm:max-w-[430px] md:max-w-[717px] lg:max-w-[1003px] xl:max-w-[1432px]">
                 <img 
                   src={`${import.meta.env.BASE_URL}2D Model.png`}
                   alt="Second-Arm 2D Model" 
@@ -164,32 +164,64 @@ export const ProductShowcase = () => {
             
           </motion.div>
 
-          {/* Interactive Feature Buttons - Positioned around Coming Soon content */}
-          {features.map((feature, index) => (
-            <motion.button
-              key={index}
-              className="absolute z-20 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/90 hover:bg-primary text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center justify-center group hover:shadow-[0_0_30px_rgba(59,130,246,0.8),0_0_60px_rgba(59,130,246,0.4),0_0_90px_rgba(59,130,246,0.2)] hover:brightness-110"
-              style={feature.position}
-              initial={{ opacity: 0, scale: 0 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-              viewport={{ once: true }}
-              onClick={() => setSelectedFeature(selectedFeature === index ? null : index)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <feature.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8" />
-              
-              {/* Pulse animation for active state */}
-              {selectedFeature === index && (
-                <motion.div
-                  className="absolute inset-0 rounded-full border-2 border-white"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                />
-              )}
-            </motion.button>
-          ))}
+          {/* Interactive Feature Buttons - Below device on mobile, positioned around on desktop */}
+          <div className="mt-8 md:mt-0">
+            {/* Mobile: Grid layout below device */}
+            <div className="grid grid-cols-2 gap-4 md:hidden px-4">
+              {features.map((feature, index) => (
+                <motion.button
+                  key={index}
+                  className="z-20 w-full h-20 bg-primary/90 hover:bg-primary text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center group hover:shadow-[0_0_30px_rgba(59,130,246,0.8),0_0_60px_rgba(59,130,246,0.4),0_0_90px_rgba(59,130,246,0.2)] hover:brightness-110"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                  viewport={{ once: true }}
+                  onClick={() => setSelectedFeature(selectedFeature === index ? null : index)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <feature.icon className="w-8 h-8 mb-1" />
+                  <span className="text-xs font-medium">{feature.title}</span>
+                  
+                  {/* Pulse animation for active state */}
+                  {selectedFeature === index && (
+                    <motion.div
+                      className="absolute inset-0 rounded-xl border-2 border-white"
+                      animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0, 0.5] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    />
+                  )}
+                </motion.button>
+              ))}
+            </div>
+
+            {/* Desktop: Positioned around device */}
+            {features.map((feature, index) => (
+              <motion.button
+                key={`desktop-${index}`}
+                className="hidden md:flex absolute z-20 w-14 h-14 lg:w-16 lg:h-16 bg-primary/90 hover:bg-primary text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 items-center justify-center group hover:shadow-[0_0_30px_rgba(59,130,246,0.8),0_0_60px_rgba(59,130,246,0.4),0_0_90px_rgba(59,130,246,0.2)] hover:brightness-110"
+                style={feature.position}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                viewport={{ once: true }}
+                onClick={() => setSelectedFeature(selectedFeature === index ? null : index)}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <feature.icon className="w-6 h-6 lg:w-8 lg:h-8" />
+                
+                {/* Pulse animation for active state */}
+                {selectedFeature === index && (
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-white"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  />
+                )}
+              </motion.button>
+            ))}
+          </div>
 
           {/* Notecard Modal */}
           <AnimatePresence>
