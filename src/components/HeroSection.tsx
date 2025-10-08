@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart, Users, Zap, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import { ScrollRotate3D } from "./ScrollRotate3D";
 import { MeasurementOverlay } from "./MeasurementOverlay";
 import { useState, useEffect } from "react";
 
@@ -155,12 +154,7 @@ export const HeroSection = () => {
              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent z-[-1]" />
       
       {/* WIP 3D Project - 3D Model - COMMENTED OUT FOR LATER WORK */}
-      {/* <ScrollRotate3D 
-        className="fixed inset-0 z-[1]"
-        modelPath="/SecondArmModel1.glb"
-        rotationSpeed={0.5}
-        blurIntensity={0.3}
-      /> */}
+      {/* ScrollRotate3D component moved to unused folder */}
       
       
       <div className="absolute inset-0 opacity-10 z-[-2]"
@@ -185,19 +179,17 @@ export const HeroSection = () => {
 
                {/* Headline */}
                <motion.h1
-                 className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-normal relative z-[200] flex flex-col sm:flex-row items-center justify-center py-12 mb-0 mt-16"
+                 className="text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight relative z-[200] flex flex-col sm:flex-row items-center justify-center py-12 mb-0 mt-16"
+                 style={{ fontFamily: 'Hammersmith One, sans-serif' }}
                  initial={{ opacity: 0, y: 40 }}
                  animate={{ opacity: 1, y: 0 }}
                  transition={{ duration: 1, delay: 0.4 }}
                >
-                 <span className="text-blue-600 dark:text-blue-400" style={{ textShadow: '0 4px 20px rgba(59, 130, 246, 0.6), 0 2px 8px rgba(59, 130, 246, 0.4)' }}>Reimagining</span> 
+                 <span style={{ color: '#006d8f' }}>Reimagining</span> 
                  <motion.span 
-                   className="mt-2 sm:mt-0 sm:ml-4"
+                   className="mt-1 sm:mt-0 sm:ml-4"
                    style={{ 
-                     color: 'white !important', 
-                     WebkitTextFillColor: 'white',
-                     textShadow: '0 0 20px rgba(175, 200, 160, 0.8), 0 0 40px rgba(175, 200, 160, 0.6), 0 0 60px rgba(175, 200, 160, 0.4)',
-                     filter: 'drop-shadow(0 0 8px rgba(175, 200, 160, 0.6))'
+                     color: '#006d8f', 
                    }}
                    initial={{ opacity: 0, scale: 0.8 }}
                    animate={{ 
@@ -217,6 +209,7 @@ export const HeroSection = () => {
                {/* Subtitle */}
                <motion.p
                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-2xl mx-auto relative z-[100] px-4 -mt-4"
+                 style={{ fontFamily: 'Banshrift, sans-serif', fontWeight: 300 }}
                  initial={{ opacity: 0, y: 30 }}
                  animate={{ opacity: 1, y: 0 }}
                  transition={{ duration: 1, delay: 0.6 }}
@@ -234,7 +227,7 @@ export const HeroSection = () => {
                >
                  <Button 
                    size="lg" 
-                   className="bg-gradient-primary hover:opacity-90 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 shadow-lg transition-all duration-300 w-full sm:w-auto"
+                   className="bg-gradient-primary hover:opacity-90 text-sm sm:text-base md:text-lg px-4 sm:px-6 md:px-8 py-3 sm:py-4 transition-all duration-300 w-full sm:w-auto"
                    onClick={() => {
                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                    }}
@@ -361,7 +354,7 @@ export const HeroSection = () => {
           console.log('Toggle measurements clicked, current state:', showMeasurements);
           setShowMeasurements(!showMeasurements);
         }}
-        className="fixed top-20 left-4 z-50 bg-red-600 text-white px-6 py-3 rounded-lg shadow-xl hover:bg-red-700 transition-colors flex items-center gap-2 border-2 border-white"
+        className="fixed top-20 left-4 z-50 bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2 border-2 border-white"
         style={{ 
           fontSize: '16px',
           fontWeight: 'bold',

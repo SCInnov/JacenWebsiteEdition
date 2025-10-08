@@ -171,7 +171,7 @@ export const ProductShowcase = () => {
               {features.map((feature, index) => (
                 <motion.button
                   key={index}
-                  className="z-20 w-full h-20 bg-primary/90 hover:bg-primary text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center group hover:shadow-[0_0_30px_rgba(59,130,246,0.8),0_0_60px_rgba(59,130,246,0.4),0_0_90px_rgba(59,130,246,0.2)] hover:brightness-110"
+                  className="z-20 w-full h-20 bg-primary/90 hover:bg-primary text-white rounded-xl transition-all duration-300 flex flex-col items-center justify-center group hover:brightness-110"
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
@@ -199,7 +199,7 @@ export const ProductShowcase = () => {
             {features.map((feature, index) => (
               <motion.button
                 key={`desktop-${index}`}
-                className="hidden md:flex absolute z-20 w-14 h-14 lg:w-16 lg:h-16 bg-primary/90 hover:bg-primary text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 items-center justify-center group hover:shadow-[0_0_30px_rgba(59,130,246,0.8),0_0_60px_rgba(59,130,246,0.4),0_0_90px_rgba(59,130,246,0.2)] hover:brightness-110"
+                className="hidden md:flex absolute z-20 w-14 h-14 lg:w-16 lg:h-16 bg-primary/90 hover:bg-primary text-white rounded-full transition-all duration-300 items-center justify-center group hover:brightness-110"
                 style={feature.position}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}

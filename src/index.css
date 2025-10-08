@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Banshrift:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Banshrift+Semicondensed:wght@400;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,10 +62,10 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
     --gradient-accent: linear-gradient(45deg, hsl(var(--secondary)), hsl(var(--primary-light)));
     
-    /* Medical technology shadows */
-    --shadow-primary: 0 10px 30px -10px hsl(var(--primary) / 0.3);
-    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.15);
-    --shadow-hero: 0 20px 60px -20px hsl(var(--primary) / 0.4);
+    /* Medical technology shadows - removed */
+    --shadow-primary: 0 0 0 0 transparent;
+    --shadow-card: 0 0 0 0 transparent;
+    --shadow-hero: 0 0 0 0 transparent;
     
     /* Smooth transitions for medical UI */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -116,10 +120,10 @@ All colors MUST be HSL.
     --gradient-hero: linear-gradient(135deg, hsl(var(--primary-dark)), hsl(var(--primary)));
     --gradient-accent: linear-gradient(45deg, hsl(var(--secondary)), hsl(var(--primary-light)));
     
-    /* Light mode shadows */
-    --shadow-primary: 0 10px 30px -10px hsl(var(--primary) / 0.2);
-    --shadow-card: 0 4px 20px -4px hsl(var(--primary) / 0.1);
-    --shadow-hero: 0 20px 60px -20px hsl(var(--primary) / 0.25);
+    /* Light mode shadows - removed */
+    --shadow-primary: 0 0 0 0 transparent;
+    --shadow-card: 0 0 0 0 transparent;
+    --shadow-hero: 0 0 0 0 transparent;
   }
 
 }
