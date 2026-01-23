@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ModelViewer } from './ModelViewer';
 import { Brain, Shield, Zap, Settings, Heart, Wrench } from 'lucide-react';
 
 export const ProductShowcase = () => {

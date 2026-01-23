@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Heart, Users, Zap, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import { MeasurementOverlay } from "./MeasurementOverlay";
 import { useState, useEffect } from "react";
 
 export const HeroSection = () => {

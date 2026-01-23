@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three-stdlib';
-import { applyMedicalDeviceColors } from '../utils/modelColors';
-import { ProductInfoNodes } from './ProductInfoNodes';
+import { applyMedicalDeviceColors } from '../../utils/modelColors';
+import { ProductInfoNodes } from '../../unused/ProductInfoNodes';
 
 interface ScrollRotate3DProps {
   modelPath: string;
