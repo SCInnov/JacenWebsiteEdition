@@ -1,0 +1,52 @@
+/* Fixed Contact Us CTA - bottom left, hidden on contact page */
+.cta-contact-wrap {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 40;
+    pointer-events: auto;
+}
+
+.cta-contact-wrap a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #006d8f 0%, #0088aa 50%, #006d8f 100%);
+    border: 2px solid #afc8a0;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0, 109, 143, 0.35);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.cta-contact-wrap a:hover {
+    box-shadow: 0 6px 24px rgba(0, 109, 143, 0.45);
+    transform: translateY(-1px);
+    border-color: #8fb87a;
+}
+
+.cta-contact-wrap a:focus {
+    outline: 2px solid #006d8f;
+    outline-offset: 2px;
+}
+
+/* Hide on contact page */
+body.page-contact .cta-contact-wrap {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .cta-contact-wrap {
+        bottom: 16px;
+        left: 16px;
+    }
+
+    .cta-contact-wrap a {
+        padding: 10px 16px;
+        font-size: 0.875rem;
+    }
+}

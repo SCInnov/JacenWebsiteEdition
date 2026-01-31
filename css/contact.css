@@ -3,6 +3,8 @@
     padding: 120px 20px 80px;
     max-width: 1200px;
     margin: 0 auto;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #e8f4f8 0%, rgba(0, 109, 143, 0.08) 35%, #fffcf7 70%, rgba(175, 200, 160, 0.12) 100%);
 }
 
 .contact-page .page-title {
@@ -10,6 +12,15 @@
     font-weight: 700;
     color: #006d8f;
     margin-bottom: 0.5rem;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .contact-page .page-title {
+        background: linear-gradient(135deg, #006d8f 0%, #0088aa 50%, #006d8f 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 }
 
 .contact-page .page-subtitle {
@@ -33,11 +44,11 @@
 }
 
 .contact-form-wrapper {
-    background: #fff;
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 252, 247, 0.98) 100%);
     border-radius: 12px;
     padding: 2rem;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-    border: 1px solid rgba(175, 200, 160, 0.3);
+    box-shadow: 0 4px 24px rgba(0, 109, 143, 0.08);
+    border: 1px solid rgba(0, 109, 143, 0.2);
 }
 
 .contact-form label {
@@ -77,22 +88,24 @@
     font-size: 1rem;
     font-weight: 700;
     color: #fff;
-    background: #006d8f;
+    background: linear-gradient(135deg, #006d8f 0%, #0088aa 50%, #006d8f 100%);
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .contact-form button:hover {
-    background: #0088aa;
+    background: linear-gradient(135deg, #0088aa 0%, #00a0c4 50%, #0088aa 100%);
+    box-shadow: 0 4px 16px rgba(0, 109, 143, 0.35);
 }
 
 .contact-info {
-    background: linear-gradient(135deg, rgba(0, 109, 143, 0.06) 0%, rgba(175, 200, 160, 0.08) 100%);
+    background: linear-gradient(145deg, rgba(0, 109, 143, 0.12) 0%, rgba(0, 136, 170, 0.08) 40%, rgba(175, 200, 160, 0.1) 100%);
     border-radius: 12px;
     padding: 2rem;
-    border: 1px solid rgba(175, 200, 160, 0.3);
+    border: 1px solid rgba(0, 109, 143, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 109, 143, 0.06);
 }
 
 .contact-info h3 {
