@@ -1,37 +1,130 @@
-/* Fixed Contact Us CTA - bottom left, hidden on contact page */
+/* Fixed Contact CTA - morphing logo-to-contact button, bottom right, 50% bigger, hidden on contact page */
 .cta-contact-wrap {
     position: fixed;
     bottom: 24px;
-    left: 24px;
+    right: 24px;
     z-index: 40;
     pointer-events: auto;
 }
 
-.cta-contact-wrap a {
-    display: inline-flex;
+.cta-contact-btn {
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #fff;
-    background: linear-gradient(135deg, #006d8f 0%, #0088aa 50%, #006d8f 100%);
+    justify-content: center;
+    width: 78px;
+    height: 78px;
+    padding: 0;
     border: 2px solid #afc8a0;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 4px 16px rgba(0, 109, 143, 0.35);
-    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #006d8f 0%, #0088aa 50%, #006d8f 100%);
+    box-shadow: 0 4px 20px rgba(0, 109, 143, 0.35);
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.35s ease, border-radius 0.35s ease, box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
-.cta-contact-wrap a:hover {
-    box-shadow: 0 6px 24px rgba(0, 109, 143, 0.45);
-    transform: translateY(-1px);
+.cta-contact-btn:hover {
+    box-shadow: 0 6px 28px rgba(0, 109, 143, 0.45);
+    transform: translateY(-2px);
     border-color: #8fb87a;
 }
 
-.cta-contact-wrap a:focus {
+.cta-contact-btn:focus {
     outline: 2px solid #006d8f;
     outline-offset: 2px;
+}
+
+/* Expanded state: pill shape, wider for "Contact Us" text */
+.cta-contact-btn.is-expanded {
+    width: 220px;
+    height: 78px;
+    border-radius: 999px;
+    background: #fff;
+    cursor: default;
+}
+
+.cta-contact-btn.is-expanded:hover {
+    transform: none;
+}
+
+.cta-contact-btn.is-expanded:focus-within {
+    outline: 2px solid #006d8f;
+    outline-offset: 2px;
+}
+
+/* Logo state - visible when collapsed */
+.cta-logo-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.cta-contact-btn.is-expanded .cta-logo-state {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cta-logo-state img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* Contact Us state - visible after morph completes, then typing */
+.cta-contact-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 28px;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #006d8f;
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease 0.35s, color 0.2s ease;
+}
+
+.cta-contact-btn.is-expanded .cta-contact-state {
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+}
+
+.cta-contact-state:hover {
+    color: #0088aa;
+}
+
+/* Typing animation - waits for morph (0.35s), then types out "Contact Us" (11 chars) */
+.cta-typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    font-family: inherit;
+    border-right: 2px solid #006d8f;
+    margin-left: 18px;
+}
+
+.cta-contact-btn:not(.is-expanded) .cta-typing-text {
+    width: 0;
+    border-right-color: #006d8f;
+}
+
+.cta-contact-btn.is-expanded .cta-typing-text {
+    animation: cta-typing 0.5s steps(11) 0.35s forwards;
+}
+
+@keyframes cta-typing {
+    to {
+        width: 11ch;
+        border-right-color: transparent;
+    }
 }
 
 /* Hide on contact page */
@@ -42,11 +135,26 @@ body.page-contact .cta-contact-wrap {
 @media (max-width: 768px) {
     .cta-contact-wrap {
         bottom: 16px;
-        left: 16px;
+        right: 16px;
     }
 
-    .cta-contact-wrap a {
-        padding: 10px 16px;
-        font-size: 0.875rem;
+    .cta-contact-btn {
+        width: 72px;
+        height: 72px;
+    }
+
+    .cta-logo-state img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .cta-contact-btn.is-expanded {
+        width: 200px;
+        height: 72px;
+    }
+
+    .cta-contact-state {
+        padding: 0 24px;
+        font-size: 1rem;
     }
 }

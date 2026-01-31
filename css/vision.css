@@ -104,3 +104,94 @@
         transform: translateX(-50%); /* move by 3 slides = duplicate set; seamless reset */
     }
 }
+
+/* Trust / Credibility marquee - after Vision */
+.trust-marquee-section {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 32px 0 48px;
+    background: #fffcf7;
+    border: 1px solid rgba(175, 200, 160, 0.5);
+    box-shadow: 0 0 20px rgba(175, 200, 160, 0.25), 0 0 40px rgba(175, 200, 160, 0.15);
+    overflow: hidden;
+}
+
+.trust-marquee-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0, 109, 143, 0.8);
+    text-align: center;
+    margin: 0 0 16px 0;
+}
+
+.trust-marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.trust-marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    white-space: nowrap;
+    animation: trust-marquee 20s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trust-marquee-track {
+        animation: none;
+    }
+}
+
+/* Logo slots inside carousel track */
+.trust-marquee-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 144px;
+    height: auto;
+    min-height: 150px;
+}
+
+.trust-marquee-logo {
+    max-height: 64px;
+    max-width: 201px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Larger logos: mHUB, UIUC, ICorps (75% bigger) */
+.trust-marquee-logo[src*="mHubLogo"],
+.trust-marquee-logo[src*="UIUCLogo"],
+.trust-marquee-logo[src*="ICorps"] {
+    max-height: 150px;
+    max-width: 474px;
+}
+
+.trust-marquee-fallback {
+    display: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #006d8f;
+}
+
+.trust-marquee-sep {
+    font-size: 0.9rem;
+    color: rgba(0, 109, 143, 0.4);
+    flex-shrink: 0;
+}
+
+@keyframes trust-marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
+    }
+}

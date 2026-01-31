@@ -22,8 +22,13 @@
     <!-- <link rel="stylesheet" href="css/debug-spacing.css"> -->
 </head>
 <body>
-    <div class="cta-contact-wrap" aria-hidden="false">
-        <a href="contact.html">Contact Us</a>
+    <div class="cta-contact-wrap" id="cta-contact-wrap">
+        <div class="cta-contact-btn" id="cta-contact-btn" role="button" tabindex="0" aria-label="Contact Second Chance" aria-expanded="false">
+            <span class="cta-logo-state">
+                <img src="public/Second Chance Icon.svg" alt="">
+            </span>
+            <a href="contact.html" class="cta-contact-state"><span class="cta-typing-text">Contact Us</span></a>
+        </div>
     </div>
     <nav class="nav-bar">
         <div class="nav-bar-inner">
@@ -91,6 +96,74 @@
                         <img src="public/SCIModel3.png" alt="Second Chance Device Model 3">
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-marquee-section" aria-label="Supported by">
+        <p class="trust-marquee-label">Supported by:</p>
+        <div class="trust-marquee-wrap">
+            <div class="trust-marquee-track" aria-hidden="true">
+                <!-- Logo slots using actual files from public folder -->
+                <span class="trust-marquee-slot">
+                    <img src="public/IVenture Logo.jpeg" alt="iVenture" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">iVenture</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/UIUCLogo.png" alt="University of Illinois" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">University of Illinois</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/ICorpsRegionalLogo.png" alt="EnterpriseWorks" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">EnterpriseWorks</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/mHubLogo.png" alt="mHUB" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">mHUB</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/IVenture Logo.jpeg" alt="iVenture" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">iVenture</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/UIUCLogo.png" alt="University of Illinois" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">University of Illinois</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/ICorpsRegionalLogo.png" alt="EnterpriseWorks" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">EnterpriseWorks</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/mHubLogo.png" alt="mHUB" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">mHUB</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/IVenture Logo.jpeg" alt="iVenture" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">iVenture</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/UIUCLogo.png" alt="University of Illinois" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">University of Illinois</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/ICorpsRegionalLogo.png" alt="EnterpriseWorks" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">EnterpriseWorks</span>
+                </span>
+                <span class="trust-marquee-sep">·</span>
+                <span class="trust-marquee-slot">
+                    <img src="public/mHubLogo.png" alt="mHUB" class="trust-marquee-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                    <span class="trust-marquee-fallback">mHUB</span>
+                </span>
             </div>
         </div>
     </section>
@@ -757,6 +830,7 @@
 
     <!-- JavaScript Files -->
     <script src="js/canvas.js"></script>
+    <script src="js/cta-contact.js"></script>
     <script src="js/navbar.js"></script>
     <script src="js/hero.js"></script>
     <script src="js/problem-section.js"></script>

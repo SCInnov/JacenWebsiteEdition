@@ -15,8 +15,13 @@
     <link rel="stylesheet" href="css/footer.css">
 </head>
 <body class="page-contact">
-    <div class="cta-contact-wrap" aria-hidden="true">
-        <a href="contact.html">Contact Us</a>
+    <div class="cta-contact-wrap" id="cta-contact-wrap">
+        <div class="cta-contact-btn" id="cta-contact-btn" role="button" tabindex="0" aria-label="Contact Second Chance" aria-expanded="false">
+            <span class="cta-logo-state">
+                <img src="public/Second Chance Icon.svg" alt="">
+            </span>
+            <a href="contact.html" class="cta-contact-state"><span class="cta-typing-text">Contact Us</span></a>
+        </div>
     </div>
     <nav class="nav-bar">
         <div class="nav-bar-inner">
@@ -134,6 +139,7 @@
         </div>
     </footer>
 
+    <script src="js/cta-contact.js"></script>
     <script src="js/navbar.js"></script>
     <script>
         document.getElementById('contact-form').addEventListener('submit', function(e) {

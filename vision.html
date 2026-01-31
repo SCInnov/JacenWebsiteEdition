@@ -162,8 +162,13 @@
     <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
-    <div class="cta-contact-wrap" aria-hidden="false">
-        <a href="contact.html">Contact Us</a>
+    <div class="cta-contact-wrap" id="cta-contact-wrap">
+        <div class="cta-contact-btn" id="cta-contact-btn" role="button" tabindex="0" aria-label="Contact Second Chance" aria-expanded="false">
+            <span class="cta-logo-state">
+                <img src="public/Second Chance Icon.svg" alt="">
+            </span>
+            <a href="contact.html" class="cta-contact-state"><span class="cta-typing-text">Contact Us</span></a>
+        </div>
     </div>
     <main class="vision-panel">
         <h2 class="vision-tagline">
@@ -280,5 +285,6 @@
             if (taglineEl) obs.observe(taglineEl);
         })();
     </script>
+    <script src="js/cta-contact.js"></script>
 </body>
 </html>
