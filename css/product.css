@@ -1,0 +1,957 @@
+/* Product Section Styles */
+.product-section {
+    --timeline-step-gap: 100px; /* Equidistant gap: Stage 1→2 (scroll-container), 2→3, 3→4 */
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    padding: 100px 20px 80px;
+    margin-top: 40px;
+    background: #006d8f;
+    color: #fffcf7;
+    /* Remove overflow: visible - can interfere with sticky positioning */
+}
+
+.product-timeline {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Ensure no overflow that would break sticky */
+    position: relative;
+}
+
+/* Gradient circles throughout product (match Rebo hero style) */
+.product-geo-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    animation: productGeoFadeIn 1.2s ease-out forwards;
+}
+
+.product-timeline .rebo-hero-header,
+.product-timeline .hero.rebo-hero,
+.product-timeline .timeline-header,
+.product-timeline .scroll-container,
+.product-timeline .timeline-container {
+    position: relative;
+    z-index: 1;
+}
+
+.product-geo-1 {
+    width: 320px;
+    height: 320px;
+    top: 12%;
+    right: -80px;
+    background: linear-gradient(135deg, rgba(0, 109, 143, 0.15) 0%, rgba(0, 136, 204, 0.08) 100%);
+    animation-delay: 0.3s;
+}
+
+.product-geo-2 {
+    width: 200px;
+    height: 200px;
+    top: 45%;
+    left: -60px;
+    background: linear-gradient(135deg, rgba(175, 200, 160, 0.2) 0%, rgba(143, 184, 122, 0.1) 100%);
+    animation-delay: 0.5s;
+}
+
+.product-geo-3 {
+    width: 120px;
+    height: 120px;
+    top: 70%;
+    right: 10%;
+    border: 1px solid rgba(175, 200, 160, 0.35);
+    background: transparent;
+    animation-delay: 0.7s;
+}
+
+.product-geo-4 {
+    width: 180px;
+    height: 180px;
+    bottom: 15%;
+    left: 5%;
+    background: linear-gradient(135deg, rgba(0, 109, 143, 0.12) 0%, rgba(0, 136, 204, 0.06) 100%);
+    animation-delay: 0.9s;
+}
+
+@keyframes productGeoFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.timeline-header {
+    margin-top: 2rem;
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.timeline-label {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 252, 247, 0.7);
+    margin-bottom: 1rem;
+}
+
+.timeline-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: #fffcf7;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.2;
+}
+
+.timeline-intro {
+    font-size: 1.2rem;
+    color: rgba(255, 252, 247, 0.9);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 700px;
+}
+
+/* Scroll Container for Stage 1 (Sticky) */
+/* FORCE OVERRIDE - Maximum specificity to beat any cache or other CSS */
+body .product-section .product-timeline .scroll-container,
+body .product-section .scroll-container,
+.product-section .product-timeline .scroll-container,
+.product-section .scroll-container,
+.scroll-container {
+    position: relative !important;
+    /* Reduced height - half of previous */
+    /* Formula: sticky duration = container height - sticky element height */
+    /* With 300vh container and 100vh sticky: 300vh - 100vh = 200vh of sticky scroll */
+    height: 300vh !important; /* Half of previous - 300vh for sticky interaction time */
+    min-height: 300vh !important; /* Ensure minimum height */
+    max-height: none !important; /* Remove any max-height restrictions */
+    margin-top: 0 !important; /* Align top with stage1 and timeline-step bodies */
+    margin-bottom: var(--timeline-step-gap) !important; /* Stage 1→2: same as 2→3, 3→4 */
+    width: 100% !important;
+    /* CRITICAL: No overflow property - sticky requires default overflow behavior */
+    /* No transform, filter, or perspective on this or parent elements */
+}
+
+.scroll-container .sticky-wrapper,
+.sticky-wrapper {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 60px !important; /* Lower sticky wrapper by 60px from viewport top */
+    height: 100vh !important;
+    max-height: 100vh !important; /* Prevent content from exceeding viewport */
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 10 !important;
+    margin: 0 !important;
+    padding: 0 !important; /* Top and bottom padding removed for tighter sticky area */
+    box-sizing: border-box !important; /* Include padding in height calculation */
+    /* CRITICAL: No overflow property on sticky element - let parent containers handle it */
+    /* CRITICAL: No transform, filter, perspective, or will-change - breaks sticky */
+    /* No transition - can interfere with sticky positioning */
+}
+
+/* Stage 1 Container - matches timeline-container structure */
+/* Timeline line centered for mobile-friendly design */
+.sticky-wrapper .stage1-container {
+    position: relative;
+    padding-left: 0 !important; /* No left padding - timeline centered */
+    padding-right: 0 !important;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 0 auto;
+    flex: 0 0 auto; /* Prevent flex shrinking */
+}
+
+.stage1-container .timeline-steps {
+    position: relative;
+    width: 100%;
+}
+
+.stage1-line {
+    display: none !important; /* Timeline line removed */
+}
+
+/* Stage 1 Step - matches timeline-step structure */
+/* CRITICAL: No transform or transition on sticky elements - breaks sticky positioning */
+.stage1-step {
+    position: relative;
+    margin-bottom: 0;
+    margin-top: 0; /* Align top with scroll-container and timeline-step bodies */
+    padding: 20px 20px 8px 20px;
+    padding-top: 0; /* Reduced by 10px from 8px - border closer to content at top */
+    opacity: 1 !important; /* Override timeline-step default opacity: 0 */
+    border: 2px solid rgba(255, 252, 247, 0.4);
+    border-radius: 12px;
+    box-sizing: border-box;
+    /* NO transform - transforms break sticky positioning */
+    /* NO transition - transitions can interfere with sticky */
+}
+
+.stage1-step.visible {
+    opacity: 1 !important;
+    /* NO transform - keep it static for sticky to work */
+}
+
+/* EMG Canvas for Stage 1 - fits within step-image structure */
+/* Stage 1 specific overrides - side by side layout like other stages */
+/* Canvas/Image on LEFT (400px), Title & Description on RIGHT (1fr) */
+.stage1-step .step-content-wrapper {
+    display: grid !important;
+    grid-template-columns: 400px 1fr !important; /* Image on left, content on right - same as Stages 2-4 */
+    gap: 40px !important;
+    align-items: center !important;
+    padding: 0 20px !important; /* Add horizontal padding since container has no left padding */
+    margin-top: -20px; /* Another 20px - pull content up toward top border */
+}
+
+.stage1-step .step-image {
+    width: 100%;
+    height: 300px;
+    background: transparent !important; /* Override default step-image background */
+    border: none !important; /* Override default step-image border */
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    position: relative;
+    padding: 0;
+    box-shadow: none !important; /* Remove any default box-shadow */
+}
+
+.stage1-step .step-content {
+    flex: 1;
+    position: relative; /* Allow marker positioning relative to content */
+}
+
+.emg-canvas-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 252, 247, 0.1);
+    border: 2px solid rgba(175, 200, 160, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+#stage1-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.interaction-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 109, 143, 0.95);
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    border: 2px solid #afc8a0;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fffcf7;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.interaction-overlay.fade {
+    opacity: 0;
+}
+
+.status-indicator {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(0, 109, 143, 0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #afc8a0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fffcf7;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.status-indicator.scrolling-up {
+    color: #afc8a0;
+    border-color: #afc8a0;
+}
+
+.status-indicator.scrolling-down {
+    color: #afc8a0;
+    border-color: #afc8a0;
+}
+
+.status-indicator.tapping {
+    color: #afc8a0;
+    border-color: #afc8a0;
+}
+
+/* Timeline Container for Stages 2-4 */
+/* Timeline line centered for mobile-friendly design */
+.product-section > .product-timeline > .timeline-container,
+.timeline-container {
+    position: relative !important;
+    padding-left: 0 !important; /* No left padding - timeline centered */
+    padding-right: 0 !important;
+    padding-top: 0 !important; /* Align top with scroll-container and stage1 bodies */
+    padding-bottom: 0 !important;
+}
+
+.timeline-line {
+    display: none !important; /* Timeline line removed */
+}
+
+.timeline-steps {
+    position: relative;
+}
+
+.timeline-step {
+    position: relative;
+    margin-bottom: var(--timeline-step-gap); /* Equidistant with Stage 1→2 and between 2→3, 3→4 */
+    margin-top: 60px; /* Reduced top margin since marker is now above title */
+    padding: 100px 20px; /* Same horizontal padding (20px) as Stage 1; keep vertical 100px */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    /* Same border and dimensions as Stage 1 (stage1-step) */
+    border: 2px solid rgba(255, 252, 247, 0.4);
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+/* First timeline step (Stage 2) - no extra top margin so Stage 1→2 gap = --timeline-step-gap only */
+.timeline-container > .timeline-steps > .timeline-step:first-child {
+    margin-top: 0; /* Prevents 130px total (100+30); gap is scroll-container margin-bottom only */
+    padding-top: 100px; /* Top padding 100px to match other steps */
+    margin-bottom: var(--timeline-step-gap) !important;
+}
+
+/* Stage 3 - gap below = same as 2→3 */
+.timeline-container > .timeline-steps > .timeline-step:nth-child(2) {
+    margin-bottom: var(--timeline-step-gap) !important;
+}
+
+/* Ensure stage1-step doesn't inherit timeline-step defaults */
+.timeline-step.stage1-step {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+/* Base marker styles - overridden by specific positioning above */
+.step-marker {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 252, 247, 0.1);
+    border: 2px solid rgba(175, 200, 160, 0.5);
+    border-radius: 50%;
+    z-index: 10;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    margin-top: 0;
+}
+
+.timeline-step .step-marker:hover,
+.stage1-step .step-marker:hover {
+    background: rgba(0, 109, 143, 1);
+    border-color: rgba(255, 252, 247, 0.8);
+    transform: scale(1.05);
+}
+
+.step-marker .step-number {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #afc8a0; /* Accent color for numbers */
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.5px;
+}
+
+/* Stages 2, 3, 4 - side by side layout */
+/* Image on LEFT (400px), Title & Description on RIGHT (1fr) */
+.step-content-wrapper {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 0 20px; /* Add horizontal padding since container has no left padding */
+    margin-top: 0; /* No top margin - marker is positioned relative to timeline-step */
+    position: relative; /* Ensure proper stacking context - this allows marker to be positioned relative to it */
+}
+
+/* Position marker relative to step-content-wrapper to align with grid */
+/* Since marker is a sibling, we use step-content-wrapper as positioning context */
+.timeline-step,
+.stage1-step {
+    position: relative; /* Already set, but ensuring it's here */
+}
+
+/* Numbered circles on each step box – show and position at top-left of box */
+.timeline-step .step-marker,
+.stage1-step .step-marker {
+    display: flex !important;
+    top: -14px;
+    left: 20px;
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 109, 143, 0.95);
+    border: 2px solid rgba(255, 252, 247, 0.5);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-step .step-marker .step-number,
+.stage1-step .step-marker .step-number {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fffcf7;
+}
+
+.step-image {
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 252, 247, 0.1);
+    border: 2px solid rgba(175, 200, 160, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-placeholder {
+    color: rgba(255, 252, 247, 0.5);
+    font-size: 1rem;
+    text-align: center;
+}
+
+.step-image img,
+.step-image video,
+.step-image canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.step-content {
+    flex: 1;
+    position: relative; /* Allow marker positioning relative to content */
+    padding-top: 10px; /* Add space at top for marker above title */
+}
+
+/* Position marker relative to step-content (where title is) using CSS */
+/* This works for both desktop (2-column) and mobile (1-column) layouts */
+.timeline-step .step-marker,
+.stage1-step .step-marker {
+    position: absolute;
+    /* On desktop: position at start of content column */
+    /* On mobile: position at start of content (which is below image) */
+    /* We'll use JavaScript to calculate the exact position dynamically */
+}
+
+/* Alternative: Position marker using step-content as reference via CSS variable or calculation */
+/* Since step-content is in the right column, we can position marker relative to it */
+.timeline-step .step-content-wrapper .step-content,
+.stage1-step .step-content-wrapper .step-content {
+    /* This is where the title is - marker should be above this */
+}
+
+.step-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fffcf7;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.step-description {
+    font-size: 1.125rem;
+    color: rgba(255, 252, 247, 0.85);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Sensor Reading Components */
+.sensor-reading-wrapper {
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.sensor-container {
+    position: relative;
+    width: 100%;
+    max-width: 380px !important;
+    height: 300px !important; /* Match step-image height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: none;
+    transform-origin: center center;
+}
+
+.arm-with-sensor {
+    position: relative;
+    width: 100%;
+    max-width: 380px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arm-with-sensor img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 380px !important;
+    max-height: 300px !important;
+    object-fit: contain;
+    transform: none !important;
+    transform-origin: center center;
+    position: relative;
+    z-index: 1 !important; /* Ensure image is behind sensor overlay */
+}
+
+.emg-sensor-overlay {
+    position: absolute;
+    top: calc(50% + 40px);
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.38); /* Shrunk further on Stage 2 */
+    width: 200px;
+    height: 200px;
+    pointer-events: none;
+    z-index: 10 !important; /* Ensure sensor overlay is on top of the image */
+}
+
+.electrode-pad {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #e8e8e8, #c0c0c0);
+    border-radius: 50%;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.2),
+        0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.electrode-pad::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    background: linear-gradient(135deg, #006d8f, #0088cc);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.electrode-pad::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    background: #1a1a1a;
+    border-radius: 50%;
+    box-shadow: 
+        inset 0 2px 4px rgba(0, 0, 0, 0.6),
+        0 0 8px rgba(175, 200, 160, 0.4);
+    animation: electrodeFlash 2s ease-in-out infinite;
+}
+
+@keyframes electrodeFlash {
+    0%, 100% { 
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 8px rgba(175, 200, 160, 0.4);
+    }
+    50% { 
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(175, 200, 160, 1);
+    }
+}
+
+.electrode-1 {
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.electrode-2 {
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.electrode-3 {
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+}
+
+.sensor-hub {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #a0a0a0, #707070);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.sensor-hub::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(45deg, #909090, #606060);
+    border-radius: 12px;
+    z-index: -1;
+    animation: hubPulse 2s ease-in-out infinite;
+}
+
+@keyframes hubPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+}
+
+.sensor-icon {
+    font-size: 2.2rem;
+    color: white;
+}
+
+.wire {
+    position: absolute;
+    background: linear-gradient(to bottom, #afc8a0, #8fb87a);
+    width: 3px;
+    transform-origin: center;
+}
+
+.wire-1 {
+    top: 32px;
+    left: 50%;
+    height: 40px;
+    transform: translateX(-50%);
+}
+
+.wire-2 {
+    bottom: 32px;
+    left: 50%;
+    height: 40px;
+    transform: translateX(-50%);
+}
+
+.wire-3 {
+    top: 50%;
+    left: 30px;
+    width: 45px;
+    height: 3px;
+    transform: translateY(-50%);
+}
+
+.signal-pulse {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #afc8a0;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(175, 200, 160, 0.8);
+    opacity: 0;
+}
+
+.pulse-1 {
+    top: 32px;
+    left: 50%;
+    animation: pulseDown 2s ease-in-out infinite;
+}
+
+.pulse-2 {
+    bottom: 32px;
+    left: 50%;
+    animation: pulseUp 2s ease-in-out infinite 0.3s;
+}
+
+.pulse-3 {
+    top: 50%;
+    left: 30px;
+    animation: pulseRight 2s ease-in-out infinite 0.6s;
+}
+
+@keyframes pulseDown {
+    0%, 100% { opacity: 0; transform: translate(-50%, 0); }
+    50% { opacity: 1; transform: translate(-50%, 40px); }
+}
+
+@keyframes pulseUp {
+    0%, 100% { opacity: 0; transform: translate(-50%, 0); }
+    50% { opacity: 1; transform: translate(-50%, -40px); }
+}
+
+@keyframes pulseRight {
+    0%, 100% { opacity: 0; transform: translate(0, -50%); }
+    50% { opacity: 1; transform: translate(45px, -50%); }
+}
+
+/* Device Integration */
+.device-integration-wrapper {
+    width: 100%;
+    max-width: 700px;
+    position: relative;
+}
+
+/* Stage 3: Sensor + Brace integration layout */
+.device-integration-wrapper.sensor-plus-brace {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 100%;
+    padding: 0.5rem 0;
+}
+
+.integration-sensor-side,
+.integration-brace-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.integration-sensor-side .arm-with-sensor.integration-arm {
+    position: relative;
+    max-width: 88px; /* Shrunk by 60% (220 * 0.4) */
+    width: 100%;
+}
+
+.integration-sensor-side .arm-with-sensor.integration-arm img {
+    width: 100%;
+    height: auto;
+    max-width: 88px;
+    display: block;
+}
+
+.integration-sensor-side .emg-sensor-overlay.integration-sensor-overlay {
+    transform: translate(-50%, -50%) scale(0.18); /* Shrunk by 60% (0.45 * 0.4) */
+    top: calc(50% + 20px);
+    left: 50%;
+}
+
+.integration-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+    color: rgba(255, 252, 247, 0.8);
+}
+
+.integration-arrow {
+    font-size: 1.75rem;
+    color: #afc8a0;
+    font-weight: 700;
+}
+
+.integration-connector-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 252, 247, 0.7);
+}
+
+.integration-brace-side .brace-image {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin-top: 20px;
+}
+
+.integration-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 252, 247, 0.8);
+}
+
+.integration-brace-side .integration-label {
+    margin-top: 40px;
+}
+
+.device-container {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+}
+
+.device-image {
+    width: 100%;
+    display: block;
+}
+
+.sensor-highlight {
+    position: absolute;
+    top: 38%;
+    left: 28%;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(175, 200, 160, 0.6), transparent 70%);
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.sensor-label {
+    position: absolute;
+    top: 30%;
+    left: 28%;
+    background: rgba(0, 109, 143, 0.95);
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sensor-label::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 109, 143, 0.95);
+}
+
+/* Stage 4: Working prototype badge */
+.working-prototype-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 5;
+    background: rgba(175, 200, 160, 0.95);
+    color: #006d8f;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 6px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Device Action - Stage 4: same background/border as other step-image areas */
+.action-wrapper {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background: rgba(255, 252, 247, 0.1);
+    border: 2px solid rgba(175, 200, 160, 0.3);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Stage 4 only: action-wrapper and step-image grow with GIF (proportional border) */
+.timeline-step:last-child .step-image,
+.timeline-step[data-step="4"] .step-image {
+    height: auto;
+    min-height: 300px;
+}
+
+.timeline-step:last-child .action-wrapper,
+.timeline-step[data-step="4"] .action-wrapper {
+    height: auto;
+    min-height: 300px;
+}
+
+.gif-container {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* When GIF is present: container sizes to image */
+.gif-container:has(img.device-gif) {
+    width: 100%;
+    height: auto;
+}
+
+/* Full GIF visible, proportional: image sets box size */
+.gif-container img.device-gif {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* Hide placeholder when GIF is present */
+.gif-container:has(img.device-gif) .gif-placeholder {
+    display: none;
+}
+
+.gif-placeholder {
+    text-align: center;
+    padding: 3rem;
+    color: rgba(255, 252, 247, 0.5);
+}
+
+.placeholder-icon {
+    font-size: 5rem;
+    color: #afc8a0;
+    margin-bottom: 1rem;
+}

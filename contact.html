@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Second Chance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-bar-inner">
+            <div class="nav-logo">
+                <a href="index.html" aria-label="Second Chance Home">
+                    <img class="nav-logo-wide" src="public/Second Chance Logo Wide.svg" alt="Second Chance" data-logo="wide" style="opacity: 0; pointer-events: none;">
+                    <img class="nav-logo-icon" src="public/Second Chance Icon.svg" alt="Second Chance" data-logo="icon" style="opacity: 1;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#problem">The Problem</a>
+                <a class="nav-link" href="index.html#vision">Vision</a>
+                <a class="nav-link" href="index.html#product">Product</a>
+                <a class="nav-link" href="team.html">Team</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+            </div>
+            <button type="button" class="nav-menu-btn" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-mobile-links" id="nav-mobile-links">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#problem">The Problem</a>
+                <a class="nav-link" href="index.html#vision">Vision</a>
+                <a class="nav-link" href="index.html#product">Product</a>
+                <a class="nav-link" href="team.html">Team</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contact-page">
+        <h1 class="page-title">Contact Us</h1>
+        <p class="page-subtitle">Get in touch with the Second Chance team. We’d love to hear from you.</p>
+        <div class="contact-layout">
+            <div class="contact-form-wrapper">
+                <form class="contact-form" action="#" method="post" id="contact-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="How can we help?"></textarea>
+                    <button type="submit">Send message</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Other ways to reach us</h3>
+                <p><strong>Email</strong><br><a href="mailto:hello@secondchance.example">hello@secondchance.example</a></p>
+                <p><strong>Address</strong><br>Second Chance<br>123 Innovation Way<br>Your City, ST 00000</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for your message! We\'ll get back to you soon.');
+        });
+    </script>
+</body>
+</html>

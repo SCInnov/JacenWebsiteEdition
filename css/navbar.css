@@ -1,0 +1,116 @@
+/* Navigation Bar Styles */
+.nav-bar {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 0 20px;
+}
+
+.nav-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 20px;
+    background: rgba(255, 252, 247, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 2px solid #afc8a0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    height: 36px;
+    min-width: 120px;
+}
+
+.nav-logo img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    transition: opacity 0.4s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.nav-logo img.nav-logo-wide {
+    height: 32px;
+}
+
+.nav-logo img.nav-logo-icon {
+    height: 36px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #006d8f;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #afc8a0;
+}
+
+.nav-link.active {
+    color: #006d8f;
+}
+
+.nav-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-menu-btn span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #006d8f;
+}
+
+.nav-mobile-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 8px;
+    padding: 12px;
+    background: rgba(255, 252, 247, 0.98);
+    border: 2px solid #afc8a0;
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.nav-mobile-links.open {
+    display: flex;
+}

@@ -1,0 +1,475 @@
+/* ===========================================
+   REBO HERO SECTION STYLES
+   Add this to your main CSS file
+   =========================================== */
+
+/* CSS Variables - adjust these to match your existing color scheme if needed */
+:root {
+  --rebo-background: #fffcf7;
+  --rebo-primary: #006d8f;
+  --rebo-primary-light: #0088cc;
+  --rebo-accent: #afc8a0;
+  --rebo-accent-dark: #8fb87a;
+  --rebo-text-on-dark: #fffcf7;
+  --rebo-dark: #1a1a1a;
+}
+
+/* Hero Section - blended with product section when inside .product-section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 6rem;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--rebo-background) 0%, #f5f7f2 50%, #eef4f6 100%);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--rebo-dark);
+}
+
+/* Rebo hero: break out of container so beige is full viewport width (not a box) */
+.product-section .hero.rebo-hero {
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  color: #1a1a1a;
+  padding: 3rem 2rem 4rem;
+  min-height: auto;
+  overflow: visible;
+  /* Full-bleed: escape product-timeline max-width so background runs edge-to-edge */
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+  /* Beige band with soft fades into teal above/below */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 109, 143, 0.5) 0%,
+    #fffcf7 5%,
+    #fffcf7 95%,
+    rgba(0, 109, 143, 0.5) 100%
+  );
+}
+
+/* Content stays centered; hero-container has its own max-width */
+.product-section .hero.rebo-hero .hero-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Header above rebo hero - "Product" / "The Rebo" */
+.rebo-hero-header {
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+/* Geometric Decorations */
+.geo-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  animation: geoFadeIn 1s ease-out forwards;
+}
+
+.geo-1 {
+  width: 400px;
+  height: 400px;
+  top: -150px;
+  right: -100px;
+  background: linear-gradient(135deg, rgba(0, 109, 143, 0.06) 0%, rgba(0, 136, 204, 0.03) 100%);
+  animation-delay: 1.5s;
+}
+
+.geo-2 {
+  width: 200px;
+  height: 200px;
+  bottom: 10%;
+  left: 5%;
+  background: linear-gradient(135deg, rgba(175, 200, 160, 0.12) 0%, rgba(143, 184, 122, 0.06) 100%);
+  animation-delay: 1.7s;
+}
+
+.geo-3 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 15%;
+  border: 1px solid rgba(175, 200, 160, 0.3);
+  background: transparent;
+  animation-delay: 1.9s;
+}
+
+/* Geometric accents on beige background */
+.product-section .hero.rebo-hero .geo-1 {
+  background: linear-gradient(135deg, rgba(0, 109, 143, 0.06) 0%, rgba(0, 136, 204, 0.03) 100%);
+}
+
+.product-section .hero.rebo-hero .geo-2 {
+  background: linear-gradient(135deg, rgba(175, 200, 160, 0.12) 0%, rgba(143, 184, 122, 0.06) 100%);
+}
+
+.product-section .hero.rebo-hero .geo-3 {
+  border-color: rgba(175, 200, 160, 0.3);
+}
+
+@keyframes geoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hero Container - desktop: image left, content right (DOM order) */
+.hero-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Desktop: hero shot on the left */
+.product-section .hero.rebo-hero .hero-container .image-section {
+  order: 0;
+}
+
+.product-section .hero.rebo-hero .hero-container .content-section {
+  order: 0;
+}
+
+/* Image Section */
+.image-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: imageFadeIn 1.2s ease-out 0.8s forwards;
+}
+
+@keyframes imageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.image-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-glow {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(0, 136, 204, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  z-index: 0;
+  opacity: 0;
+  animation: glowPulse 1s ease-out 1.4s forwards;
+}
+
+@keyframes glowPulse {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+}
+
+/* Desktop: rebo hero PNG forced to a larger display size (not just max-height) */
+@media (min-width: 901px) {
+  .product-section .hero.rebo-hero .hero-container {
+    grid-template-columns: 1.75fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .product-section .hero.rebo-hero .image-section {
+    min-height: 0;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .product-section .hero.rebo-hero .image-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  /* Force the PNG to render larger: explicit width so it's not capped by column */
+  .product-section .hero.rebo-hero .product-image {
+    width: min(920px, 58vw) !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: 88vh !important;
+    object-fit: contain;
+  }
+}
+
+/* Content Section */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Title Animation */
+.title-card {
+  overflow: hidden;
+}
+
+.title-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.title-line-1 {
+  animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.title-line-2 {
+  animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+}
+
+@keyframes titleSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.headline {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.headline-accent {
+  color: var(--rebo-primary);
+}
+
+/* Description */
+.description {
+  font-size: 1.125rem;
+  color: #666;
+  line-height: 1.7;
+  max-width: 460px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: contentFadeIn 0.8s ease-out 0.5s forwards;
+  margin: 0;
+}
+
+/* Typography on beige - dark text */
+.product-section .hero.rebo-hero .headline {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.product-section .hero.rebo-hero .headline-accent {
+  color: #006d8f;
+}
+
+.product-section .hero.rebo-hero .description {
+  font-size: 1.125rem;
+  color: #444;
+  line-height: 1.7;
+}
+
+.product-section .hero.rebo-hero .feature-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #006d8f;
+}
+
+.product-section .hero.rebo-hero .feature-desc {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.product-section .hero.rebo-hero .feature-icon {
+  color: #006d8f;
+  background: linear-gradient(135deg, rgba(0, 109, 143, 0.1) 0%, rgba(0, 136, 204, 0.05) 100%);
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Features */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.feature {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.feature:nth-child(1) {
+  animation: contentFadeIn 0.8s ease-out 0.7s forwards;
+}
+
+.feature:nth-child(2) {
+  animation: contentFadeIn 0.8s ease-out 0.85s forwards;
+}
+
+.feature:nth-child(3) {
+  animation: contentFadeIn 0.8s ease-out 1s forwards;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(0, 109, 143, 0.1) 0%, rgba(0, 136, 204, 0.05) 100%);
+  border-radius: 10px;
+  color: var(--rebo-primary);
+}
+
+.feature-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.feature-content {
+  flex: 1;
+}
+
+.feature-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--rebo-primary);
+  margin-bottom: 0.25rem;
+}
+
+.feature-desc {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Responsive - mobile: hero shot on top, then content */
+@media (max-width: 900px) {
+  .hero {
+    padding: 3rem 2rem;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    text-align: center;
+  }
+
+  /* Mobile: hero shot always on top */
+  .product-section .hero.rebo-hero .hero-container .image-section {
+    order: -1;
+  }
+
+  .product-section .hero.rebo-hero .hero-container .content-section {
+    order: 0;
+  }
+
+  .content-section {
+    align-items: center;
+  }
+
+  .description {
+    max-width: 100%;
+  }
+
+  .headline {
+    font-size: 2.5rem;
+  }
+
+  .product-section .hero.rebo-hero .headline {
+    font-size: 1.75rem;
+  }
+
+  /* Mobile: smaller hero shot so size clearly changes from desktop */
+  .product-section .hero.rebo-hero .product-image {
+    max-height: min(380px, 55vh);
+  }
+
+  .features {
+    text-align: left;
+    max-width: 400px;
+  }
+
+  .geo-1 {
+    width: 250px;
+    height: 250px;
+    top: -80px;
+    right: -80px;
+  }
+
+  .geo-2 {
+    width: 120px;
+    height: 120px;
+  }
+
+  .geo-3 {
+    display: none;
+  }
+}

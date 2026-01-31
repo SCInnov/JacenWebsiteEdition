@@ -1,0 +1,120 @@
+/* Contact Page Styles */
+.contact-page {
+    padding: 120px 20px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-page .page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #006d8f;
+    margin-bottom: 0.5rem;
+}
+
+.contact-page .page-subtitle {
+    font-size: 1.1rem;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contact-form-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(175, 200, 160, 0.3);
+}
+
+.contact-form label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #006d8f;
+    margin-bottom: 0.35rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 1px solid rgba(0, 109, 143, 0.25);
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    background: #fffcf7;
+    transition: border-color 0.2s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #006d8f;
+}
+
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.contact-form button {
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background: #006d8f;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.contact-form button:hover {
+    background: #0088aa;
+}
+
+.contact-info {
+    background: linear-gradient(135deg, rgba(0, 109, 143, 0.06) 0%, rgba(175, 200, 160, 0.08) 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(175, 200, 160, 0.3);
+}
+
+.contact-info h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #006d8f;
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.75);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info a {
+    color: #006d8f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}

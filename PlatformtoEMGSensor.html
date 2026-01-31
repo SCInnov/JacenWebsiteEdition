@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Chance - Solution Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #006d8f;
+            overflow-x: hidden;
+        }
+
+        #signal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .solution-section {
+            position: relative;
+            z-index: 2;
+            min-height: 300vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 100vh 20px 80px;
+        }
+
+        .info-box {
+            width: 800px;
+            height: 500px;
+            border: 3px solid #afc8a0;
+            border-radius: 8px;
+            background: transparent;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20vh;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .info-box.visible {
+            opacity: 1;
+        }
+
+        .box-text {
+            color: #fffcf7;
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-align: center;
+            z-index: 10;
+            background: rgba(0, 109, 143, 0.8);
+            padding: 15px 25px;
+            border-radius: 6px;
+        }
+
+        .sensor-box {
+            width: 800px;
+            height: 500px;
+            border: 3px solid #afc8a0;
+            border-radius: 8px;
+            background: rgba(0, 109, 143, 0.9);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20vh;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            margin-top: -500px;
+        }
+
+        .sensor-box.visible {
+            opacity: 1;
+        }
+
+        .sensor-text {
+            color: #fffcf7;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .info-box.visible {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .info-box {
+                width: 90%;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="signal-canvas"></canvas>
+
+    <div class="solution-section">
+        <div class="info-box" id="infoBox">
+            <p class="box-text">EMG signals reveal muscle intent detection and critical movement information.</p>
+        </div>
+        
+        <div class="sensor-box" id="sensorBox">
+            <p class="sensor-text">These signals are collected by the EMG sensor</p>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('signal-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let time = 0;
+        const bufferSize = 800;
+        const buffer = new Array(bufferSize).fill(0);
+        
+        let scrollDirection = 0;
+        let scrollIntensity = 0;
+        let lastScrollY = window.scrollY;
+        let lastScrollTime = Date.now();
+        let tapSpikes = [];
+        let baseActivation = 0.2;
+
+        let boxVisible = false;
+        let sensorBoxVisible = false;
+        let signalShrinkProgress = 0; // 0 = wavy, 1 = straight line
+        let signalFadeProgress = 0; // 0 = full opacity, 1 = faded out
+
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            const currentTime = Date.now();
+            const currentScrollY = window.scrollY;
+            const deltaY = currentScrollY - lastScrollY;
+            const deltaTime = currentTime - lastScrollTime;
+            
+            const infoBox = document.getElementById('infoBox');
+            const sensorBox = document.getElementById('sensorBox');
+            
+            // Fade out signals from scroll 100-300
+            if (currentScrollY >= 100 && currentScrollY <= 300) {
+                signalFadeProgress = (currentScrollY - 100) / 200;
+            } else if (currentScrollY < 100) {
+                signalFadeProgress = 0;
+            } else {
+                signalFadeProgress = 1;
+            }
+            
+            // Start shrinking signals early (before first box appears)
+            const shrinkStart = 150;
+            const shrinkEnd = 600;
+            if (currentScrollY >= shrinkStart && currentScrollY <= shrinkEnd) {
+                signalShrinkProgress = (currentScrollY - shrinkStart) / (shrinkEnd - shrinkStart);
+            } else if (currentScrollY < shrinkStart) {
+                signalShrinkProgress = 0;
+            } else {
+                signalShrinkProgress = 1;
+            }
+            
+            // Show first box after scrolling down
+            if (currentScrollY > 300 && !boxVisible) {
+                infoBox.classList.add('visible');
+                boxVisible = true;
+            }
+            
+            if (currentScrollY < 300 && boxVisible) {
+                infoBox.classList.remove('visible');
+                boxVisible = false;
+            }
+            
+            // Show second box and hide first box
+            if (currentScrollY > 800 && !sensorBoxVisible) {
+                sensorBox.classList.add('visible');
+                infoBox.classList.remove('visible');
+                sensorBoxVisible = true;
+                boxVisible = false;
+            }
+            
+            if (currentScrollY < 800 && sensorBoxVisible) {
+                sensorBox.classList.remove('visible');
+                if (currentScrollY > 300) {
+                    infoBox.classList.add('visible');
+                    boxVisible = true;
+                }
+                sensorBoxVisible = false;
+            }
+            
+            if (deltaY > 0) {
+                scrollDirection = 1;
+            } else if (deltaY < 0) {
+                scrollDirection = -1;
+            }
+            
+            scrollIntensity = Math.min(Math.abs(deltaY) / (deltaTime + 1) * 10, 1.5);
+            
+            lastScrollY = currentScrollY;
+            lastScrollTime = currentTime;
+            
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                scrollDirection = 0;
+                scrollIntensity = 0;
+            }, 150);
+        });
+
+        function generateEMGSignal(t) {
+            let signal = 0;
+            
+            const directionBias = scrollDirection * scrollIntensity * 0.4;
+            
+            let tapContribution = 0;
+            tapSpikes = tapSpikes.filter(spike => {
+                spike.time += 0.016;
+                spike.intensity *= spike.decay;
+                
+                const spikeSignal = spike.intensity * Math.exp(-spike.time * 8) * Math.cos(t * 200 * Math.PI);
+                tapContribution += spikeSignal;
+                
+                return spike.intensity > 0.01;
+            });
+            
+            const activation = baseActivation + scrollIntensity;
+            const burstFreq = 0.5 + scrollIntensity * 0.5;
+            const burstPattern = Math.sin(t * burstFreq * Math.PI * 2);
+            
+            for (let i = 0; i < 10; i++) {
+                const freq = 50 + i * 40;
+                const amplitude = (1 / (i + 1)) * activation;
+                signal += amplitude * Math.sin(t * freq * Math.PI * 2 + i);
+            }
+            
+            signal += directionBias;
+            signal += tapContribution;
+            
+            const noise = (Math.random() - 0.5) * (0.3 + scrollIntensity * 0.2);
+            
+            return (signal + noise) * 0.4;
+        }
+
+        function drawSignal() {
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerY = height / 3;
+            const scale = height * 0.5;
+
+            // Clear and fill with teal
+            ctx.fillStyle = '#006d8f';
+            ctx.fillRect(0, 0, width, height);
+
+            // If either box is visible, clip to that box
+            let activeBox = null;
+            if (sensorBoxVisible) {
+                activeBox = document.getElementById('sensorBox');
+            } else if (boxVisible) {
+                activeBox = document.getElementById('infoBox');
+            }
+            
+            if (activeBox) {
+                const boxRect = activeBox.getBoundingClientRect();
+                
+                ctx.save();
+                ctx.beginPath();
+                ctx.rect(boxRect.left, boxRect.top, boxRect.width, boxRect.height);
+                ctx.clip();
+            }
+
+            // Calculate signal opacity (fade out before box appears, full inside box)
+            const signalOpacity = (boxVisible || sensorBoxVisible) ? 0.3 : 0.3 * (1 - signalFadeProgress);
+
+            // Draw EMG signal
+            ctx.strokeStyle = `rgba(255, 252, 247, ${signalOpacity})`;
+            ctx.lineWidth = 3;
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = `rgba(255, 252, 247, ${signalOpacity})`;
+            
+            ctx.beginPath();
+            
+            for (let i = 0; i < buffer.length; i++) {
+                const x = (i / buffer.length) * width;
+                
+                // Interpolate between wavy signal and straight line
+                const wavyY = centerY - buffer[i] * scale;
+                const straightY = centerY;
+                const y = wavyY * (1 - signalShrinkProgress) + straightY * signalShrinkProgress;
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            
+            ctx.stroke();
+
+            if (activeBox) {
+                ctx.restore();
+            }
+        }
+
+        function animate() {
+            time += 16;
+            const t = time / 1000;
+
+            const sample = generateEMGSignal(t);
+            buffer.shift();
+            buffer.push(sample);
+
+            drawSignal();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

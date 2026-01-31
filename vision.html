@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision — Second Chance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #fffcf7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .vision-panel {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 32px 32px;
+            background: #fffcf7;
+            border: 2px solid #afc8a0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .vision-tagline {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #006d8f;
+            text-align: left;
+            text-decoration: underline;
+            text-underline-offset: 0.25em;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            animation: blink 0.7s step-end infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .vision-carousel {
+            width: 100%;
+            height: 40vh;
+            min-height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-carousel-track {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.35s ease-out;
+        }
+
+        .vision-carousel-slide {
+            flex: 0 0 33.333%;
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 8px;
+            background: transparent;
+        }
+
+        .vision-carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            background: transparent;
+        }
+
+        .vision-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 109, 143, 0.85);
+            color: #fff;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .vision-carousel-arrow:hover {
+            background: #006d8f;
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .vision-carousel-arrow:active {
+            transform: translateY(-50%) scale(0.96);
+        }
+
+        .vision-carousel-arrow.prev {
+            left: 12px;
+        }
+
+        .vision-carousel-arrow.next {
+            right: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .vision-panel {
+                padding: 28px 20px 24px;
+            }
+
+            .vision-tagline {
+                font-size: 1.25rem;
+                margin-bottom: 20px;
+            }
+
+            .vision-carousel {
+                height: 30vh;
+                min-height: 200px;
+            }
+
+            .vision-carousel-slide {
+                height: 30vh;
+            }
+
+            .vision-carousel-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+
+            .vision-carousel-arrow.prev {
+                left: 6px;
+            }
+
+            .vision-carousel-arrow.next {
+                right: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="vision-panel">
+        <h2 class="vision-tagline">
+            <span id="vision-typed-tagline"></span><span class="typing-cursor">|</span>
+        </h2>
+        <div class="vision-carousel">
+            <button type="button" class="vision-carousel-arrow prev" aria-label="Previous slide">&#10094;</button>
+            <button type="button" class="vision-carousel-arrow next" aria-label="Next slide">&#10095;</button>
+            <div class="vision-carousel-track">
+                <div class="vision-carousel-slide">
+                    <img src="public/SCIModel1.png" alt="Second Chance Device Model 1">
+                </div>
+                <div class="vision-carousel-slide">
+                    <img src="public/SCIModel2.png" alt="Second Chance Device Model 2">
+                </div>
+                <div class="vision-carousel-slide">
+                    <img src="public/SCIModel3.png" alt="Second Chance Device Model 3">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function () {
+            const track = document.querySelector('.vision-carousel-track');
+            const prev = document.querySelector('.vision-carousel-arrow.prev');
+            const next = document.querySelector('.vision-carousel-arrow.next');
+            const total = 3;
+            let idx = 0;
+
+            function updateCarousel() {
+                track.style.transform = 'translateX(-' + idx * 33.333 + '%)';
+            }
+
+            prev.addEventListener('click', function () {
+                idx = (idx - 1 + total) % total;
+                updateCarousel();
+            });
+
+            next.addEventListener('click', function () {
+                idx = (idx + 1) % total;
+                updateCarousel();
+            });
+
+            updateCarousel();
+
+            const typed = document.getElementById('vision-typed-tagline');
+            const text = 'Reimagining Stroke Care';
+            let i = 0;
+
+            function typeTagline() {
+                if (i < text.length) {
+                    typed.textContent += text[i];
+                    i++;
+                    setTimeout(typeTagline, 85);
+                }
+            }
+
+            const taglineEl = document.querySelector('.vision-tagline');
+            const obs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting && i === 0) {
+                        typeTagline();
+                    }
+                });
+            }, { threshold: 0.3 });
+            if (taglineEl) obs.observe(taglineEl);
+        })();
+    </script>
+</body>
+</html>
