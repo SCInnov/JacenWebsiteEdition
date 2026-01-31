@@ -75,6 +75,67 @@
     animation-delay: 0.9s;
 }
 
+/* Subtle gradient circles throughout explainer section (lower opacity, softer) */
+.product-geo-explainer {
+    opacity: 0;
+    animation: productGeoFadeIn 1.5s ease-out forwards;
+}
+
+.product-geo-5 {
+    width: 140px;
+    height: 140px;
+    top: 38%;
+    right: 5%;
+    background: linear-gradient(135deg, rgba(0, 109, 143, 0.06) 0%, rgba(0, 136, 204, 0.03) 100%);
+    animation-delay: 1s;
+}
+
+.product-geo-6 {
+    width: 100px;
+    height: 100px;
+    top: 52%;
+    left: -20px;
+    background: linear-gradient(135deg, rgba(175, 200, 160, 0.08) 0%, rgba(143, 184, 122, 0.04) 100%);
+    animation-delay: 1.2s;
+}
+
+.product-geo-7 {
+    width: 180px;
+    height: 180px;
+    top: 68%;
+    right: -40px;
+    background: linear-gradient(135deg, rgba(0, 109, 143, 0.05) 0%, rgba(0, 136, 204, 0.02) 100%);
+    animation-delay: 1.4s;
+}
+
+.product-geo-8 {
+    width: 80px;
+    height: 80px;
+    top: 78%;
+    left: 15%;
+    border: 1px solid rgba(175, 200, 160, 0.2);
+    background: transparent;
+    animation-delay: 1.6s;
+}
+
+.product-geo-9 {
+    width: 120px;
+    height: 120px;
+    top: 88%;
+    right: 20%;
+    background: linear-gradient(135deg, rgba(175, 200, 160, 0.06) 0%, rgba(143, 184, 122, 0.03) 100%);
+    animation-delay: 1.8s;
+}
+
+.product-geo-10 {
+    width: 160px;
+    height: 160px;
+    bottom: 8%;
+    left: -30px;
+    background: linear-gradient(135deg, rgba(0, 109, 143, 0.05) 0%, rgba(0, 136, 204, 0.02) 100%);
+    animation-delay: 2s;
+}
+
 @keyframes productGeoFadeIn {
     from {
         opacity: 0;
@@ -159,6 +220,16 @@ body .product-section .scroll-container,
     /* No transition - can interfere with sticky positioning */
 }
 
+/* Desktop: let sticky wrapper grow so Stage 1 EMG box (1000px) can display at full height */
+@media (min-width: 769px) {
+    .scroll-container .sticky-wrapper,
+    .sticky-wrapper {
+        height: auto !important;
+        min-height: 100vh !important;
+        max-height: none !important;
+    }
+}
+
 /* Stage 1 Container - matches timeline-container structure */
 /* Timeline line centered for mobile-friendly design */
 .sticky-wrapper .stage1-container {
@@ -202,20 +273,20 @@ body .product-section .scroll-container,
 }
 
 /* EMG Canvas for Stage 1 - fits within step-image structure */
-/* Stage 1 specific overrides - side by side layout like other stages */
+/* Stage 1 specific overrides - same alignment as Stages 2-4 (center, no negative margin) */
 /* Canvas/Image on LEFT (400px), Title & Description on RIGHT (1fr) */
 .stage1-step .step-content-wrapper {
     display: grid !important;
     grid-template-columns: 400px 1fr !important; /* Image on left, content on right - same as Stages 2-4 */
     gap: 40px !important;
-    align-items: center !important;
+    align-items: center !important; /* Same as other stages: text vertically centered with graphic */
     padding: 0 20px !important; /* Add horizontal padding since container has no left padding */
-    margin-top: -20px; /* Another 20px - pull content up toward top border */
+    margin-top: 0 !important; /* Same as other stages - no pull-up */
 }
 
 .stage1-step .step-image {
     width: 100%;
-    height: 300px;
+    height: 1000px; /* desktop only */
     background: transparent !important; /* Override default step-image background */
     border: none !important; /* Override default step-image border */
     border-radius: 0;
@@ -231,6 +302,7 @@ body .product-section .scroll-container,
 .stage1-step .step-content {
     flex: 1;
     position: relative; /* Allow marker positioning relative to content */
+    padding-top: 10px; /* Same as other stages - space for marker above title */
 }
 
 .emg-canvas-wrapper {
@@ -239,7 +311,7 @@ body .product-section .scroll-container,
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    background: rgba(255, 252, 247, 0.1);
+    background: #fffcf7; /* beige/white for consistency */
     border: 2px solid rgba(175, 200, 160, 0.3);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
@@ -272,8 +344,9 @@ body .product-section .scroll-container,
 
 .status-indicator {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     background: rgba(0, 109, 143, 0.95);
     padding: 1rem 1.5rem;
     border-radius: 8px;
@@ -299,6 +372,462 @@ body .product-section .scroll-container,
 .status-indicator.tapping {
     color: #afc8a0;
     border-color: #afc8a0;
+}
+
+/* Stage 4: same style/orientation as Stage 1 status-indicator (bottom center) */
+.stage4-tap-indicator {
+    position: absolute;
+    bottom: -14px; /* overlap bottom border of box (straddle edge) */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 109, 143, 0.95);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #afc8a0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fffcf7;
+    transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Stage 5: Physician & Patient App placeholder (same box style as other stages) */
+/* ============================================
+   APP MOCKUP - Stage 5 Phone Mockups
+   ============================================ */
+
+.app-mockup-container {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.app-phone {
+    position: relative;
+    width: 160px;
+    height: 320px;
+    background: #1a1a1a;
+    border-radius: 24px;
+    padding: 8px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 2px #333;
+    flex-shrink: 0;
+}
+
+.app-phone::before {
+    /* Notch */
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 14px;
+    background: #1a1a1a;
+    border-radius: 0 0 10px 10px;
+    z-index: 10;
+}
+
+.app-phone-screen {
+    width: 100%;
+    height: 100%;
+    background: #fffcf7;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-phone-label {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 252, 247, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Stage 5: Patient App & Physician App labels in teal so they’re easy to tell apart */
+.timeline-step[data-step="5"] .app-phone-label {
+    color: #006d8f;
+}
+
+/* App Header */
+.app-header {
+    background: #006d8f;
+    padding: 20px 10px 10px;
+    text-align: center;
+}
+
+.app-header-title {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #fffcf7;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.app-header-subtitle {
+    font-size: 0.5rem;
+    color: rgba(255, 252, 247, 0.8);
+    margin: 2px 0 0;
+}
+
+/* App Content */
+.app-content {
+    flex: 1;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    overflow: hidden;
+    margin-left: -5px;
+}
+
+/* Progress Ring (Patient App) */
+.app-progress-ring {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.progress-ring-wrapper {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.progress-ring-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 5px solid #e8e8e8;
+}
+
+.progress-ring-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: #afc8a0;
+    border-right-color: #afc8a0;
+    border-bottom-color: #afc8a0;
+    transform: rotate(-30deg);
+}
+
+.progress-ring-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.progress-ring-value {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #006d8f;
+    line-height: 1;
+}
+
+.progress-ring-label {
+    font-size: 0.4rem;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* App Stats Row */
+.app-stats-row {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.app-stat-box {
+    flex: 1;
+    min-width: 0;
+    background: rgba(0, 109, 143, 0.08);
+    border-radius: 6px;
+    padding: 6px 4px;
+    text-align: center;
+}
+
+.app-stat-value {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #006d8f;
+    line-height: 1.2;
+}
+
+.app-stat-label {
+    font-size: 0.4rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* App List Items */
+.app-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.app-list-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background: rgba(175, 200, 160, 0.15);
+    border-radius: 6px;
+    border-left: 3px solid #afc8a0;
+}
+
+.app-list-icon {
+    width: 16px;
+    height: 16px;
+    background: #afc8a0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.app-list-icon svg {
+    width: 10px;
+    height: 10px;
+    stroke: #006d8f;
+}
+
+.app-list-text {
+    font-size: 0.5rem;
+    color: #1a1a1a;
+    line-height: 1.3;
+}
+
+.app-list-text strong {
+    display: block;
+    font-size: 0.55rem;
+    color: #006d8f;
+}
+
+/* App Chart (Physician App) */
+.app-chart {
+    background: rgba(0, 109, 143, 0.05);
+    border-radius: 6px;
+    padding: 8px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-chart-title {
+    font-size: 0.45rem;
+    font-weight: 600;
+    color: #006d8f;
+    margin-bottom: 4px;
+}
+
+.app-chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 30px;
+}
+
+.app-chart-bar {
+    flex: 1;
+    background: linear-gradient(to top, #006d8f, #afc8a0);
+    border-radius: 2px 2px 0 0;
+    min-height: 4px;
+}
+
+/* Patient List (Physician App) */
+.app-patient-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.app-patient-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 6px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e8e8e8;
+}
+
+.app-patient-avatar {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #006d8f, #0088cc);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.app-patient-avatar span {
+    font-size: 0.45rem;
+    font-weight: 700;
+    color: #fffcf7;
+}
+
+.app-patient-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.app-patient-name {
+    font-size: 0.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.app-patient-status {
+    font-size: 0.4rem;
+    color: #666;
+}
+
+.app-patient-badge {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.app-patient-badge--good {
+    background: #afc8a0;
+}
+
+.app-patient-badge--warning {
+    background: #f39c12;
+}
+
+.app-patient-badge--new {
+    background: #3498db;
+}
+
+/* App Button */
+.app-button {
+    background: #006d8f;
+    color: #fffcf7;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: auto;
+}
+
+/* Responsive: Stack phones vertically on smaller screens */
+@media (max-width: 768px) {
+    .app-mockup-container {
+        flex-direction: row;
+        gap: 16px;
+    }
+
+    .app-phone {
+        width: 140px;
+        height: 280px;
+    }
+
+    .app-phone-label {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .app-mockup-container {
+        gap: 12px;
+    }
+
+    .app-phone {
+        width: 120px;
+        height: 240px;
+        border-radius: 18px;
+        padding: 6px;
+    }
+
+    .app-phone::before {
+        width: 40px;
+        height: 10px;
+    }
+
+    .app-phone-screen {
+        border-radius: 14px;
+    }
+
+    .app-header {
+        padding: 16px 8px 8px;
+    }
+
+    .app-header-title {
+        font-size: 0.55rem;
+    }
+
+    .progress-ring-wrapper {
+        width: 48px;
+        height: 48px;
+    }
+
+    .progress-ring-bg,
+    .progress-ring-fill {
+        border-width: 4px;
+    }
+
+    .progress-ring-value {
+        font-size: 0.7rem;
+    }
+}
+
+/* Legacy placeholder styles (fallback) */
+.app-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.app-placeholder-icon {
+    font-size: 4rem;
+    line-height: 1;
+    opacity: 0.9;
+}
+
+.app-placeholder-text {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #006d8f;
+    text-align: center;
+    letter-spacing: 0.02em;
 }
 
 /* Timeline Container for Stages 2-4 */
@@ -442,7 +971,7 @@ body .product-section .scroll-container,
 .step-image {
     width: 100%;
     height: 300px;
-    background: rgba(255, 252, 247, 0.1);
+    background: #fffcf7; /* beige/white for consistency */
     border: 2px solid rgba(175, 200, 160, 0.3);
     border-radius: 12px;
     display: flex;
@@ -812,8 +1341,30 @@ body .product-section .scroll-container,
     color: rgba(255, 252, 247, 0.8);
 }
 
+/* Stage 3: center Custom EMG Sensor label with the arm/sensor image */
+.integration-sensor-side .integration-label {
+    display: block;
+    width: 100%;
+    max-width: 88px; /* Match arm image width */
+    text-align: center;
+}
+
 .integration-brace-side .integration-label {
     margin-top: 40px;
+}
+
+/* Stage 3 box: text in teal */
+.timeline-step[data-step="3"] .integration-label,
+.timeline-step[data-step="3"] .integration-connector-text {
+    color: #006d8f;
+}
+
+.timeline-step[data-step="3"] .integration-connector {
+    color: #006d8f;
+}
+
+.timeline-step[data-step="3"] .integration-arrow {
+    color: #006d8f;
 }
 
 .device-container {
@@ -890,7 +1441,7 @@ body .product-section .scroll-container,
     position: relative;
     width: 100%;
     height: 300px;
-    background: rgba(255, 252, 247, 0.1);
+    background: #fffcf7; /* beige/white for consistency */
     border: 2px solid rgba(175, 200, 160, 0.3);
     border-radius: 12px;
     display: flex;
@@ -904,12 +1455,24 @@ body .product-section .scroll-container,
 .timeline-step[data-step="4"] .step-image {
     height: auto;
     min-height: 300px;
+    overflow: visible; /* allow tap indicator to overlap bottom border */
+}
+
+/* Stage 5: step-image tall enough so Patient App & Physician App phones + labels stay inside box */
+.timeline-step[data-step="5"] .step-image {
+    min-height: 390px;
+    height: auto;
 }
 
 .timeline-step:last-child .action-wrapper,
 .timeline-step[data-step="4"] .action-wrapper {
     height: auto;
     min-height: 300px;
+}
+
+/* Allow tap indicator to overlap bottom border (extend below box) */
+.timeline-step[data-step="4"] .action-wrapper {
+    overflow: visible;
 }
 
 .gif-container {

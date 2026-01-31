@@ -1,24 +1,6 @@
 // Vision Section Functionality
 (function initVision() {
-    const track = document.querySelector('.vision-carousel-track');
-    const prev = document.querySelector('.vision-carousel-arrow.prev');
-    const next = document.querySelector('.vision-carousel-arrow.next');
-    if (track && prev && next) {
-        const total = 3;
-        let idx = 0;
-        function updateCarousel() {
-            track.style.transform = 'translateX(-' + idx * 33.333 + '%)';
-        }
-        prev.addEventListener('click', function () {
-            idx = (idx - 1 + total) % total;
-            updateCarousel();
-        });
-        next.addEventListener('click', function () {
-            idx = (idx + 1) % total;
-            updateCarousel();
-        });
-        updateCarousel();
-    }
+    // Marquee carousel is CSS-only (continuous scroll animation)
 
     const typed = document.getElementById('vision-typed-tagline');
     const taglineEl = document.querySelector('.vision-tagline');

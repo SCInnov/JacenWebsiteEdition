@@ -19,6 +19,7 @@
     border: 2px solid #afc8a0;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* keep carousel and content within border */
 }
 
 .vision-tagline {
@@ -49,6 +50,7 @@
     position: relative;
     overflow: hidden;
     margin-bottom: 0;
+    border-radius: 8px; /* keep content within rounded border */
 }
 
 .vision-carousel-track {
@@ -67,6 +69,7 @@
     align-items: center;
     padding: 20px 8px;
     background: transparent;
+    box-sizing: border-box;
 }
 
 .vision-carousel-slide img {
@@ -78,40 +81,26 @@
     background: transparent;
 }
 
-.vision-carousel-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    margin-top: 16px;
-    margin-bottom: 0;
-    width: 100%;
-    position: static;
-    clear: both;
-    z-index: 1;
+/* Marquee: multiple slides visible, continuous scroll, seamless loop */
+.vision-carousel-marquee {
+    overflow: hidden;
 }
 
-.vision-carousel-arrow {
-    position: static;
-    width: 44px;
-    height: 44px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(0, 109, 143, 0.85);
-    color: #fff;
-    font-size: 1.25rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, transform 0.2s;
+.vision-carousel-marquee .vision-carousel-track {
+    width: 200%; /* 6 slides × 33.333% each */
+    animation: vision-marquee 25s linear infinite;
 }
 
-.vision-carousel-arrow:hover {
-    background: #006d8f;
-    transform: scale(1.08);
+.vision-carousel-marquee .vision-carousel-slide {
+    flex: 0 0 33.333%; /* 3 slides visible at once; each slide 1/3 of track = 1/6 of full loop */
+    width: 33.333%;
 }
 
-.vision-carousel-arrow:active {
-    transform: scale(0.96);
+@keyframes vision-marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* move by 3 slides = duplicate set; seamless reset */
+    }
 }

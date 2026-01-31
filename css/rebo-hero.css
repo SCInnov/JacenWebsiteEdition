@@ -29,10 +29,11 @@
 
 /* Rebo hero: break out of container so beige is full viewport width (not a box) */
 .product-section .hero.rebo-hero {
+  display: block; /* override .hero flex so title stacks above hero shot (not side-by-side) */
   position: relative;
   font-family: 'Roboto', sans-serif;
   color: #1a1a1a;
-  padding: 3rem 2rem 4rem;
+  padding: 4rem 20px 4rem 20px; /* 20px horizontal to match product-section so title aligns with Explainer */
   min-height: auto;
   overflow: visible;
   /* Full-bleed: escape product-timeline max-width so background runs edge-to-edge */
@@ -60,10 +61,31 @@
   padding-right: 20px;
 }
 
-/* Header above rebo hero - "Product" / "The Rebo" */
+/* Product / The Rebo header - same format and alignment as Explainer (label + title), in-flow inside beige hero */
 .rebo-hero-header {
-  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto 18px auto;
+  padding: 0;
   text-align: left;
+  box-sizing: border-box;
+}
+
+.rebo-hero-header .timeline-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(0, 109, 143, 0.8);
+  margin-bottom: 1rem;
+}
+
+.rebo-hero-header .timeline-title {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  color: #006d8f;
+  margin: 0 0 1.5rem 0; /* match Explainer .timeline-title */
 }
 
 /* Geometric Decorations */

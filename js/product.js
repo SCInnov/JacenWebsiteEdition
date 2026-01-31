@@ -209,8 +209,8 @@
         ctx.fillStyle = 'rgba(255, 252, 247, 0.1)';
         ctx.fillRect(0, 0, width, height);
 
-        // Center line
-        ctx.strokeStyle = 'rgba(255, 252, 247, 0.1)';
+        // Center line (subtle teal)
+        ctx.strokeStyle = 'rgba(0, 109, 143, 0.2)';
         ctx.lineWidth = 2;
         ctx.setLineDash([10, 10]);
         ctx.beginPath();
@@ -219,11 +219,11 @@
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Signal
-        ctx.strokeStyle = 'rgba(255, 252, 247, 0.5)';
+        // Signal (teal)
+        ctx.strokeStyle = 'rgba(0, 109, 143, 0.9)';
         ctx.lineWidth = 3;
         ctx.shadowBlur = 3;
-        ctx.shadowColor = 'rgba(255, 252, 247, 0.3)';
+        ctx.shadowColor = 'rgba(0, 109, 143, 0.4)';
         
         ctx.beginPath();
         for (let i = 0; i < buffer.length; i++) {
