@@ -243,8 +243,8 @@
     }
 
     .scroll-container {
-        height: 250vh !important; /* Half of desktop - 250vh for sticky interaction on mobile */
-        min-height: 250vh !important;
+        height: 180vh !important; /* Shorter sticky interaction on mobile */
+        min-height: 180vh !important;
         margin-bottom: 40px !important; /* Part of even spacing between stages (40px + 40px padding = 80px) */
     }
     

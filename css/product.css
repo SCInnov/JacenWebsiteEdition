@@ -189,9 +189,9 @@ body .product-section .scroll-container,
     position: relative !important;
     /* Reduced height - half of previous */
     /* Formula: sticky duration = container height - sticky element height */
-    /* With 300vh container and 100vh sticky: 300vh - 100vh = 200vh of sticky scroll */
-    height: 300vh !important; /* Half of previous - 300vh for sticky interaction time */
-    min-height: 300vh !important; /* Ensure minimum height */
+    /* With 200vh container and 100vh sticky: 200vh - 100vh = 100vh of sticky scroll */
+    height: 200vh !important; /* Shorter sticky interaction time */
+    min-height: 200vh !important; /* Ensure minimum height */
     max-height: none !important; /* Remove any max-height restrictions */
     margin-top: 0 !important; /* Align top with stage1 and timeline-step bodies */
     margin-bottom: var(--timeline-step-gap) !important; /* Stage 1→2: same as 2→3, 3→4 */
