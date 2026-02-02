@@ -70,7 +70,7 @@
     }
 
     .stage1-step-scroll-prompt {
-        bottom: 24px !important; /* raised so visible in sticky range on mobile */
+        bottom: 44px !important; /* 20px higher on mobile */
     }
 
     .stage1-step .step-content {
