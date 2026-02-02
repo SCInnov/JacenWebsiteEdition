@@ -29,6 +29,7 @@
     text-align: left;
     text-decoration: underline;
     text-underline-offset: 0.25em;
+    margin-top: 12px;
     margin-bottom: 16px;
     width: 100%;
 }
