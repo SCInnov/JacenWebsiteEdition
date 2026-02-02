@@ -69,6 +69,10 @@
         bottom: -24px !important; /* 10px lower on mobile */
     }
 
+    .stage1-step-scroll-prompt {
+        bottom: 24px !important; /* raised so visible in sticky range on mobile */
+    }
+
     .stage1-step .step-content {
         max-width: 100% !important;
         overflow-wrap: break-word !important;
