@@ -16,6 +16,10 @@ body::before { content: "body"; }
 .stage1-container::before { content: "stage1-container"; }
 .stage1-step::before { content: "stage1-step"; }
 .timeline-step::before { content: "timeline-step"; }
+.vision-panel::before { content: "vision-panel"; }
+.vision-tagline::before { content: "vision-tagline"; }
+.vision-description::before { content: "vision-description"; }
+.vision-carousel::before { content: "vision-carousel"; }
 
 body::before,
 .product-section::before,
@@ -27,7 +31,11 @@ body::before,
 .sticky-wrapper::before,
 .stage1-container::before,
 .stage1-step::before,
-.timeline-step::before {
+.timeline-step::before,
+.vision-panel::before,
+.vision-tagline::before,
+.vision-description::before,
+.vision-carousel::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -52,6 +60,10 @@ body::before { background: rgba(255,0,0,0.85); position: fixed; }
 .stage1-container::before { background: rgba(255,100,255,0.9); }
 .stage1-step::before { background: rgba(255,0,255,0.9); }
 .timeline-step::before { background: rgba(0,180,255,0.9); }
+.vision-panel::before { background: rgba(180,100,0,0.9); }
+.vision-tagline::before { background: rgba(180,80,0,0.9); }
+.vision-description::before { background: rgba(200,120,0,0.9); }
+.vision-carousel::before { background: rgba(220,140,0,0.9); }
 
 /* Ensure containers can position labels */
 /* Do NOT set position on .sticky-wrapper - it must stay position: sticky from product.css */
@@ -62,6 +74,10 @@ body::before { background: rgba(255,0,0,0.85); position: fixed; }
 .timeline-header { position: relative; }
 .scroll-container { position: relative; }
 .stage1-container { position: relative; }
+.vision-panel { position: relative; }
+.vision-tagline { position: relative; }
+.vision-description { position: relative; }
+.vision-carousel { position: relative; }
 
 /* Main layout containers */
 body { outline: 2px dashed rgba(255,0,0,0.4); outline-offset: -2px; }
@@ -83,6 +99,12 @@ body { outline: 2px dashed rgba(255,0,0,0.4); outline-offset: -2px; }
 /* Stages 2, 3, 4 */
 .timeline-container .timeline-steps { outline: 1px dashed rgba(0,200,255,0.4); }
 .timeline-step { outline: 1px solid rgba(0,180,255,0.5); outline-offset: 1px; }
+
+/* Vision section */
+.vision-panel { outline: 2px solid rgba(180,100,0,0.7); outline-offset: 2px; }
+.vision-tagline { outline: 1px solid rgba(180,80,0,0.7); outline-offset: 1px; }
+.vision-description { outline: 1px solid rgba(200,120,0,0.7); outline-offset: 1px; }
+.vision-carousel { outline: 2px solid rgba(220,140,0,0.7); outline-offset: 2px; }
 
 /* Step internals (optional - uncomment if needed) */
 /* .step-content-wrapper { outline: 1px dotted rgba(200,200,0,0.5); } */

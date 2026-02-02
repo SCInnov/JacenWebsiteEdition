@@ -221,6 +221,14 @@
   }
 }
 
+.product-section .hero.rebo-hero .image-wrapper {
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px rgba(0, 109, 143, 0.08),
+    0 0 24px rgba(0, 109, 143, 0.12),
+    0 0 48px rgba(175, 200, 160, 0.08);
+}
+
 .product-image {
   max-width: 100%;
   height: auto;
@@ -229,6 +237,7 @@
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+  border-radius: 11px;
 }
 
 /* Desktop: rebo hero PNG forced to a larger display size (not just max-height) */

@@ -38,6 +38,7 @@
 
         const target = parseFloat(element.dataset.count);
         const suffix = element.dataset.suffix || '';
+        const prefix = element.dataset.prefix || '';
         const decimals = parseInt(element.dataset.decimals, 10) || 0;
 
         if (isNaN(target)) return;
@@ -51,13 +52,13 @@
             const easedProgress = EASING_FUNCTION(progress);
             const currentValue = startValue + (target - startValue) * easedProgress;
 
-            element.textContent = formatNumber(currentValue, suffix, decimals);
+            element.textContent = prefix + formatNumber(currentValue, suffix, decimals);
 
             if (progress < 1) {
                 requestAnimationFrame(update);
             } else {
                 // Ensure final value is exact
-                element.textContent = formatNumber(target, suffix, decimals);
+                element.textContent = prefix + formatNumber(target, suffix, decimals);
             }
         }
 

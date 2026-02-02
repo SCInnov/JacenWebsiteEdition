@@ -1,7 +1,6 @@
 // Vision Section Functionality
 (function initVision() {
     // Marquee carousel is CSS-only (continuous scroll animation)
-
     const typed = document.getElementById('vision-typed-tagline');
     const taglineEl = document.querySelector('.vision-tagline');
     if (typed && taglineEl) {

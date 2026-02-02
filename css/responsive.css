@@ -66,7 +66,7 @@
     }
 
     .stage1-step .status-indicator {
-        bottom: -14px !important; /* overlap bottom border of box (same as Stage 4) */
+        bottom: -24px !important; /* 10px lower on mobile */
     }
 
     .stage1-step .step-content {
@@ -104,22 +104,25 @@
     }
 
     .hero-section {
-        padding-top: calc(33.333vh - 200px);
+        padding: 0 13px 16px; /* reduced bottom padding on mobile */
+        padding-top: calc(33.333vh - 200px); /* scaled from desktop 300px → 200px (340/510) */
     }
 
     .logo-icon {
-        width: 400px;
-        margin-bottom: -180px;
+        width: 340px; /* 15% smaller on mobile (85% of 400px); same scale as desktop 510px */
+        margin-top: 30px;
+        margin-bottom: -120px; /* scaled from desktop -180px (340/510) */
     }
 
     .tagline {
-        font-size: 1.25rem;
-        margin-top: 0; /* Reset margin-top on mobile - desktop only adjustment */
+        font-size: 0.8rem; /* 25% smaller on mobile (75% of 1.0625rem) */
+        margin-top: -33px; /* raised 5px */
+        margin-bottom: 80px; /* scaled from desktop 120px (340/510) */
     }
     
     .problem-section {
-        padding: 60px 20px 60px;
-        padding-top: 70px;
+        padding: 40px 20px 40px; /* reduced top/bottom on mobile */
+        padding-top: 48px;
     }
 
     .problem-title {
@@ -178,6 +181,10 @@
         font-size: 1rem;
     }
 
+    .vision-section {
+        padding: 0 16px 28px; /* reduced bottom padding on mobile */
+    }
+
     .vision-tagline {
         font-size: 1.4375rem;
         margin-bottom: 12px;
@@ -185,20 +192,26 @@
 
     .vision-description {
         font-size: 0.9rem;
-        margin-bottom: 4px;
+        margin-bottom: -32px !important; /* Pull carousel closer to description */
     }
 
     .vision-panel {
-        padding: 28px 20px 24px;
+        padding: 8px 20px 4px; /* minimal top/bottom on mobile */
     }
 
     .vision-carousel {
-        height: 40vh;
+        height: 60vh;
         min-height: 280px;
+        max-height: 85vh;
+        margin-top: -102px !important; /* 20px more pull-up */
+        margin-bottom: -70px !important; /* 20px more pull-up below */
+        padding: 0 !important;
     }
 
     .vision-carousel-slide {
-        height: 40vh;
+        height: 60vh;
+        min-height: 280px;
+        max-height: 85vh;
     }
 }
 
@@ -288,7 +301,7 @@
     }
 
     .stage1-step .status-indicator {
-        bottom: -14px !important; /* overlap bottom border of box (same as Stage 4) */
+        bottom: -24px !important; /* 10px lower on tablet */
     }
 
     .stage1-step .step-content {
@@ -374,5 +387,12 @@
 
     .action-wrapper {
         height: 200px;
+    }
+}
+
+/* Mobile only: reduced top/bottom padding (wins over 968px rule) */
+@media (max-width: 768px) {
+    .product-section {
+        padding: 40px 16px;
     }
 }

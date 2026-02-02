@@ -9,7 +9,7 @@ function handleTap(e) {
     const ripple = document.createElement('div');
     ripple.className = 'tap-effect';
     ripple.style.left = e.clientX + 'px';
-    ripple.style.top = e.clientY + 'px';
+    ripple.style.top = (e.clientY + 5) + 'px'; /* 5px lower */
     document.body.appendChild(ripple);
     
     setTimeout(() => ripple.remove(), 600);

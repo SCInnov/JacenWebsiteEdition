@@ -23,7 +23,7 @@
     color: #006d8f;
     text-align: center;
     margin-bottom: 120px;
-    margin-top: -80px; /* Move tagline up by 80px total on desktop (40px + 40px) */
+    margin-top: -85px; /* 5px higher on desktop */
 }
 
 .tap-effect {
