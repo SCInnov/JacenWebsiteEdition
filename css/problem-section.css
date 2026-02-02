@@ -490,11 +490,13 @@
     margin: 0 0 32px 0;
 }
 
-/* Rehab stats row */
+/* Rehab stats row – 2 stats, equal columns on desktop */
 .problem-section .rehab-stats-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
-    flex-wrap: wrap;
+    max-width: 560px;
+    margin: 0 auto;
 }
 
 .problem-section .rehab-stat {
@@ -741,8 +743,9 @@
     }
 
     .problem-section .rehab-stats-row {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 20px;
+        max-width: none;
     }
 
     .problem-section .problem-urgency {
