@@ -11,9 +11,27 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     background: #fffcf7;
     overflow-x: clip;
+}
+
+/* Headings use Manrope */
+h1, h2, h3, h4, h5, h6,
+.tagline,
+.timeline-title,
+.timeline-label,
+.step-title,
+.problem-title,
+.problem-section .cascade-title,
+.problem-section .spectrum-title,
+.problem-section .rehab-title,
+.vision-tagline,
+.rebo-hero-header .timeline-title,
+.feature-title,
+.contact-page .page-title,
+.app-header-title {
+    font-family: 'Manrope', sans-serif;
 }
 
 #signal-canvas {

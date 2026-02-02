@@ -23,7 +23,7 @@
   position: relative;
   overflow: hidden;
   background: linear-gradient(160deg, var(--rebo-background) 0%, #f5f7f2 50%, #eef4f6 100%);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
   color: var(--rebo-dark);
 }
 
@@ -31,7 +31,7 @@
 .product-section .hero.rebo-hero {
   display: block; /* override .hero flex so title stacks above hero shot (not side-by-side) */
   position: relative;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   color: #1a1a1a;
   padding: 4rem 20px 4rem 20px; /* 20px horizontal to match product-section so title aligns with Explainer */
   min-height: auto;

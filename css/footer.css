@@ -6,6 +6,7 @@
     padding: 48px 24px 32px;
     background: #006d8f;
     border-top: 2px solid rgba(175, 200, 160, 0.5);
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .footer-inner {
@@ -32,24 +33,25 @@
 }
 
 .footer-logo {
-    width: 48px;
-    height: 48px;
+    height: 140px;
+    width: auto;
+    max-width: 770px;
     display: block;
     object-fit: contain;
+    object-position: center;
+    transition: filter 0.25s ease;
+    margin-top: -55px;
+    margin-bottom: -10px;
+    clip-path: inset(20px 0 20px 0);
 }
 
-.footer-brand-name {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #fffcf7;
-    text-decoration: none;
+.footer-brand:hover .footer-logo,
+.footer-brand:active .footer-logo {
+    filter: drop-shadow(0 0 12px rgba(255, 252, 247, 0.95));
 }
 
-.footer-brand-name:hover {
-    text-decoration: underline;
+.footer-brand:active .footer-logo {
+    filter: drop-shadow(0 0 18px rgba(255, 252, 247, 1));
 }
 
 .footer-links {
