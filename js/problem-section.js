@@ -172,18 +172,56 @@
     }
 
     /**
+     * Accordion: toggle panels when trigger is clicked
+     */
+    function initAccordion() {
+        const triggers = document.querySelectorAll('.problem-section .problem-accordion-trigger');
+        triggers.forEach(function(trigger) {
+            trigger.addEventListener('click', function() {
+                const expanded = trigger.getAttribute('aria-expanded') === 'true';
+                const panelId = trigger.getAttribute('aria-controls');
+                const panel = panelId ? document.getElementById(panelId) : null;
+
+                if (panel) {
+                    if (expanded) {
+                        panel.setAttribute('hidden', '');
+                        trigger.setAttribute('aria-expanded', 'false');
+                    } else {
+                        panel.removeAttribute('hidden');
+                        trigger.setAttribute('aria-expanded', 'true');
+                        // Animate any counters in this panel when opened
+                        const counters = panel.querySelectorAll('[data-count]');
+                        counters.forEach(function(el) {
+                            animateCounter(el);
+                        });
+                        // Trigger spectrum bar animation if this panel contains it
+                        const spectrumBar = panel.querySelector('.spectrum-bar');
+                        if (spectrumBar && spectrumBar.style.width === '0px') {
+                            setTimeout(function() {
+                                spectrumBar.style.width = '100%';
+                            }, 100);
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    /**
      * Initialize all problem section animations
      */
     function init() {
         // Wait for DOM to be ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', function() {
+                initAccordion();
                 initCounterObserver();
                 initCardEffects();
                 initStatBlockAnimations();
                 initSpectrumAnimation();
             });
         } else {
+            initAccordion();
             initCounterObserver();
             initCardEffects();
             initStatBlockAnimations();

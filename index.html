@@ -183,25 +183,8 @@
 
     <section class="product-section" id="product">
         <div class="product-timeline">
-            <!-- Gradient circles (match Rebo hero) - throughout product -->
-            <div class="product-geo-circle product-geo-1"></div>
-            <div class="product-geo-circle product-geo-2"></div>
-            <div class="product-geo-circle product-geo-3"></div>
-            <div class="product-geo-circle product-geo-4"></div>
-            <!-- Subtle gradient circles throughout explainer -->
-            <div class="product-geo-circle product-geo-explainer product-geo-5"></div>
-            <div class="product-geo-circle product-geo-explainer product-geo-6"></div>
-            <div class="product-geo-circle product-geo-explainer product-geo-7"></div>
-            <div class="product-geo-circle product-geo-explainer product-geo-8"></div>
-            <div class="product-geo-circle product-geo-explainer product-geo-9"></div>
-            <div class="product-geo-circle product-geo-explainer product-geo-10"></div>
-
             <!-- Rebo Hero (from rebo-hero-animated / rebo-hero.css) -->
             <section class="hero rebo-hero">
-                <div class="geo-circle geo-1"></div>
-                <div class="geo-circle geo-2"></div>
-                <div class="geo-circle geo-3"></div>
-
                 <!-- Product / The Rebo title - same background, top-left, does not move other content -->
                 <div class="rebo-hero-header">
                     <span class="timeline-label">Product</span>
@@ -286,6 +269,7 @@
                                 <div class="step-marker">
                                     <div class="step-number">01</div>
                                 </div>
+                                <p class="stage1-step-scroll-prompt" aria-hidden="true">Keep scrolling to continue</p>
                                 <div class="step-content-wrapper">
                                     <div class="step-image">
                                         <div class="emg-canvas-wrapper">
@@ -299,7 +283,6 @@
                                         <p class="step-description">Every time you attempt to move, your muscles produce tiny electrical signals. Try scrolling up and down, or tap the screen to see how these signals respond to your intent.</p>
                                     </div>
                                 </div>
-                                <p class="stage1-step-scroll-prompt" aria-hidden="true">Scroll down to continue</p>
                             </div>
                         </div>
                     </div>
@@ -566,23 +549,41 @@
                 <p class="problem-subtitle">Stroke doesn't just happen—it leaves millions fighting to reclaim their independence. Recovery depends on movement and strength, yet most survivors face a healthcare system that wasn't built to meet them where they are.</p>
             </header>
 
-            <!-- Hero stat: The big emotional number with icon -->
-            <div class="problem-hero-stat">
-                <div class="hero-stat-icon">
-                    <!-- Heart Pulse Icon -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                        <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/>
-                    </svg>
+            <div class="problem-accordion">
+                <!-- 1. Hero stat -->
+                <div class="problem-accordion-item">
+                    <button type="button" class="problem-accordion-trigger" aria-expanded="false" aria-controls="problem-panel-1" id="problem-trigger-1">
+                        <span class="problem-accordion-title">The scale of stroke in America</span>
+                        <span class="problem-accordion-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </button>
+                    <div class="problem-accordion-panel" id="problem-panel-1" role="region" aria-labelledby="problem-trigger-1" hidden>
+                        <div class="problem-hero-stat">
+                            <div class="hero-stat-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                    <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/>
+                                </svg>
+                            </div>
+                            <div class="hero-stat-content">
+                                <div class="hero-stat-number" data-count="795000" data-suffix="">795,000</div>
+                                <div class="hero-stat-label">Americans suffer a stroke every year—one every 40 seconds. It's the leading cause of serious long-term disability in the United States.</div>
+                                <div class="hero-stat-source">Source: American Heart Association, 2024</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="hero-stat-content">
-                    <div class="hero-stat-number" data-count="795000" data-suffix="">795,000</div>
-                    <div class="hero-stat-label">Americans suffer a stroke every year—one every 40 seconds. It's the leading cause of serious long-term disability in the United States.</div>
-                    <div class="hero-stat-source">Source: American Heart Association, 2024</div>
-                </div>
-            </div>
 
-            <!-- Problem cascade: The domino effect with icons -->
+                <!-- 2. Problem cascade -->
+                <div class="problem-accordion-item">
+                    <button type="button" class="problem-accordion-trigger" aria-expanded="false" aria-controls="problem-panel-2" id="problem-trigger-2">
+                        <span class="problem-accordion-title">The domino effect: brain, muscle, rehab</span>
+                        <span class="problem-accordion-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </button>
+                    <div class="problem-accordion-panel" id="problem-panel-2" role="region" aria-labelledby="problem-trigger-2" hidden>
             <div class="problem-cascade">
                 <div class="cascade-card">
                     <div class="cascade-header">
@@ -643,8 +644,18 @@
                     <p class="cascade-text">Insurance limits, provider shortages, and geography mean most survivors get far less therapy than they need—right when intensive practice matters most.</p>
                 </div>
             </div>
+                    </div>
+                </div>
 
-            <!-- Spectrum block with endpoint icons -->
+                <!-- 3. Spectrum -->
+                <div class="problem-accordion-item">
+                    <button type="button" class="problem-accordion-trigger" aria-expanded="false" aria-controls="problem-panel-3" id="problem-trigger-3">
+                        <span class="problem-accordion-title">Muscle tone spectrum: spastic to flaccid</span>
+                        <span class="problem-accordion-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </button>
+                    <div class="problem-accordion-panel" id="problem-panel-3" role="region" aria-labelledby="problem-trigger-3" hidden>
             <div class="problem-spectrum-block">
                 <div class="spectrum-header">
                     <h3 class="spectrum-title">Every survivor presents differently</h3>
@@ -692,8 +703,18 @@
                 </div>
                 <p class="spectrum-note">The Rebo is designed for the full range—adapting as survivors progress through different stages of recovery.</p>
             </div>
+                    </div>
+                </div>
 
-            <!-- Stats grid with icons -->
+                <!-- 4. Stats grid -->
+                <div class="problem-accordion-item">
+                    <button type="button" class="problem-accordion-trigger" aria-expanded="false" aria-controls="problem-panel-4" id="problem-trigger-4">
+                        <span class="problem-accordion-title">Key statistics</span>
+                        <span class="problem-accordion-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </button>
+                    <div class="problem-accordion-panel" id="problem-panel-4" role="region" aria-labelledby="problem-trigger-4" hidden>
             <div class="problem-stats-grid">
                 <div class="stat-block">
                     <div class="stat-icon">
@@ -733,8 +754,18 @@
                     <div class="stat-source">Towards Healthcare, 2024</div>
                 </div>
             </div>
+                    </div>
+                </div>
 
-            <!-- Rehab gap block -->
+                <!-- 5. Rehab gap -->
+                <div class="problem-accordion-item">
+                    <button type="button" class="problem-accordion-trigger" aria-expanded="false" aria-controls="problem-panel-5" id="problem-trigger-5">
+                        <span class="problem-accordion-title">The rehab gap and access to care</span>
+                        <span class="problem-accordion-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </button>
+                    <div class="problem-accordion-panel" id="problem-panel-5" role="region" aria-labelledby="problem-trigger-5" hidden>
             <div class="problem-rehab-block">
                 <h3 class="rehab-title">The rehab gap is a clinical crisis</h3>
                 <p class="rehab-text">Stroke recovery follows a critical window: the brain's plasticity is highest in the first months after injury. Yet most survivors leave the hospital before they're ready—and never get the follow-up care they need. Cost, distance, and provider shortages leave millions without access to consistent, guided practice.</p>
@@ -768,11 +799,23 @@
                     </div>
                 </div>
             </div>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Urgency statement -->
+            <!-- Urgency statement (always visible at the end) -->
             <div class="problem-urgency">
                 <p class="urgency-text">Every minute without movement is a minute of lost potential.<br><strong>The Rebo exists because stroke survivors deserve better</strong>—technology that meets them where they are and grows with them as they recover.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- End CTA -->
+    <section class="end-cta" aria-label="Call to action">
+        <div class="end-cta-inner">
+            <h2 class="end-cta-title">Ready to learn more?</h2>
+            <p class="end-cta-text">Get in touch to discuss partnerships, research collaboration, or how the Rebo could support your patients.</p>
+            <a href="contact.html" class="end-cta-btn">Contact Us</a>
         </div>
     </section>
 

@@ -247,17 +247,13 @@ body .product-section .scroll-container,
     width: 100%;
 }
 
-/* Centered at end of stage 1 box, overlapping the bottom */
+/* Above image and description in stage 1 */
 .stage1-step-scroll-prompt {
-    position: absolute;
-    left: 50%;
-    bottom: -14px;
-    transform: translateX(-50%);
     text-align: center;
     font-size: 0.875rem;
     font-weight: 600;
     color: #006d8f;
-    margin: 0;
+    margin: 0 0 20px 0;
     padding: 6px 14px;
     background: #fffcf7;
     border: 2px solid rgba(175, 200, 160, 0.5);

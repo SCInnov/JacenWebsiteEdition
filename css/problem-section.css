@@ -115,6 +115,126 @@
     margin: 0;
 }
 
+/* ---- Accordion dropdown bars ---- */
+.problem-section .problem-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 24px;
+}
+
+.problem-section .problem-accordion-item {
+    border: 1px solid rgba(0, 109, 143, 0.25);
+    border-bottom: none;
+    border-radius: 0;
+}
+
+.problem-section .problem-accordion-item:first-child {
+    border-radius: 12px 12px 0 0;
+}
+
+.problem-section .problem-accordion-item:last-child {
+    border-bottom: 1px solid rgba(0, 109, 143, 0.25);
+    border-radius: 0 0 12px 12px;
+}
+
+.problem-section .problem-accordion-item:only-child {
+    border-radius: 12px;
+}
+
+.problem-section .problem-accordion-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    background: rgba(0, 109, 143, 0.06);
+    border: none;
+    border-radius: inherit;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #006d8f;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.problem-section .problem-accordion-trigger:hover {
+    background: rgba(0, 109, 143, 0.12);
+}
+
+.problem-section .problem-accordion-trigger:focus-visible {
+    outline: 2px solid #006d8f;
+    outline-offset: 2px;
+}
+
+.problem-section .problem-accordion-trigger[aria-expanded="true"] {
+    background: rgba(0, 109, 143, 0.1);
+    border-radius: 12px 12px 0 0;
+}
+
+.problem-section .problem-accordion-item:last-child .problem-accordion-trigger[aria-expanded="true"] {
+    border-radius: 12px 12px 0 0;
+}
+
+.problem-section .problem-accordion-title {
+    flex: 1;
+}
+
+.problem-section .problem-accordion-icon {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+}
+
+.problem-section .problem-accordion-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+.problem-section .problem-accordion-trigger[aria-expanded="true"] .problem-accordion-icon {
+    transform: rotate(180deg);
+}
+
+.problem-section .problem-accordion-panel {
+    overflow: hidden;
+    background: #fffcf7;
+}
+
+.problem-section .problem-accordion-panel[hidden] {
+    display: none;
+}
+
+.problem-section .problem-accordion-panel > *:first-child {
+    margin-top: 0;
+}
+
+.problem-section .problem-accordion-panel .problem-hero-stat,
+.problem-section .problem-accordion-panel .problem-cascade,
+.problem-section .problem-accordion-panel .problem-spectrum-block,
+.problem-section .problem-accordion-panel .problem-stats-grid,
+.problem-section .problem-accordion-panel .problem-rehab-block,
+.problem-section .problem-accordion-panel .problem-urgency {
+    margin-bottom: 0;
+}
+
+.problem-section .problem-accordion-panel .problem-hero-stat {
+    border-top: none;
+    padding-top: 0;
+}
+
+.problem-section .problem-accordion-panel {
+    padding: 24px 24px 32px;
+    border-top: 1px solid rgba(0, 109, 143, 0.15);
+}
+
 /* ---- Hero stat: The big number ---- */
 .problem-section .problem-hero-stat {
     display: flex;
@@ -662,6 +782,20 @@
 
     .problem-section .problem-subtitle {
         font-size: 1.05rem;
+    }
+
+    .problem-section .problem-accordion-trigger {
+        padding: 16px 20px;
+        font-size: 1rem;
+    }
+
+    .problem-section .problem-accordion-title {
+        white-space: normal;
+        line-height: 1.35;
+    }
+
+    .problem-section .problem-accordion-panel {
+        padding: 20px 16px 28px;
     }
 
     .problem-section .problem-hero-stat {

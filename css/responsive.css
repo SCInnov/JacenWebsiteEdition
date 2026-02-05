@@ -70,7 +70,7 @@
     }
 
     .stage1-step-scroll-prompt {
-        bottom: 44px !important; /* 20px higher on mobile */
+        margin-bottom: 16px !important;
     }
 
     .stage1-step .step-content {
