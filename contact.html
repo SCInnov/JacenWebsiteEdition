@@ -74,41 +74,48 @@
         <h1 class="page-title">Contact Us</h1>
         <p class="page-subtitle">Physicians, investors, and partners: connect with us to bring better stroke rehabilitation to more patients. Let’s talk clinical pilots, partnerships, and what’s next.</p>
         <div class="contact-layout">
-            <section class="newsletter-section" style="margin-top: 60px;">
-    <h2 style="text-align:center;">Our Newsletter </h2>
-    <p style="text-align:center; max-width:600px; margin: 0 auto 20px;">
-        Get updates on our work in stroke rehabilitation innovation, pilots, and product progress.
-    </p>
+           <section class="newsletter-section" style="margin-top: 60px;">
+  <h2 style="text-align:center;">News Letter</h2>
+  <p style="text-align:center; max-width:600px; margin: 0 auto 20px;">
+    Get updates on our work in stroke rehabilitation innovation.
+  </p>
 
-    <!-- Brevo Form -->
-    <div class="sib-form" style="text-align:center; background-color: transparent;">
-        <div id="sib-form-container" class="sib-form-container">
-            <div id="sib-container" class="sib-container--large sib-container--vertical"
-                style="margin:0 auto; max-width:540px; border-radius:8px; border:1px solid #C0CCD9;">
-                
-                <form id="sib-form" method="POST"
-                    action="https://9e0a87df.sibforms.com/serve/MUIFAB3C9ZKeY_0M70nokRJrxbocmX1ErvL1ZV565H8NLSzIr5ndPBKUMzlNTnUG0MldmvWGw1rTTWIczbVNA0CxinE8zesq8lybjEpVcmiIsTqOhkiA9i7gHWXWMy97jBKbkQsYZZJfiurP2t_Kb0m2_RKD_5-5FSpJmrkW95PdxYT47q3KB4Ooc4c3ktdfycOXsh4iTsNFvbRFFQ=="
-                    data-type="subscription">
+  <!-- FULL Brevo Form (WORKING) -->
+  <div class="sib-form" style="text-align: center;">
+    <div id="sib-form-container" class="sib-form-container">
+      <div id="sib-container" class="sib-container--large sib-container--vertical"
+           style="margin:0 auto; max-width:540px;">
 
-                    <div style="padding:20px;">
-                        <label for="EMAIL" style="font-weight:600;">Email Address</label>
-                        <input type="email" id="EMAIL" name="EMAIL" required
-                            placeholder="you@example.com"
-                            style="width:100%; padding:10px; margin-top:8px; border-radius:6px; border:1px solid #ccc;">
-                    </div>
+        <form id="sib-form" method="POST"
+          action="https://9e0a87df.sibforms.com/serve/MUIFAB3C9ZKeY_0M70nokRJrxbocmX1ErvL1ZV565H8NLSzIr5ndPBKUMzlNTnUG0MldmvWGw1rTTWIczbVNA0CxinE8zesq8lybjEpVcmiIsTqOhkiA9i7gHWXWMy97jBKbkQsYZZJfiurP2t_Kb0m2_RKD_5-5FSpJmrkW95PdxYT47q3KB4Ooc4c3ktdfycOXsh4iTsNFvbRFFQ=="
+          data-type="subscription">
 
-                    <div style="padding: 0 20px 20px;">
-                        <button type="submit"
-                            style="width:100%; padding:12px; border:none; border-radius:6px; background:#3E4857; color:white; font-weight:600;">
-                            Subscribe
-                        </button>
-                    </div>
-
-                    <input type="hidden" name="locale" value="en">
-                </form>
+          <div class="sib-input sib-form-block">
+            <div class="form__entry entry_block">
+              <div class="form__label-row">
+                <label for="EMAIL">Email address</label>
+                <div class="entry__field">
+                  <input class="input" type="email" id="EMAIL" name="EMAIL" required />
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+
+          <div class="sib-form-block">
+            <button class="sib-form-block__button sib-form-block__button-with-loader"
+              form="sib-form" type="submit">
+              SUBSCRIBE
+            </button>
+          </div>
+
+          <!-- REQUIRED hidden fields -->
+          <input type="text" name="email_address_check" value="" class="input--hidden">
+          <input type="hidden" name="locale" value="en">
+        </form>
+
+      </div>
     </div>
+  </div>
 </section>
             <div class="contact-form-wrapper">
                 <form class="contact-form" id="contact-form" action="#" method="get">
