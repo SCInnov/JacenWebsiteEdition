@@ -1,115 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Contact - Second Chance</title>
-
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/navbar.css">
-<link rel="stylesheet" href="css/contact.css">
-<link rel="stylesheet" href="css/footer.css">
-
-<!-- BREVO REQUIRED -->
-<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+    <!-- Brevo Newsletter Styles -->
 <style>
-#sib-container {
-    border-radius: 12px !important;
-    padding: 30px !important;
-}
+  @font-face {
+    font-display: block;
+    font-family: Roboto;
+    src: url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"),
+         url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff");
+  }
+  #sib-container input::placeholder,
+  #sib-container textarea::placeholder {
+    text-align: left;
+    font-family: Helvetica, sans-serif;
+    color: #c0ccda;
+  }
 </style>
-
+<link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="public/Second Chance Icon Black.svg" type="image/svg+xml">
+    <title>Contact Us - Second Chance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/cta-contact.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
-
-<body>
-
-<main class="contact-page">
-
-<h1>Contact Us</h1>
-
-<div class="contact-layout">
-
-<!-- CONTACT FORM -->
-<div>
-<form id="contact-form">
-<input type="text" placeholder="Name" required>
-<input type="email" placeholder="Email" required>
-<textarea placeholder="Message"></textarea>
-<button type="submit">Send</button>
-</form>
-</div>
-
-</div>
-
-<!-- 🔥 NEWSLETTER (WORKING BREVO EMBED) -->
-<section style="margin-top:80px; text-align:center;">
-
-<h2>Join Our Newsletter</h2>
-<p>Get updates on product progress and clinical pilots.</p>
-
-<div class="sib-form">
-  <div id="sib-form-container" class="sib-form-container">
-
-    <!-- SUCCESS MESSAGE -->
-    <div id="success-message" class="sib-form-message-panel"
-         style="display:none; color:green;">
-      Subscription successful.
-    </div>
-
-    <!-- ERROR MESSAGE -->
-    <div id="error-message" class="sib-form-message-panel"
-         style="display:none; color:red;">
-      Something went wrong.
-    </div>
-
-    <div id="sib-container" class="sib-container--large sib-container--vertical">
-
-      <form id="sib-form" method="POST"
-      action="https://9e0a87df.sibforms.com/serve/MUIFAB3C9ZKeY_0M70nokRJrxbocmX1ErvL1ZV565H8NLSzIr5ndPBKUMzlNTnUG0MldmvWGw1rTTWIczbVNA0CxinE8zesq8lybjEpVcmiIsTqOhkiA9i7gHWXWMy97jBKbkQsYZZJfiurP2t_Kb0m2_RKD_5-5FSpJmrkW95PdxYT47q3KB4Ooc4c3ktdfycOXsh4iTsNFvbRFFQ=="
-      data-type="subscription">
-
-        <div class="sib-input sib-form-block">
-          <div class="form__entry entry_block">
-
-            <label>Email</label>
-
-            <input class="input"
-                   type="email"
-                   id="EMAIL"
-                   name="EMAIL"
-                   required
-                   placeholder="you@example.com"/>
-
-          </div>
+<body class="page-contact">
+    <div class="cta-contact-wrap" id="cta-contact-wrap">
+        <div class="cta-contact-btn" id="cta-contact-btn" role="button" tabindex="0" aria-label="Contact Second Chance" aria-expanded="false">
+            <span class="cta-logo-state">
+                <img src="public/Second Chance Icon.svg" alt="">
+            </span>
+            <a href="contact.html" class="cta-contact-state"><span class="cta-typing-text">Contact Us</span></a>
         </div>
-
-        <button type="submit">Subscribe</button>
-
-        <!-- REQUIRED HIDDEN FIELDS -->
-        <input type="text" name="email_address_check" value="" class="input--hidden">
-        <input type="hidden" name="locale" value="en">
-
-      </form>
     </div>
-  </div>
-</div>
+    <nav class="nav-bar">
+        <div class="nav-bar-inner">
+            <div class="nav-logo">
+                <a href="index.html" aria-label="Second Chance Home">
+                    <img class="nav-logo-wide" src="public/Second Chance Logo Wide.svg" alt="Second Chance" data-logo="wide" style="opacity: 0; pointer-events: none;">
+                    <img class="nav-logo-icon" src="public/Second Chance Icon.svg" alt="Second Chance" data-logo="icon" style="opacity: 1;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#vision">Vision</a>
+                <a class="nav-link" href="index.html#product">Product</a>
+                <a class="nav-link" href="index.html#problem">The Problem</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+            </div>
+            <button type="button" class="nav-menu-btn" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-mobile-links" id="nav-mobile-links">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#vision">Vision</a>
+                <a class="nav-link" href="index.html#product">Product</a>
+                <a class="nav-link" href="index.html#problem">The Problem</a>
+                <a class="nav-link" href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
 
+    <main class="contact-page">
+        <h1 class="page-title">Contact Us</h1>
+        <p class="page-subtitle">Physicians, investors, and partners: connect with us to bring better stroke rehabilitation to more patients. Let’s talk clinical pilots, partnerships, and what’s next.</p>
+        <div class="contact-layout">
+            <section class="newsletter-section" style="margin-top: 60px;">
+    <h2 style="text-align:center;">Our Newsletter </h2>
+    <p style="text-align:center; max-width:600px; margin: 0 auto 20px;">
+        Get updates on our work in stroke rehabilitation innovation, pilots, and product progress.
+    </p>
+
+    <!-- Brevo Form -->
+    <div class="sib-form" style="text-align:center; background-color: transparent;">
+        <div id="sib-form-container" class="sib-form-container">
+            <div id="sib-container" class="sib-container--large sib-container--vertical"
+                style="margin:0 auto; max-width:540px; border-radius:8px; border:1px solid #C0CCD9;">
+                
+                <form id="sib-form" method="POST"
+                    action="https://9e0a87df.sibforms.com/serve/MUIFAB3C9ZKeY_0M70nokRJrxbocmX1ErvL1ZV565H8NLSzIr5ndPBKUMzlNTnUG0MldmvWGw1rTTWIczbVNA0CxinE8zesq8lybjEpVcmiIsTqOhkiA9i7gHWXWMy97jBKbkQsYZZJfiurP2t_Kb0m2_RKD_5-5FSpJmrkW95PdxYT47q3KB4Ooc4c3ktdfycOXsh4iTsNFvbRFFQ=="
+                    data-type="subscription">
+
+                    <div style="padding:20px;">
+                        <label for="EMAIL" style="font-weight:600;">Email Address</label>
+                        <input type="email" id="EMAIL" name="EMAIL" required
+                            placeholder="you@example.com"
+                            style="width:100%; padding:10px; margin-top:8px; border-radius:6px; border:1px solid #ccc;">
+                    </div>
+
+                    <div style="padding: 0 20px 20px;">
+                        <button type="submit"
+                            style="width:100%; padding:12px; border:none; border-radius:6px; background:#3E4857; color:white; font-weight:600;">
+                            Subscribe
+                        </button>
+                    </div>
+
+                    <input type="hidden" name="locale" value="en">
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
+            <div class="contact-form-wrapper">
+                <form class="contact-form" id="contact-form" action="#" method="get">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="How can we help?"></textarea>
+                    <button type="submit">Open in email</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <h3>Other ways to reach us</h3>
+                <div class="contact-info-item">
+                    <span class="contact-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </span>
+                    <p><strong>Email</strong><br><a href="mailto:info@secchance.com">info@secchance.com</a></p>
+                </div>
+                <div class="contact-info-item">
+                    <span class="contact-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </span>
+                    <p><strong>Address</strong><br>Second Chance<br>60 Hazelwood Drive<br>Champaign, Illinois 61820</p>
+                </div>
+                <div class="contact-info-item">
+                    <span class="contact-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </span>
+                    <p><strong>LinkedIn</strong><br><a href="https://www.linkedin.com/company/second-chance-innovations/" target="_blank" rel="noopener noreferrer">Connect with us on LinkedIn</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-</main>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <a href="index.html" class="footer-brand" aria-label="Second Chance Innovations Home">
+                    <img class="footer-logo" src="public/FooterPng.png" alt="Second Chance Innovations">
+                </a>
+                <nav class="footer-links" aria-label="Footer navigation">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#vision">Vision</a>
+                    <a href="index.html#product">Product</a>
+                    <a href="index.html#problem">The Problem</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <div class="footer-contact">
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </span>
+                        <a href="mailto:info@secchance.com">info@secchance.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </span>
+                        <span>60 Hazelwood Drive, Champaign, IL 61820</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </span>
+                        <a href="https://www.linkedin.com/company/second-chance-innovations/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Second Chance Innovations. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/second-chance-innovations/" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<footer>
-<p>© 2026 Second Chance</p>
-</footer>
-
-<!-- BREVO SCRIPT (CRITICAL) -->
-<script>
-window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank.";
-window.EMAIL_INVALID_MESSAGE = "Invalid email.";
+    <script src="js/cta-contact.js"></script>
+    <script src="js/navbar.js"></script>
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var name = document.getElementById('name').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var message = document.getElementById('message').value.trim();
+            var to = 'info@secchance.com';
+            var subject = 'Contact from ' + name;
+            var body = message + '\n\n---\nReply to: ' + email;
+            var mailto = 'mailto:' + to +
+                '?subject=' + encodeURIComponent(subject) +
+                '&body=' + encodeURIComponent(body);
+            window.location.href = mailto;
+        });
+    </script>
+    <script>
+  window.REQUIRED_ERROR_MESSAGE = "This field cannot be left blank.";
+  window.EMAIL_INVALID_MESSAGE = "Invalid email.";
 </script>
 
 <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-
 </body>
 </html>
