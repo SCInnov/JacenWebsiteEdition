@@ -1,0 +1,406 @@
+/* Responsive Styles - Media Queries */
+@media (max-width: 768px) {
+    /* More space between explainer description and Stage 1 on mobile */
+    .timeline-header {
+        margin-bottom: 48px !important;
+    }
+
+    /* Stage 1 mobile overrides */
+    .stage1-container {
+        padding-left: 0 !important; /* No left padding - timeline centered */
+        padding-right: 0 !important;
+    }
+
+    .stage1-line {
+        display: none !important; /* Timeline line removed */
+    }
+
+    .step-marker {
+        display: none !important;
+    }
+
+    .step-marker .step-number {
+        font-size: 0.95rem !important;
+    }
+
+    .stage1-step {
+        margin-top: 50px !important; /* Reduced top margin since marker is now above title */
+    }
+
+    .timeline-step {
+        margin-top: 50px !important; /* Reduced top margin since marker is now above title */
+    }
+
+    .stage1-step .step-content-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 0 16px !important; /* Add horizontal padding since no container padding */
+        align-items: start !important; /* Keep marker and text on same level on mobile */
+    }
+
+    /* Show Stage 1 marker on mobile so it stays aligned with text */
+    .stage1-step .step-marker {
+        display: flex !important;
+    }
+
+    .step-content-wrapper {
+        padding: 0 16px !important; /* Add horizontal padding for all stages on mobile */
+    }
+
+    .stage1-step .step-title {
+        font-size: 1.1rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 10px !important;
+        padding-top: 20px !important; /* Add space at top for the marker above */
+    }
+
+    .stage1-step .step-description {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .stage1-step .step-image {
+        max-width: 100% !important;
+        overflow: visible !important; /* allow status-indicator to overlap bottom border */
+    }
+
+    .stage1-step .status-indicator {
+        bottom: -24px !important; /* 10px lower on mobile */
+    }
+
+    .stage1-step-scroll-prompt {
+        margin-bottom: 16px !important;
+    }
+
+    .stage1-step .step-content {
+        max-width: 100% !important;
+        overflow-wrap: break-word !important;
+        word-wrap: break-word !important;
+        hyphens: auto !important;
+    }
+
+    .stage1-step .emg-canvas-wrapper {
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .sticky-wrapper {
+        padding: 16px 0 !important; /* Reduced padding on mobile */
+        /* No overflow properties - sticky positioning requires no overflow on the sticky element itself */
+        /* Parent containers handle overflow */
+    }
+
+    .stage1-container {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+    .nav-links {
+        display: none;
+    }
+
+    .nav-menu-btn {
+        display: flex;
+    }
+
+    .nav-bar-inner {
+        position: relative;
+    }
+
+    .hero-section {
+        padding: 0 13px 16px; /* reduced bottom padding on mobile */
+        padding-top: calc(33.333vh - 200px); /* scaled from desktop 300px → 200px (340/510) */
+    }
+
+    .logo-icon {
+        width: 340px; /* 15% smaller on mobile (85% of 400px); same scale as desktop 510px */
+        margin-top: 30px;
+        margin-bottom: -120px; /* scaled from desktop -180px (340/510) */
+    }
+
+    .tagline {
+        font-size: 0.8rem; /* 25% smaller on mobile (75% of 1.0625rem) */
+        margin-top: -33px; /* raised 5px */
+        margin-bottom: 80px; /* scaled from desktop 120px (340/510) */
+    }
+    
+    .problem-section {
+        padding: 40px 20px 40px; /* reduced top/bottom on mobile */
+        padding-top: 48px;
+    }
+
+    .problem-title {
+        font-size: 1.5rem;
+        margin-bottom: 18px;
+    }
+
+    .problem-intro {
+        font-size: 1rem;
+        margin-bottom: 24px;
+    }
+
+    .problem-spectrum {
+        margin-bottom: 32px;
+        padding: 20px 20px;
+    }
+
+    .problem-spectrum-title {
+        font-size: 1.1rem;
+    }
+
+    .problem-spectrum-text {
+        font-size: 0.95rem;
+    }
+
+    .problem-rehab-title {
+        font-size: 1.1rem;
+    }
+
+    .problem-rehab-text {
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .stat-card {
+        max-width: none;
+        width: 100%;
+        padding: 14px 18px;
+        min-width: 0;
+    }
+
+    .stat-number {
+        font-size: 1.25rem;
+    }
+
+    .stat-description {
+        font-size: 0.85rem;
+    }
+
+    .stat-title {
+        font-size: 1rem;
+    }
+
+    .vision-section {
+        padding: 0 16px 28px; /* reduced bottom padding on mobile */
+    }
+
+    .vision-tagline {
+        font-size: 1.4375rem;
+        margin-bottom: 12px;
+    }
+
+    .vision-description {
+        font-size: 0.9rem;
+        margin-bottom: -32px !important; /* Pull carousel closer to description */
+    }
+
+    .vision-panel {
+        padding: 8px 20px 4px; /* minimal top/bottom on mobile */
+    }
+
+    .vision-carousel {
+        height: 60vh;
+        min-height: 280px;
+        max-height: 85vh;
+        margin-top: -102px !important; /* 20px more pull-up */
+        margin-bottom: -70px !important; /* 20px more pull-up below */
+        padding: 0 !important;
+    }
+
+    .vision-carousel-slide {
+        height: 60vh;
+        min-height: 280px;
+        max-height: 85vh;
+    }
+}
+
+@media (max-width: 968px) {
+    .product-section {
+        padding: 60px 16px;
+        min-height: 80vh;
+    }
+
+    .product-section .hero.rebo-hero {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .timeline-header {
+        margin-bottom: 50px;
+    }
+
+    .timeline-title {
+        font-size: 2rem;
+    }
+
+    .timeline-intro {
+        font-size: 1.125rem;
+    }
+
+    .scroll-container {
+        height: 180vh !important; /* Shorter sticky interaction on mobile */
+        min-height: 180vh !important;
+        margin-bottom: 40px !important; /* Part of even spacing between stages (40px + 40px padding = 80px) */
+    }
+    
+    .timeline-container {
+        padding-top: 0px !important; /* Reduced by 50px total (was 40px): Part of even spacing between stages */
+    }
+
+    .stage1-container {
+        padding-left: 0 !important; /* No left padding - timeline centered */
+        padding-right: 0 !important;
+    }
+
+    .stage1-line {
+        display: none !important; /* Timeline line removed */
+    }
+
+    .timeline-line {
+        display: none !important; /* Timeline line removed */
+    }
+
+    .step-marker {
+        display: none !important;
+    }
+
+    .timeline-container {
+        padding-left: 0 !important; /* No left padding - timeline centered */
+    }
+
+    /* Stage 1 specific mobile styles (for tablets/smaller desktops) */
+    .stage1-step {
+        margin-top: 55px !important; /* Reduced top margin since marker is now above title */
+    }
+
+    .timeline-step {
+        margin-top: 55px !important; /* Reduced top margin since marker is now above title */
+    }
+
+    .stage1-step .step-content-wrapper {
+        grid-template-columns: 1fr !important; /* Single column on smaller screens */
+        gap: 24px !important; /* Reduced gap */
+        padding: 0 16px !important; /* Add horizontal padding since no container padding */
+        align-items: start !important; /* Keep marker and text on same level on tablet */
+    }
+
+    .stage1-step .step-marker {
+        display: flex !important; /* Show Stage 1 marker on tablet, aligned with text */
+    }
+
+    .step-content-wrapper {
+        padding: 0 16px !important; /* Add horizontal padding for all stages on tablet */
+    }
+
+    .stage1-step .step-image {
+        height: 300px !important; /* +20% — matches desktop Stage 1 height bump */
+        width: 100% !important;
+        margin-bottom: 0;
+        overflow: visible !important; /* allow status-indicator to overlap bottom border */
+    }
+
+    .stage1-step .status-indicator {
+        bottom: -24px !important; /* 10px lower on tablet */
+    }
+
+    .stage1-step .step-content {
+        width: 100% !important;
+        padding: 0 !important;
+        overflow-wrap: break-word !important; /* Prevent text overflow */
+        word-wrap: break-word !important;
+        max-width: 100% !important;
+    }
+
+    .stage1-step .step-title {
+        font-size: 1.25rem !important; /* Smaller title */
+        line-height: 1.4 !important;
+        margin-bottom: 12px !important;
+        padding: 22px 0 0 0 !important; /* Add space at top for the marker above */
+        word-wrap: break-word !important;
+    }
+
+    .stage1-step .step-description {
+        font-size: 0.95rem !important; /* Smaller description */
+        line-height: 1.6 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+    }
+
+    .emg-canvas-wrapper {
+        height: 100%;
+        max-width: 100%; /* Prevent overflow */
+    }
+
+    .timeline-container {
+        padding-left: 0 !important; /* No left padding - timeline centered */
+    }
+
+    .timeline-line {
+        display: none !important; /* Timeline line removed */
+    }
+
+    .step-marker {
+        display: none !important;
+    }
+
+    .timeline-step {
+        margin-bottom: 80px; /* Base spacing between stages on mobile */
+    }
+    
+    /* Stage 2 - add 30px more spacing before Stage 3 */
+    .timeline-container > .timeline-steps > .timeline-step:first-child {
+        margin-bottom: 110px !important; /* 30px more spacing before Stage 3 (80px + 30px) */
+    }
+    
+    /* Stage 3 - add 30px more spacing before Stage 4 */
+    .timeline-container > .timeline-steps > .timeline-step:nth-child(2) {
+        margin-bottom: 110px !important; /* 30px more spacing before Stage 4 (80px + 30px) */
+    }
+
+    .step-content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .step-image {
+        height: 200px;
+    }
+
+    .step-title {
+        font-size: 1.25rem;
+        padding-top: 22px; /* Add space at top for the marker above */
+    }
+
+    .step-description {
+        font-size: 1rem;
+    }
+
+    .sensor-container {
+        height: 250px !important;
+        max-width: 100% !important;
+        transform: none !important;
+        transform-origin: center center;
+    }
+
+    .action-wrapper {
+        height: 200px;
+    }
+}
+
+/* Mobile only: reduced top/bottom padding (wins over 968px rule) */
+@media (max-width: 768px) {
+    .product-section {
+        padding: 40px 16px;
+    }
+
+    /* Stage 1 EMG: wins over max-width 968px rule above — +20% vs original 220px */
+    .stage1-step .step-image {
+        height: 264px !important;
+    }
+}

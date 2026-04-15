@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rebo - Powered Upper Limb Orthosis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #fffcf7;
+      --primary: #006d8f;
+      --primary-light: #0088cc;
+      --accent: #afc8a0;
+      --accent-dark: #8fb87a;
+      --text-on-dark: #fffcf7;
+      --dark: #1a1a1a;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(160deg, var(--background) 0%, #f5f7f2 50%, #eef4f6 100%);
+      color: var(--dark);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 4rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Geometric shapes */
+    .geo-circle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      animation: geoFadeIn 1s ease-out forwards;
+    }
+
+    .geo-1 {
+      width: 400px;
+      height: 400px;
+      top: -150px;
+      right: -100px;
+      background: linear-gradient(135deg, rgba(0, 109, 143, 0.06) 0%, rgba(0, 136, 204, 0.03) 100%);
+      animation-delay: 1.5s;
+    }
+
+    .geo-2 {
+      width: 200px;
+      height: 200px;
+      bottom: 10%;
+      left: 5%;
+      background: linear-gradient(135deg, rgba(175, 200, 160, 0.12) 0%, rgba(143, 184, 122, 0.06) 100%);
+      animation-delay: 1.7s;
+    }
+
+    .geo-3 {
+      width: 80px;
+      height: 80px;
+      top: 20%;
+      left: 15%;
+      border: 1px solid rgba(175, 200, 160, 0.3);
+      background: transparent;
+      animation-delay: 1.9s;
+    }
+
+    @keyframes geoFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .hero-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Image section with fade-in */
+    .image-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: imageFadeIn 1.2s ease-out 0.8s forwards;
+    }
+
+    @keyframes imageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .image-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-glow {
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      background: radial-gradient(ellipse at center, rgba(0, 136, 204, 0.15) 0%, transparent 70%);
+      filter: blur(40px);
+      z-index: 0;
+      opacity: 0;
+      animation: glowPulse 1s ease-out 1.4s forwards;
+    }
+
+    @keyframes glowPulse {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .product-image {
+      max-width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+    }
+
+    /* Content section */
+    .content-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Title card animation */
+    .title-card {
+      overflow: hidden;
+    }
+
+    .title-line {
+      display: block;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+
+    .title-line-1 {
+      animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+
+    .title-line-2 {
+      animation: titleSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+    }
+
+    @keyframes titleSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .headline {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .headline-accent {
+      color: var(--primary);
+    }
+
+    .description {
+      font-size: 1.125rem;
+      color: #666;
+      line-height: 1.7;
+      max-width: 460px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: contentFadeIn 0.8s ease-out 0.5s forwards;
+    }
+
+    @keyframes contentFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Features section */
+    .features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .feature {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .feature:nth-child(1) {
+      animation: contentFadeIn 0.8s ease-out 0.7s forwards;
+    }
+
+    .feature:nth-child(2) {
+      animation: contentFadeIn 0.8s ease-out 0.85s forwards;
+    }
+
+    .feature:nth-child(3) {
+      animation: contentFadeIn 0.8s ease-out 1s forwards;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(0, 109, 143, 0.1) 0%, rgba(0, 136, 204, 0.05) 100%);
+      border-radius: 10px;
+      color: var(--primary);
+    }
+
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .feature-content {
+      flex: 1;
+    }
+
+    .feature-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .feature-desc {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        padding: 3rem 2rem;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+
+      .image-section {
+        order: -1;
+      }
+
+      .content-section {
+        align-items: center;
+      }
+
+      .description {
+        max-width: 100%;
+      }
+
+      .headline {
+        font-size: 2.5rem;
+      }
+
+      .features {
+        text-align: left;
+        max-width: 400px;
+      }
+
+      .geo-1 {
+        width: 250px;
+        height: 250px;
+        top: -80px;
+        right: -80px;
+      }
+
+      .geo-2 {
+        width: 120px;
+        height: 120px;
+      }
+
+      .geo-3 {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <!-- Geometric accents -->
+    <div class="geo-circle geo-1"></div>
+    <div class="geo-circle geo-2"></div>
+    <div class="geo-circle geo-3"></div>
+
+    <div class="hero-container">
+      <div class="image-section">
+        <div class="image-wrapper">
+          <div class="image-glow"></div>
+          <img
+            src="rebo-product.png"
+            alt="Rebo powered upper limb orthosis"
+            class="product-image"
+          />
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="title-card">
+          <h1 class="headline">
+            <span class="title-line title-line-1">Restore Movement.</span>
+            <span class="title-line title-line-2 headline-accent">Regain Independence.</span>
+          </h1>
+        </div>
+
+        <p class="description">
+          The Rebo is a powered upper limb orthosis designed to support arm movement for individuals with muscle weakness or limited mobility.
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-title">Real-Time Intent Detection</div>
+              <div class="feature-desc">Sensors detect subtle muscle signals to anticipate and assist your intended movements naturally.</div>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
+                <path d="m4.93 4.93 2.83 2.83m8.48 8.48 2.83 2.83m0-14.14-2.83 2.83m-8.48 8.48-2.83 2.83"/>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-title">Adaptive Assistive Support</div>
+              <div class="feature-desc">Intelligent motor assistance adjusts in real-time to provide exactly the help you need.</div>
+            </div>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"/>
+                <path d="m19 9-5 5-4-4-3 3"/>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <div class="feature-title">Data-Driven Prognosis</div>
+              <div class="feature-desc">Track progress and recovery metrics to inform clinical decisions and therapy planning.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,45 @@
+/* Base Styles - Reset, Body, Canvas */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Use clip (not hidden) so sticky positioning still works inside the page */
+html {
+    overflow-x: clip;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #fffcf7;
+    overflow-x: clip;
+}
+
+/* Headings use Manrope */
+h1, h2, h3, h4, h5, h6,
+.tagline,
+.timeline-title,
+.timeline-label,
+.step-title,
+.problem-title,
+.problem-section .cascade-title,
+.problem-section .spectrum-title,
+.problem-section .rehab-title,
+.vision-tagline,
+.rebo-hero-header .timeline-title,
+.feature-title,
+.contact-page .page-title,
+.app-header-title {
+    font-family: 'Manrope', sans-serif;
+}
+
+#signal-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}

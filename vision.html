@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="public/Second Chance Icon Black.svg" type="image/svg+xml">
+    <title>Vision — Second Chance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background: #fffcf7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .vision-panel {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 32px 32px;
+            background: #fffcf7;
+            border: 2px solid #afc8a0;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .vision-tagline {
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #006d8f;
+            text-align: left;
+            text-decoration: underline;
+            text-underline-offset: 0.25em;
+            margin-bottom: 24px;
+            width: 100%;
+        }
+
+        .typing-cursor {
+            display: none; /* no blinking cursor after typing */
+        }
+
+        .vision-carousel {
+            width: 100%;
+            height: 40vh;
+            min-height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision-carousel-track {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.35s ease-out;
+        }
+
+        .vision-carousel-slide {
+            flex: 0 0 33.333%;
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 8px;
+            background: transparent;
+        }
+
+        .vision-carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            background: transparent;
+        }
+
+        .vision-carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 109, 143, 0.85);
+            color: #fff;
+            font-size: 1.25rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .vision-carousel-arrow:hover {
+            background: #006d8f;
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .vision-carousel-arrow:active {
+            transform: translateY(-50%) scale(0.96);
+        }
+
+        .vision-carousel-arrow.prev {
+            left: 12px;
+        }
+
+        .vision-carousel-arrow.next {
+            right: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .vision-panel {
+                padding: 28px 20px 24px;
+            }
+
+            .vision-tagline {
+                font-size: 1.25rem;
+                margin-bottom: 20px;
+            }
+
+            .vision-carousel {
+                height: 30vh;
+                min-height: 200px;
+            }
+
+            .vision-carousel-slide {
+                height: 30vh;
+            }
+
+            .vision-carousel-arrow {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+
+            .vision-carousel-arrow.prev {
+                left: 6px;
+            }
+
+            .vision-carousel-arrow.next {
+                right: 6px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/cta-contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+    <div class="cta-contact-wrap" id="cta-contact-wrap">
+        <div class="cta-contact-btn" id="cta-contact-btn" role="button" tabindex="0" aria-label="Contact Second Chance" aria-expanded="false">
+            <span class="cta-logo-state">
+                <img src="public/Second Chance Icon.svg" alt="">
+            </span>
+            <a href="contact.html" class="cta-contact-state"><span class="cta-typing-text">Contact Us</span></a>
+        </div>
+    </div>
+    <main class="vision-panel">
+        <h2 class="vision-tagline">
+            <span id="vision-typed-tagline"></span><span class="typing-cursor">|</span>
+        </h2>
+        <div class="vision-carousel">
+            <button type="button" class="vision-carousel-arrow prev" aria-label="Previous slide">&#10094;</button>
+            <button type="button" class="vision-carousel-arrow next" aria-label="Next slide">&#10095;</button>
+            <div class="vision-carousel-track">
+                <div class="vision-carousel-slide">
+                    <img src="public/SCIModel1.png" alt="Second Chance Device Model 1">
+                </div>
+                <div class="vision-carousel-slide">
+                    <img src="public/SCIModel2.png" alt="Second Chance Device Model 2">
+                </div>
+                <div class="vision-carousel-slide">
+                    <img src="public/SCIModel3.png" alt="Second Chance Device Model 3">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <a href="index.html" class="footer-brand" aria-label="Second Chance Innovations Home">
+                    <img class="footer-logo" src="public/FooterPng.png" alt="Second Chance Innovations">
+                </a>
+                <nav class="footer-links" aria-label="Footer navigation">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#vision">Vision</a>
+                    <a href="index.html#product">Product</a>
+                    <a href="index.html#problem">The Problem</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <div class="footer-contact">
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </span>
+                        <a href="mailto:info@secchance.com">info@secchance.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </span>
+                        <span>60 Hazelwood Drive, Champaign, IL 61820</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </span>
+                        <a href="https://www.linkedin.com/company/second-chance-innovations/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 Second Chance Innovations. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/company/second-chance-innovations/" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const track = document.querySelector('.vision-carousel-track');
+            const prev = document.querySelector('.vision-carousel-arrow.prev');
+            const next = document.querySelector('.vision-carousel-arrow.next');
+            const total = 3;
+            let idx = 0;
+
+            function updateCarousel() {
+                track.style.transform = 'translateX(-' + idx * 33.333 + '%)';
+            }
+
+            prev.addEventListener('click', function () {
+                idx = (idx - 1 + total) % total;
+                updateCarousel();
+            });
+
+            next.addEventListener('click', function () {
+                idx = (idx + 1) % total;
+                updateCarousel();
+            });
+
+            updateCarousel();
+
+            const typed = document.getElementById('vision-typed-tagline');
+            const text = 'Reimagining Stroke Care';
+            let i = 0;
+
+            function typeTagline() {
+                if (i < text.length) {
+                    typed.textContent += text[i];
+                    i++;
+                    setTimeout(typeTagline, 85);
+                }
+            }
+
+            const taglineEl = document.querySelector('.vision-tagline');
+            const obs = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting && i === 0) {
+                        typeTagline();
+                    }
+                });
+            }, { threshold: 0.3 });
+            if (taglineEl) obs.observe(taglineEl);
+        })();
+    </script>
+    <script src="js/cta-contact.js"></script>
+</body>
+</html>

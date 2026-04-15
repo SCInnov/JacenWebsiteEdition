@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Chance - Problem Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #006d8f;
+            overflow-x: hidden;
+        }
+
+        #signal-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .problem-section {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px;
+            color: #fffcf7;
+        }
+
+        .problem-headline {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fffcf7;
+            text-align: center;
+            margin-bottom: 60px;
+            line-height: 1.2;
+            max-width: 1000px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 900px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 50px 40px;
+            border: 2px solid rgba(175, 200, 160, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 252, 247, 0.08);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #afc8a0;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .stat-description {
+            font-size: 1.5rem;
+            color: #fffcf7;
+            line-height: 1.4;
+        }
+
+        .tap-effect {
+            position: fixed;
+            pointer-events: none;
+            width: 100px;
+            height: 100px;
+            border: 3px solid rgba(175, 200, 160, 0.6);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: tapPulse 0.6s ease-out;
+            z-index: 3;
+        }
+
+        @keyframes tapPulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .problem-headline {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .stat-description {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="signal-canvas"></canvas>
+
+    <div class="problem-section">
+        <h1 class="problem-headline">Stroke is the LEADING cause of physical disability in the United States</h1>
+        
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number" data-target="11.6">0</div>
+                <div class="stat-description">million hemiparesis patients<br>(2025 US)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="2">0</div>
+                <div class="stat-description">in 3 go without<br>outpatient rehab</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('signal-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth * 2;
+            canvas.height = window.innerHeight * 2;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        let time = 0;
+        const bufferSize = 800;
+        const buffer = new Array(bufferSize).fill(0);
+        
+        let scrollDirection = 0;
+        let scrollIntensity = 0;
+        let lastScrollY = window.scrollY;
+        let lastScrollTime = Date.now();
+        let tapSpikes = [];
+        let baseActivation = 0.2;
+
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            const currentTime = Date.now();
+            const currentScrollY = window.scrollY;
+            const deltaY = currentScrollY - lastScrollY;
+            const deltaTime = currentTime - lastScrollTime;
+            
+            if (deltaY > 0) {
+                scrollDirection = 1;
+            } else if (deltaY < 0) {
+                scrollDirection = -1;
+            }
+            
+            scrollIntensity = Math.min(Math.abs(deltaY) / (deltaTime + 1) * 10, 1.5);
+            
+            lastScrollY = currentScrollY;
+            lastScrollTime = currentTime;
+            
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                scrollDirection = 0;
+                scrollIntensity = 0;
+            }, 150);
+        });
+
+        function handleTap(e) {
+            tapSpikes.push({
+                time: 0,
+                intensity: 2.0,
+                decay: 0.92
+            });
+
+            const ripple = document.createElement('div');
+            ripple.className = 'tap-effect';
+            ripple.style.left = e.clientX + 'px';
+            ripple.style.top = e.clientY + 'px';
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        document.addEventListener('click', handleTap);
+        document.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            handleTap({ clientX: touch.clientX, clientY: touch.clientY });
+        });
+
+        function generateEMGSignal(t) {
+            let signal = 0;
+            
+            const directionBias = scrollDirection * scrollIntensity * 0.4;
+            
+            let tapContribution = 0;
+            tapSpikes = tapSpikes.filter(spike => {
+                spike.time += 0.016;
+                spike.intensity *= spike.decay;
+                
+                const spikeSignal = spike.intensity * Math.exp(-spike.time * 8) * Math.cos(t * 200 * Math.PI);
+                tapContribution += spikeSignal;
+                
+                return spike.intensity > 0.01;
+            });
+            
+            const activation = baseActivation + scrollIntensity;
+            const burstFreq = 0.5 + scrollIntensity * 0.5;
+            const burstPattern = Math.sin(t * burstFreq * Math.PI * 2);
+            
+            for (let i = 0; i < 10; i++) {
+                const freq = 50 + i * 40;
+                const amplitude = (1 / (i + 1)) * activation;
+                signal += amplitude * Math.sin(t * freq * Math.PI * 2 + i);
+            }
+            
+            signal += directionBias;
+            signal += tapContribution;
+            
+            const noise = (Math.random() - 0.5) * (0.3 + scrollIntensity * 0.2);
+            
+            return (signal + noise) * 0.4;
+        }
+
+        function drawSignal() {
+            const width = canvas.width;
+            const height = canvas.height;
+            const centerY = height / 3;
+            const scale = height * 0.5;
+
+            // Solid teal background
+            ctx.fillStyle = '#006d8f';
+            ctx.fillRect(0, 0, width, height);
+
+            // EMG signal in cream color for contrast on teal
+            ctx.strokeStyle = 'rgba(255, 252, 247, 0.3)';
+            ctx.lineWidth = 3;
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = 'rgba(255, 252, 247, 0.3)';
+            
+            ctx.beginPath();
+            for (let i = 0; i < buffer.length; i++) {
+                const x = (i / buffer.length) * width;
+                const y = centerY - buffer[i] * scale;
+                
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+        }
+
+        function animate() {
+            time += 16;
+            const t = time / 1000;
+
+            const sample = generateEMGSignal(t);
+            buffer.shift();
+            buffer.push(sample);
+
+            drawSignal();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Animated Counters
+        const counters = document.querySelectorAll('.stat-number');
+        let hasAnimated = false;
+
+        function animateCounters() {
+            if (hasAnimated) return;
+
+            const statsSection = document.querySelector('.stats-container');
+            const rect = statsSection.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight * 0.8;
+
+            if (isVisible) {
+                hasAnimated = true;
+                
+                counters.forEach((counter, index) => {
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            if (index === 0) {
+                                // First counter: 11.6M format
+                                counter.textContent = current.toFixed(1) + 'M';
+                            } else {
+                                // Second counter: "2 in 3" format
+                                counter.textContent = Math.floor(current) + ' in 3';
+                            }
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            if (index === 0) {
+                                counter.textContent = target.toFixed(1) + 'M';
+                            } else {
+                                counter.textContent = Math.floor(target) + ' in 3';
+                            }
+                        }
+                    };
+
+                    updateCounter();
+                });
+            }
+        }
+
+        // Check on scroll and on load
+        window.addEventListener('scroll', animateCounters);
+        window.addEventListener('load', animateCounters);
+        animateCounters(); // Check immediately
+    </script>
+</body>
+</html>
