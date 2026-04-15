@@ -87,7 +87,6 @@ body { outline: 2px dashed rgba(255,0,0,0.4); outline-offset: -2px; }
 .hero-container { outline: 1px dashed rgba(255,200,0,0.5); }
 
 /* Explainer + Stage 1 */
-/* Explainer (.timeline-header): border box + margin bands (see ::before / ::after below) */
 .timeline-header { outline: 2px solid rgba(128,0,128,0.6); outline-offset: 0; }
 .scroll-container { outline: 2px solid rgba(255,0,255,0.5); outline-offset: -2px; }
 .sticky-wrapper { outline: 1px solid rgba(200,0,255,0.5); }
@@ -103,68 +102,6 @@ body { outline: 2px dashed rgba(255,0,0,0.4); outline-offset: -2px; }
 .vision-tagline { outline: 1px solid rgba(180,80,0,0.7); outline-offset: 1px; }
 .vision-description { outline: 1px solid rgba(200,120,0,0.7); outline-offset: 1px; }
 .vision-carousel { outline: 2px solid rgba(220,140,0,0.7); outline-offset: 2px; }
-
-/* Explainer: margin regions (outside the purple outline = margin box) */
-.product-timeline .timeline-header::before {
-    content: "margin-top: 2rem";
-    position: absolute;
-    top: -2rem;
-    left: 0;
-    right: 0;
-    height: 2rem;
-    box-sizing: border-box;
-    padding: 2px 6px;
-    font-size: 10px;
-    font-family: sans-serif;
-    font-weight: 600;
-    color: rgba(0, 40, 60, 0.95);
-    background: repeating-linear-gradient(
-        -45deg,
-        rgba(255, 220, 100, 0.4),
-        rgba(255, 220, 100, 0.4) 6px,
-        rgba(255, 200, 60, 0.5) 6px,
-        rgba(255, 200, 60, 0.5) 12px
-    );
-    border: 1px dashed rgba(140, 90, 0, 0.95);
-    z-index: 99998;
-    pointer-events: none;
-    white-space: nowrap;
-}
-
-.product-timeline .timeline-header::after {
-    content: "margin-bottom: 18px";
-    position: absolute;
-    bottom: -18px;
-    left: 0;
-    right: 0;
-    height: 18px;
-    box-sizing: border-box;
-    padding: 0 6px;
-    font-size: 10px;
-    font-family: sans-serif;
-    font-weight: 600;
-    line-height: 18px;
-    color: rgba(0, 40, 60, 0.95);
-    background: repeating-linear-gradient(
-        -45deg,
-        rgba(255, 220, 100, 0.4),
-        rgba(255, 220, 100, 0.4) 6px,
-        rgba(255, 200, 60, 0.5) 6px,
-        rgba(255, 200, 60, 0.5) 12px
-    );
-    border: 1px dashed rgba(140, 90, 0, 0.95);
-    z-index: 99998;
-    pointer-events: none;
-}
-
-@media (max-width: 768px) {
-    .product-timeline .timeline-header::after {
-        content: "margin-bottom: 48px (mobile)";
-        bottom: -48px;
-        height: 48px;
-        line-height: 48px;
-    }
-}
 
 /* Step internals (optional - uncomment if needed) */
 /* .step-content-wrapper { outline: 1px dotted rgba(200,200,0,0.5); } */
