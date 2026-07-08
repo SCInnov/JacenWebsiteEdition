@@ -29,7 +29,7 @@ PORT = 8080
 # Change to the directory where the script is located
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-with socketserver.TCPServer(("", PORT), MyHTTPRequestHandler) as httpd:
+with socketserver.TCPServer(("0.0.0.0", PORT), MyHTTPRequestHandler) as httpd:
     print(f"Server running at http://localhost:{PORT}/")
     print(f"Serving index.html by default")
     print("Press Ctrl+C to stop")
