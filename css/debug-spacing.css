@@ -1,0 +1,109 @@
+/* ============================================
+   DEBUG: Show container boundaries for spacing
+   Add <link rel="stylesheet" href="css/debug-spacing.css"> to index.html
+   when fixing spacing, then remove when done.
+   ============================================ */
+
+/* Labels - small badge at top-left of each outlined container */
+body::before { content: "body"; }
+.product-section::before { content: "product-section"; }
+.product-timeline::before { content: "product-timeline"; }
+.rebo-hero-header::before { content: "rebo-hero-header"; }
+.hero.rebo-hero::before { content: "hero rebo-hero"; }
+.scroll-container::before { content: "scroll-container"; }
+.sticky-wrapper::before { content: "sticky-wrapper"; }
+.stage1-container::before { content: "stage1-container"; }
+.stage1-step::before { content: "stage1-step"; }
+.timeline-step::before { content: "timeline-step"; }
+.vision-panel::before { content: "vision-panel"; }
+.vision-tagline::before { content: "vision-tagline"; }
+.vision-description::before { content: "vision-description"; }
+.vision-carousel::before { content: "vision-carousel"; }
+
+body::before,
+.product-section::before,
+.product-timeline::before,
+.rebo-hero-header::before,
+.hero.rebo-hero::before,
+.scroll-container::before,
+.sticky-wrapper::before,
+.stage1-container::before,
+.stage1-step::before,
+.timeline-step::before,
+.vision-panel::before,
+.vision-tagline::before,
+.vision-description::before,
+.vision-carousel::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #fff;
+    z-index: 99999;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+body::before { background: rgba(255,0,0,0.85); position: fixed; }
+.product-section::before { background: rgba(0,255,0,0.85); }
+.product-timeline::before { background: rgba(0,0,255,0.85); }
+.rebo-hero-header::before { background: rgba(255,165,0,0.9); }
+.hero.rebo-hero::before { background: rgba(255,140,0,0.9); }
+.scroll-container::before { background: rgba(255,0,255,0.85); }
+.sticky-wrapper::before { background: rgba(200,0,255,0.85); }
+.stage1-container::before { background: rgba(255,100,255,0.9); }
+.stage1-step::before { background: rgba(255,0,255,0.9); }
+.timeline-step::before { background: rgba(0,180,255,0.9); }
+.vision-panel::before { background: rgba(180,100,0,0.9); }
+.vision-tagline::before { background: rgba(180,80,0,0.9); }
+.vision-description::before { background: rgba(200,120,0,0.9); }
+.vision-carousel::before { background: rgba(220,140,0,0.9); }
+
+/* Ensure containers can position labels */
+/* Do NOT set position on .sticky-wrapper - it must stay position: sticky from product.css */
+.product-section { position: relative; }
+.product-timeline { position: relative; }
+.rebo-hero-header { position: relative; }
+.hero.rebo-hero { position: relative; }
+.timeline-header { position: relative; }
+.scroll-container { position: relative; }
+.stage1-container { position: relative; }
+.vision-panel { position: relative; }
+.vision-tagline { position: relative; }
+.vision-description { position: relative; }
+.vision-carousel { position: relative; }
+
+/* Main layout containers */
+body { outline: 2px dashed rgba(255,0,0,0.4); outline-offset: -2px; }
+.product-section { outline: 2px dashed rgba(0,255,0,0.5); outline-offset: -2px; }
+.product-timeline { outline: 2px dashed rgba(0,0,255,0.4); outline-offset: -2px; }
+
+/* Rebo hero */
+.rebo-hero-header { outline: 1px solid rgba(255,165,0,0.7); }
+.hero.rebo-hero { outline: 2px solid rgba(255,165,0,0.6); outline-offset: 2px; }
+.hero-container { outline: 1px dashed rgba(255,200,0,0.5); }
+
+/* Explainer + Stage 1 */
+.timeline-header { outline: 2px solid rgba(128,0,128,0.6); outline-offset: 0; }
+.scroll-container { outline: 2px solid rgba(255,0,255,0.5); outline-offset: -2px; }
+.sticky-wrapper { outline: 1px solid rgba(200,0,255,0.5); }
+.stage1-container { outline: 1px dashed rgba(255,100,255,0.6); }
+.stage1-step { outline: 2px solid rgba(255,0,255,0.7); outline-offset: 2px; }
+
+/* Stages 2, 3, 4 */
+.timeline-container .timeline-steps { outline: 1px dashed rgba(0,200,255,0.4); }
+.timeline-step { outline: 1px solid rgba(0,180,255,0.5); outline-offset: 1px; }
+
+/* Vision section */
+.vision-panel { outline: 2px solid rgba(180,100,0,0.7); outline-offset: 2px; }
+.vision-tagline { outline: 1px solid rgba(180,80,0,0.7); outline-offset: 1px; }
+.vision-description { outline: 1px solid rgba(200,120,0,0.7); outline-offset: 1px; }
+.vision-carousel { outline: 2px solid rgba(220,140,0,0.7); outline-offset: 2px; }
+
+/* Step internals (optional - uncomment if needed) */
+/* .step-content-wrapper { outline: 1px dotted rgba(200,200,0,0.5); } */
+/* .step-image { outline: 1px dotted rgba(0,255,200,0.4); } */
+/* .step-content { outline: 1px dotted rgba(255,200,200,0.4); } */
