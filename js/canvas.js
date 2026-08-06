@@ -113,6 +113,11 @@ function drawSignal() {
     }
     const t = rawT * rawT * (3 - 2 * rawT);
 
+    // Fade the background gradients in over the intro sequence rather than
+    // showing them at full strength from the first frame.
+    const introFadeDuration = 5.0;
+    const introFade = Math.min(time / 1000 / introFadeDuration, 1);
+
     // Check if we're in product section
     const productState = window.productSectionState;
     const isInProductSection = productState && productSection && 
@@ -130,7 +135,7 @@ function drawSignal() {
         ctx.fillRect(0, 0, width, height);
 
         const topBlurH = height * 0.2;
-        const topOpacity = 1 - t;
+        const topOpacity = (1 - t) * introFade;
         if (topOpacity > 0.005) {
             const topG = ctx.createLinearGradient(0, 0, 0, topBlurH);
             topG.addColorStop(0, `rgba(0, 109, 143, ${0.35 * topOpacity})`);
@@ -146,8 +151,8 @@ function drawSignal() {
             const softT = Math.pow(t, 0.75);
             const bottomG = ctx.createLinearGradient(0, gradTop, 0, height);
             bottomG.addColorStop(0, 'rgba(0, 109, 143, 0)');
-            bottomG.addColorStop(0.5, `rgba(0, 109, 143, ${0.12 + 0.25 * softT})`);
-            bottomG.addColorStop(1, `rgba(0, 109, 143, ${0.4 + 0.5 * softT})`);
+            bottomG.addColorStop(0.5, `rgba(0, 109, 143, ${(0.12 + 0.25 * softT) * introFade})`);
+            bottomG.addColorStop(1, `rgba(0, 109, 143, ${(0.4 + 0.5 * softT) * introFade})`);
             ctx.fillStyle = bottomG;
             ctx.fillRect(0, gradTop, width, gradHeight);
         }
