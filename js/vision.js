@@ -4,7 +4,7 @@
     const typed = document.getElementById('vision-typed-tagline');
     const taglineEl = document.querySelector('.vision-tagline');
     if (typed && taglineEl) {
-        const text = 'Reimagining Stroke Care';
+        const text = 'Movement support you can take home';
         let i = 0;
         function typeTagline() {
             if (i < text.length) {
