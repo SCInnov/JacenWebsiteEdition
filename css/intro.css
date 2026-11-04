@@ -1,0 +1,57 @@
+/* Intro sequence: logo draws itself in, then the hero is revealed only
+   through the logo's own frame (bounded by its lines) and zooms up until it
+   fills the screen. */
+.intro-overlay {
+    --logo-size: 220px;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fffcf7;
+    /* Zoom target: the roomiest genuinely-enclosed spot in the logo's
+       interior that sits below Line 4's highest point — found via
+       SVGPathElement.isPointInFill on the real geometry, requiring ink in
+       all four directions so it's truly inside the mark (not the blank
+       margin). Interior clearance is only ~10px, so the zoom scale below
+       is large enough to still sweep the nearest stroke off-screen. */
+    transform-origin: calc(50% - 2px) calc(50% - 9px);
+    transition: transform 1.1s cubic-bezier(0.65, 0, 0.35, 1),
+        background-color 0.5s ease;
+    will-change: transform, background-color;
+}
+
+.intro-overlay.intro-reveal {
+    /* The logo has finished forming: drop the overlay's own cream fill so the
+       real site shows through the silhouette-shaped hole cut into the SVG's
+       cream layer. Everything outside the actual logo shape stays cream, so
+       the hero is bounded by the real logo border — not the SVG's box. */
+    background-color: transparent;
+}
+
+.intro-overlay.intro-zoom {
+    /* Push the camera through the logo's interior — the window (and the cream
+       around it, and the lines) all scale together until the window exceeds
+       the viewport, at which point the hero simply *is* the screen. Scale is
+       large enough that the nearest stroke (~10px from the origin) ends up
+       well off any screen, so no black remains. */
+    transform: scale(160);
+    pointer-events: none;
+}
+
+.intro-logo {
+    width: var(--logo-size);
+    height: auto;
+    position: relative;
+    z-index: 1;
+    /* Let the oversized cream fill (with the silhouette cutout) extend past
+       the SVG's own box to cover the whole viewport. */
+    overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro-overlay {
+        display: none;
+    }
+}
