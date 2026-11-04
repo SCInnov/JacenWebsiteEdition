@@ -6,7 +6,7 @@
 html,
 body {
     margin: 0;
-    background: #fff;
+    background: #fffcf7;
     color: #212121;
 }
 
@@ -49,7 +49,7 @@ a {
     position: relative;
     width: 1440px;
     height: 4096px;
-    background: #fff;
+    background: #fffcf7;
     transform-origin: top left;
 }
 
@@ -59,7 +59,7 @@ a {
     top: 0;
     width: 1440px;
     height: 1024px;
-    background: #e0e0e0;
+    background: #fffcf7;
     overflow: hidden;
 }
 
