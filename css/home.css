@@ -1,0 +1,543 @@
+/* SCI home frame (Figma node 2:2), 1440 × 4096 */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    background: #fffcf7;
+    color: #212121;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.viewport {
+    width: 1440px;
+    height: 4096px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.home {
+    position: relative;
+    width: 1440px;
+    height: 4096px;
+    background: #fffcf7;
+    transform-origin: top left;
+}
+
+.hero {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1440px;
+    height: 1024px;
+    background: #fffcf7;
+    overflow: hidden;
+}
+
+.hero-x {
+    position: absolute;
+    inset: 0;
+    width: 1440px;
+    height: 1024px;
+    pointer-events: none;
+}
+
+.menu {
+    position: absolute;
+    left: 80px;
+    top: 20px;
+    width: 1280px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background: #fff;
+    border: 1px solid #bdbdbd;
+    border-radius: 12px;
+    z-index: 2;
+}
+
+.menu-logo {
+    display: block;
+    width: 297px;
+    height: 40px;
+}
+
+.menu-logo img {
+    display: block;
+    width: 297px;
+    height: 40px;
+}
+
+.menu-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #000;
+}
+
+.menu-links a:last-child {
+    color: #212121;
+}
+
+.hero-title {
+    position: absolute;
+    left: 120px;
+    top: 311px;
+    width: 869px;
+    margin: 0;
+    font-size: 72px;
+    font-weight: 600;
+    line-height: 87px;
+    letter-spacing: 0;
+    color: #212121;
+}
+
+.hero-sub {
+    position: absolute;
+    left: 120px;
+    top: 596px;
+    width: 869px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #616161;
+}
+
+.hero-actions,
+.next-actions {
+    position: absolute;
+    display: flex;
+    gap: 16px;
+}
+
+.hero-actions {
+    left: 120px;
+    top: 660px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 52px;
+    padding: 10px;
+    border: 1.5px solid #212121;
+    border-radius: 12px;
+    background: transparent;
+    color: #212121;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    cursor: pointer;
+}
+
+.btn-compact {
+    width: 136px;
+}
+
+.eyebrow {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0.08em;
+    color: #757575;
+    text-transform: none;
+}
+
+.supporters {
+    position: absolute;
+    left: 0;
+    top: 1184px;
+    width: 1440px;
+    height: 121px;
+}
+
+.supporters .eyebrow {
+    text-align: center;
+}
+
+.supporter-row {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 41px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 72px;
+}
+
+.supporter-logo {
+    display: block;
+    height: 72px;
+    width: auto;
+    max-width: 280px;
+    object-fit: contain;
+    background: transparent;
+}
+
+.news {
+    position: absolute;
+    left: 0;
+    top: 1465px;
+    width: 1440px;
+    height: 643px;
+}
+
+.news .eyebrow,
+.news-title,
+.featured-date,
+.featured-title {
+    position: absolute;
+    left: 120px;
+    margin: 0;
+}
+
+.news .eyebrow {
+    top: 0;
+}
+
+.news-title {
+    top: 33px;
+    width: 326px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+}
+
+.featured-shot {
+    position: absolute;
+    left: 120px;
+    top: 129px;
+    width: 690px;
+    height: 431px;
+    background: #e0e0e0;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.featured-shot svg {
+    display: block;
+    width: 690px;
+    height: 431px;
+}
+
+.featured-date {
+    top: 584px;
+    width: 690px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #757575;
+}
+
+.featured-title {
+    top: 609px;
+    width: 690px;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 34px;
+}
+
+.news-list {
+    position: absolute;
+    left: 834px;
+    top: 129px;
+    width: 486px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.news-list li {
+    position: relative;
+    height: 161px;
+    border-top: 1px solid #bdbdbd;
+}
+
+.news-list li:last-child {
+    border-bottom: 1px solid #bdbdbd;
+}
+
+.news-copy {
+    position: absolute;
+    left: 0;
+    top: 25px;
+    width: 360px;
+}
+
+.news-date {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    color: #757575;
+}
+
+.news-item-title {
+    margin: 8px 0 0;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 34px;
+}
+
+.news-thumb {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    width: 112px;
+    height: 112px;
+    background: #e0e0e0;
+    border-radius: 12px;
+}
+
+.next {
+    position: absolute;
+    left: 0;
+    top: 2268px;
+    width: 1440px;
+    height: 237px;
+    text-align: center;
+}
+
+.next .eyebrow {
+    text-align: center;
+}
+
+.next-title {
+    position: absolute;
+    left: 165px;
+    top: 33px;
+    width: 1110px;
+    margin: 0;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 68px;
+}
+
+.next-sub {
+    position: absolute;
+    left: 285px;
+    top: 121px;
+    width: 869px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #616161;
+}
+
+.next-actions {
+    left: 472px;
+    top: 185px;
+}
+
+.contact {
+    position: absolute;
+    left: 0;
+    top: 2665px;
+    width: 1440px;
+    height: 465px;
+}
+
+.contact-eyebrow,
+.contact-title,
+.contact-lede,
+.contact h3,
+.contact-note,
+.rule {
+    position: absolute;
+    left: 120px;
+    margin: 0;
+}
+
+.contact-eyebrow {
+    top: 0;
+}
+
+.contact-title {
+    top: 33px;
+    width: 537px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+}
+
+.contact-lede {
+    top: 97px;
+    width: 379px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #616161;
+}
+
+.rule {
+    top: 159px;
+    width: 486px;
+    height: 0;
+    border: 0;
+    border-top: 1px solid #bdbdbd;
+}
+
+.rule-lower {
+    top: 346px;
+}
+
+.journey-title {
+    top: 192px;
+    width: 172px;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.contact-note {
+    width: 486px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #616161;
+}
+
+.note-partner {
+    top: 228px;
+}
+
+.note-volunteer {
+    top: 379px;
+}
+
+.subscribe-row {
+    position: absolute;
+    left: 120px;
+    display: flex;
+    gap: 12px;
+}
+
+.subscribe-partner {
+    top: 262px;
+}
+
+.subscribe-volunteer {
+    top: 413px;
+}
+
+.field,
+.area {
+    display: block;
+    background: #fff;
+    border: 1.5px solid #bdbdbd;
+    border-radius: 12px;
+    color: #212121;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+}
+
+.field {
+    width: 338px;
+    height: 52px;
+    padding: 0 16px;
+}
+
+.field::placeholder,
+.area::placeholder {
+    color: #9e9e9e;
+    opacity: 1;
+}
+
+.field:focus,
+.area:focus,
+.btn:focus-visible,
+.menu-links a:focus-visible {
+    outline: 1.5px solid #212121;
+    outline-offset: 2px;
+}
+
+.message {
+    position: absolute;
+    left: 733px;
+    top: 0;
+    width: 588px;
+}
+
+.message h3 {
+    position: static;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+}
+
+.message-grid {
+    display: grid;
+    grid-template-columns: 286px 286px;
+    gap: 20px 16px;
+    margin-top: 24px;
+}
+
+.message label {
+    display: block;
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+}
+
+.message .field,
+.message .area {
+    width: 100%;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.area {
+    height: 104px;
+    padding: 16px;
+    resize: none;
+}
+
+.message .btn {
+    margin-top: 24px;
+}

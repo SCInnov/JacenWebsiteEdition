@@ -1,0 +1,33 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SCI circuit logo">
+<style>
+
+    .wipe {
+      transform-box: fill-box;
+      transform-origin: left center;
+      transform: scaleX(0);
+      animation: wipeIn var(--dur) cubic-bezier(.6,.05,.15,1) var(--delay) forwards;
+    }
+    @keyframes wipeIn { to { transform: scaleX(1); } }
+
+    .logo-piece { fill: #0a0a0a; }
+
+    .glow-group {
+      animation: glow 2.6s ease-in-out 2.9s infinite;
+    }
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 0px rgba(0,0,0,0)); }
+      50%      { filter: drop-shadow(0 0 5px rgba(0,0,0,.3)); }
+    }
+
+</style>
+<g class="glow-group">
+<clipPath id="clip0"><rect class="wipe" style="--dur:0.9s;--delay:0s" x="16" y="46" width="457" height="409"/></clipPath>
+<g clip-path="url(#clip0)"><path class="logo-piece" fill-rule="evenodd" d="M106,73 L100,77 L97,83 L97,90 L101,98 L39,218 L36,221 L31,221 L26,224 L22,230 L22,239 L28,247 L34,249 L41,248 L46,245 L168,307 L169,310 L167,320 L159,323 L154,329 L153,337 L156,344 L162,348 L170,349 L176,346 L181,339 L199,340 L283,427 L280,434 L283,444 L291,449 L298,449 L302,447 L308,439 L308,431 L306,427 L298,421 L293,300 L301,293 L303,289 L425,272 L428,275 L437,278 L444,276 L449,271 L451,261 L445,252 L457,143 L461,141 L467,133 L467,125 L465,121 L456,115 L450,115 L444,118 L365,72 L362,69 L361,59 L358,55 L352,52 L344,52 L336,58 L333,64 L132,80 L124,80 L116,73 Z M294,424 L300,426 L305,433 L304,440 L296,446 L290,445 L284,438 L285,430 L290,425 Z M165,324 L169,324 L177,330 L177,339 L171,345 L163,345 L157,339 L158,329 Z M285,275 L292,275 L299,282 L298,291 L291,296 L284,295 L278,287 L280,279 Z M434,253 L442,254 L447,260 L447,267 L440,274 L430,272 L426,265 L427,259 Z M33,224 L40,225 L46,232 L45,240 L39,245 L32,245 L25,238 L26,230 Z M453,118 L459,120 L464,127 L463,134 L455,140 L449,139 L443,133 L443,126 L445,122 Z M108,76 L116,77 L121,83 L121,90 L114,97 L108,97 L101,91 L101,82 Z M127,89 L336,73 L343,79 L350,80 L357,78 L434,123 L439,127 L442,138 L447,142 L436,249 L430,251 L421,263 L304,280 L296,273 L291,271 L284,272 L277,277 L275,289 L284,299 L288,405 L287,417 L203,330 L187,330 L179,328 L176,324 L180,303 L178,301 L52,238 L49,235 L49,230 L46,225 L106,108 L112,100 L118,99 Z M346,55 L353,56 L359,63 L357,72 L352,76 L345,76 L338,69 L339,60 Z"/></g>
+<clipPath id="clip1"><rect class="wipe" style="--dur:0.7s;--delay:0.75s" x="63" y="83" width="378" height="319"/></clipPath>
+<g clip-path="url(#clip1)"><path class="logo-piece" fill-rule="evenodd" d="M356,89 L185,104 L173,99 L170,100 L165,106 L165,110 L169,116 L177,117 L183,111 L353,96 L427,146 L410,231 L407,236 L254,252 L265,368 L222,312 L197,306 L192,303 L199,281 L198,279 L80,225 L132,130 L140,130 L143,127 L144,119 L141,115 L133,113 L127,118 L126,125 L69,229 L189,283 L190,286 L183,309 L217,318 L276,396 L262,259 L415,242 L435,142 Z"/></g>
+<clipPath id="clip2"><rect class="wipe" style="--dur:0.6s;--delay:1.35s" x="117" y="113" width="293" height="169"/></clipPath>
+<g clip-path="url(#clip2)"><path class="logo-piece" fill-rule="evenodd" d="M404,159 L362,119 L200,135 L123,206 L220,276 L224,216 L229,214 L233,208 L400,204 Z M397,162 L393,197 L233,201 L227,196 L219,196 L215,199 L213,204 L214,210 L217,213 L215,259 L213,263 L135,206 L202,142 L359,126 Z"/></g>
+<clipPath id="clip3"><rect class="wipe" style="--dur:0.55s;--delay:1.85s" x="160" y="152" width="224" height="85"/></clipPath>
+<g clip-path="url(#clip3)"><path class="logo-piece" fill-rule="evenodd" d="M166,199 L183,216 L183,225 L185,228 L190,231 L195,231 L202,225 L201,215 L194,211 L189,212 L177,199 L227,165 L357,169 L360,174 L365,177 L375,175 L378,170 L378,165 L372,158 L364,158 L359,162 L225,158 L168,196 Z"/></g>
+</g>
+</svg>
