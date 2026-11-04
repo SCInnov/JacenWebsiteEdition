@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "ym5ityg6ae");
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="public/Second Chance Icon Black.svg" type="image/svg+xml">
+    <title>Technology — Second Chance</title>
+    <meta name="description" content="Follow a signal from muscle to movement: how Second Chance's EMG sensor and powered brace work together.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/tech.css">
+    <link rel="preload" href="public/tech/sci_tech_scene.glb" as="fetch" crossorigin>
+</head>
+<body class="page-tech">
+    <nav class="nav-bar">
+        <div class="nav-bar-inner">
+            <div class="nav-logo">
+                <a href="index.html" aria-label="Second Chance Home">
+                    <img class="nav-logo-wide" src="public/Second Chance Logo Wide.svg" alt="Second Chance" data-logo="wide" style="opacity: 0; pointer-events: none;">
+                    <img class="nav-logo-icon" src="public/Second Chance Icon.svg" alt="Second Chance" data-logo="icon" style="opacity: 1;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#vision">Vision</a>
+                <a class="nav-link" href="index.html#product">Product</a>
+                <a class="nav-link" href="index.html#contact">Contact/Newsletter</a>
+            </div>
+            <button type="button" class="nav-menu-btn" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-mobile-links" id="nav-mobile-links">
+                <a class="nav-link" href="index.html">Home</a>
+                <a class="nav-link" href="index.html#vision">Vision</a>
+                <a class="nav-link" href="index.html#product">Product</a>
+                <a class="nav-link" href="index.html#contact">Contact/Newsletter</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="tech" id="top">
+        <section class="tech-intro" aria-labelledby="tech-title">
+            <p class="eyebrow">TECHNOLOGY</p>
+            <h1 class="tech-title" id="tech-title">Every movement starts with a signal.</h1>
+            <p class="tech-sub">Scroll to follow a signal from muscle to movement: our EMG sensor reads what the body is trying to do, and the brace turns that intent into motion.</p>
+            <a class="tech-scroll-cue" href="#tech-track">Scroll to begin <span aria-hidden="true">↓</span></a>
+        </section>
+
+        <section class="tech-track" id="tech-track" aria-label="3D story: from muscle signal to assisted movement">
+            <div class="tech-stage" id="tech-stage">
+                <canvas class="tech-canvas" id="tech-canvas" aria-hidden="true"></canvas>
+                <div class="tech-loading" id="tech-loading" role="status">
+                    <span class="tech-loading-label" id="tech-loading-label">Loading 3D model…</span>
+                    <span class="tech-loadbar"><i id="tech-loadfill"></i></span>
+                </div>
+                <div class="tech-progress" aria-hidden="true"><i id="tech-progress-fill"></i></div>
+            </div>
+        </section>
+
+        <section class="tech-next" aria-labelledby="tech-next-title">
+            <p class="eyebrow">NEXT STEPS</p>
+            <h2 class="tech-next-title" id="tech-next-title">The people behind every movement.</h2>
+            <p class="tech-sub">Want to see it in person, partner with us, or volunteer for research?</p>
+            <div class="tech-actions">
+                <a class="btn" href="index.html">Back to home</a>
+                <a class="btn" href="index.html#contact">Contact us</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/navbar.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "./js/vendor/three/three.module.js",
+            "three/addons/": "./js/vendor/three/addons/"
+        }
+    }
+    </script>
+    <script type="module" src="js/tech.js"></script>
+</body>
+</html>

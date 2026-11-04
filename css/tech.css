@@ -1,0 +1,203 @@
+/* Technology page: scroll-driven 3D story exported from Blender (public/tech/sci_tech_scene.glb) */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    background: #fff;
+    color: #212121;
+}
+
+body.page-tech {
+    font-family: Inter, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page-tech a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tech .eyebrow {
+    margin: 0 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0.08em;
+    color: #757575;
+}
+
+.tech-intro {
+    min-height: 100vh;
+    padding: 160px clamp(24px, 8.3vw, 120px) 80px;
+    background: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.tech-title {
+    margin: 0;
+    max-width: 900px;
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #212121;
+}
+
+.tech-sub {
+    margin: 24px 0 0;
+    max-width: 760px;
+    font-size: 20px;
+    line-height: 1.4;
+    color: #616161;
+}
+
+.tech-scroll-cue {
+    margin-top: 48px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #212121;
+}
+
+.tech-scroll-cue span {
+    display: inline-block;
+    margin-left: 6px;
+    animation: tech-bob 1.6s ease-in-out infinite;
+}
+
+@keyframes tech-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tech-scroll-cue span { animation: none; }
+}
+
+/* Tall scroll track; the stage sticks to the viewport while the animation scrubs */
+.tech-track {
+    position: relative;
+    height: 700vh;
+    background: #eef0f3;
+}
+
+.tech-stage {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 92px; /* keep the 3D frame below the floating navbar */
+    display: flex;
+    flex-direction: column;
+}
+
+.tech-canvas {
+    display: block;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+@media (max-width: 768px) {
+    .tech-stage {
+        padding-top: 76px;
+    }
+}
+
+.tech-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: #eef0f3;
+    color: #616161;
+    font-size: 16px;
+    transition: opacity 0.4s ease;
+}
+
+.tech-loading.is-done {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tech-loadbar,
+.tech-progress {
+    display: block;
+    height: 3px;
+    background: #d6d6d6;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.tech-loadbar {
+    width: 220px;
+}
+
+.tech-loadbar i,
+.tech-progress i {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #212121;
+}
+
+.tech-progress {
+    position: absolute;
+    left: clamp(24px, 8.3vw, 120px);
+    right: clamp(24px, 8.3vw, 120px);
+    bottom: 32px;
+}
+
+.tech-next {
+    padding: 120px clamp(24px, 8.3vw, 120px) 160px;
+    text-align: center;
+}
+
+.tech-next .tech-sub {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tech-next-title {
+    margin: 0;
+    font-size: clamp(32px, 3.9vw, 56px);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.tech-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.tech .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 52px;
+    padding: 10px;
+    border: 1.5px solid #212121;
+    border-radius: 12px;
+    background: transparent;
+    color: #212121;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+}
+
+.tech .btn:focus-visible,
+.tech-scroll-cue:focus-visible {
+    outline: 1.5px solid #212121;
+    outline-offset: 2px;
+}
