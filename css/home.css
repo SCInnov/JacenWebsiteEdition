@@ -181,7 +181,7 @@ a {
     text-transform: none;
 }
 
-.partners {
+.supporters {
     position: absolute;
     left: 0;
     top: 1184px;
@@ -189,22 +189,29 @@ a {
     height: 121px;
 }
 
-.partners .eyebrow {
+.supporters .eyebrow {
     text-align: center;
 }
 
-.partner-row {
+.supporter-row {
     position: absolute;
-    left: 416px;
+    left: 0;
+    right: 0;
     top: 41px;
+    height: 72px;
     display: flex;
-    gap: 96px;
+    align-items: center;
+    justify-content: center;
+    gap: 72px;
 }
 
-.partner-mark {
-    width: 80px;
-    height: 80px;
-    background: #e0e0e0;
+.supporter-logo {
+    display: block;
+    height: 72px;
+    width: auto;
+    max-width: 280px;
+    object-fit: contain;
+    background: transparent;
 }
 
 .news {
