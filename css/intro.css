@@ -2,7 +2,7 @@
    through the logo's own frame (bounded by its lines) and zooms up until it
    fills the screen. */
 .intro-overlay {
-    --logo-size: 220px;
+    --logo-size: 275px;
     position: fixed;
     inset: 0;
     z-index: 100;
