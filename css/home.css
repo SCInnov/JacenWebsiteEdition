@@ -1,4 +1,16 @@
-/* SCI home frame (Figma node 2:2), 1440 × 4096 */
+/* SCI home frame (Figma node 2:2), 1440 × 4096
+   Styled to the Second Chance brand book:
+   Roboto / Roboto Bold, teal #006D8F text, #00466C emphasis,
+   sage #AFC8A0 outlines, #EBEBEB shapes, cream #FFFCF7 background. */
+:root {
+    --sc-teal: #006d8f;
+    --sc-navy: #00466c;
+    --sc-sage: #afc8a0;
+    --sc-mist: #ebebeb;
+    --sc-cream: #fffcf7;
+    --sc-charcoal: #474747;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -6,12 +18,16 @@
 html,
 body {
     margin: 0;
-    background: #fffcf7;
-    color: #212121;
+    background: var(--sc-cream);
+    color: var(--sc-charcoal);
+}
+
+html {
+    overflow-x: clip;
 }
 
 body {
-    font-family: Inter, sans-serif;
+    font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -42,16 +58,76 @@ a {
     width: 1440px;
     height: 4096px;
     margin: 0 auto;
-    overflow: hidden;
+    /* clip vertically to the scaled frame, but let full-bleed bands run past the sides */
+    overflow-x: visible;
+    overflow-y: clip;
 }
 
 .home {
     position: relative;
     width: 1440px;
     height: 4096px;
-    background: #fffcf7;
+    background: var(--sc-cream);
     transform-origin: top left;
 }
+
+/* ---------- Brand motifs ---------- */
+
+/* Corner circuit graphic (brand book p.5), tinted via CSS mask */
+.corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    -webkit-mask: url("../public/brand-corner.svg") no-repeat top right / contain;
+    mask: url("../public/brand-corner.svg") no-repeat top right / contain;
+    pointer-events: none;
+}
+
+/* Title bracket: sage vertical rule with open circle terminals (brand book p.4–8) */
+.bracket {
+    padding-left: 24px;
+}
+
+.bracket::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background:
+        radial-gradient(circle, transparent 2.5px, var(--sc-sage) 3px, var(--sc-sage) 4.5px, transparent 5px) top center / 10px 10px no-repeat,
+        radial-gradient(circle, transparent 2.5px, var(--sc-sage) 3px, var(--sc-sage) 4.5px, transparent 5px) bottom center / 10px 10px no-repeat,
+        linear-gradient(var(--sc-sage), var(--sc-sage)) center / 2px calc(100% - 18px) no-repeat;
+}
+
+.section-head {
+    position: absolute;
+    left: 96px;
+    top: 0;
+    margin: 0;
+}
+
+.section-head h2 {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    color: var(--sc-teal);
+}
+
+.section-sub {
+    margin: 4px 0 0;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 26px;
+    color: var(--sc-teal);
+}
+
+/* ---------- Hero ---------- */
 
 .hero {
     position: absolute;
@@ -59,7 +135,7 @@ a {
     top: 0;
     width: 1440px;
     height: 1024px;
-    background: #fffcf7;
+    background: var(--sc-cream);
     overflow: hidden;
 }
 
@@ -71,71 +147,27 @@ a {
     pointer-events: none;
 }
 
-.menu {
-    position: absolute;
-    left: 80px;
-    top: 20px;
-    width: 1280px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 32px;
-    background: #fff;
-    border: 1px solid #bdbdbd;
-    border-radius: 12px;
-    z-index: 2;
-}
-
-.menu-logo {
-    display: block;
-    width: 297px;
-    height: 40px;
-}
-
-.menu-logo img {
-    display: block;
-    width: 297px;
-    height: 40px;
-}
-
-.menu-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19px;
-    color: #000;
-}
-
-.menu-links a:last-child {
-    color: #212121;
+.hero-x line {
+    stroke: var(--sc-sage);
+    stroke-width: 1.5;
 }
 
 .hero-title {
     position: absolute;
     left: 120px;
-    top: 311px;
-    width: 869px;
+    top: 280px;
+    width: 900px;
     margin: 0;
     font-size: 72px;
-    font-weight: 600;
-    line-height: 87px;
-    letter-spacing: 0;
-    color: #212121;
+    font-weight: 700;
+    line-height: 84px;
+    letter-spacing: -0.005em;
+    color: var(--sc-teal);
 }
 
-.hero-sub {
-    position: absolute;
-    left: 120px;
-    top: 596px;
-    width: 869px;
-    margin: 0;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    color: #616161;
+.hero-title em {
+    font-style: normal;
+    color: var(--sc-navy);
 }
 
 .hero-actions,
@@ -145,10 +177,24 @@ a {
     gap: 16px;
 }
 
+.hero-sub {
+    position: absolute;
+    left: 120px;
+    top: 560px;
+    width: 869px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 30px;
+    color: var(--sc-charcoal);
+}
+
 .hero-actions {
     left: 120px;
-    top: 660px;
+    top: 626px;
 }
+
+/* ---------- Buttons ---------- */
 
 .btn {
     display: inline-flex;
@@ -157,29 +203,63 @@ a {
     width: 240px;
     height: 52px;
     padding: 10px;
-    border: 1.5px solid #212121;
+    border: 1.5px solid var(--sc-teal);
     border-radius: 12px;
     background: transparent;
-    color: #212121;
+    color: var(--sc-teal);
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 19px;
+    letter-spacing: 0.02em;
     cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+    border-color: var(--sc-navy);
+    color: var(--sc-navy);
+    background: rgba(0, 109, 143, 0.06);
+}
+
+.btn-primary {
+    background: var(--sc-teal);
+    color: var(--sc-cream);
+}
+
+.btn-primary:hover {
+    background: var(--sc-navy);
+    border-color: var(--sc-navy);
+    color: var(--sc-cream);
 }
 
 .btn-compact {
     width: 136px;
 }
 
+.subscribe-row .btn,
+.message .btn {
+    background: var(--sc-teal);
+    color: var(--sc-cream);
+}
+
+.subscribe-row .btn:hover,
+.message .btn:hover {
+    background: var(--sc-navy);
+    border-color: var(--sc-navy);
+    color: var(--sc-cream);
+}
+
 .eyebrow {
     margin: 0;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 17px;
-    letter-spacing: 0.08em;
-    color: #757575;
-    text-transform: none;
+    letter-spacing: 0.12em;
+    color: var(--sc-teal);
+    text-transform: uppercase;
 }
+
+/* ---------- Supporters ---------- */
 
 .supporters {
     position: absolute;
@@ -214,6 +294,8 @@ a {
     background: transparent;
 }
 
+/* ---------- News ---------- */
+
 .news {
     position: absolute;
     left: 0;
@@ -222,8 +304,6 @@ a {
     height: 643px;
 }
 
-.news .eyebrow,
-.news-title,
 .featured-date,
 .featured-title {
     position: absolute;
@@ -231,16 +311,10 @@ a {
     margin: 0;
 }
 
-.news .eyebrow {
-    top: 0;
-}
-
-.news-title {
-    top: 33px;
-    width: 326px;
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 48px;
+/* Image placeholders: brand "shape" grey with the sage circuit icon */
+.featured-shot,
+.news-thumb {
+    background: var(--sc-mist) url("../public/Second Chance Icon.svg") no-repeat center;
 }
 
 .featured-shot {
@@ -249,15 +323,9 @@ a {
     top: 129px;
     width: 690px;
     height: 431px;
-    background: #e0e0e0;
+    background-size: 132px;
     border-radius: 16px;
     overflow: hidden;
-}
-
-.featured-shot svg {
-    display: block;
-    width: 690px;
-    height: 431px;
 }
 
 .featured-date {
@@ -266,15 +334,16 @@ a {
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
-    color: #757575;
+    color: var(--sc-charcoal);
 }
 
 .featured-title {
     top: 609px;
     width: 690px;
     font-size: 28px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 34px;
+    color: var(--sc-teal);
 }
 
 .news-list {
@@ -290,11 +359,11 @@ a {
 .news-list li {
     position: relative;
     height: 161px;
-    border-top: 1px solid #bdbdbd;
+    border-top: 1.5px solid var(--sc-sage);
 }
 
 .news-list li:last-child {
-    border-bottom: 1px solid #bdbdbd;
+    border-bottom: 1.5px solid var(--sc-sage);
 }
 
 .news-copy {
@@ -309,14 +378,15 @@ a {
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
-    color: #757575;
+    color: var(--sc-charcoal);
 }
 
 .news-item-title {
     margin: 8px 0 0;
     font-size: 28px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 34px;
+    color: var(--sc-teal);
 }
 
 .news-thumb {
@@ -325,9 +395,11 @@ a {
     top: 25px;
     width: 112px;
     height: 112px;
-    background: #e0e0e0;
+    background-size: 44px;
     border-radius: 12px;
 }
+
+/* ---------- Next steps (alternate teal background) ---------- */
 
 .next {
     position: absolute;
@@ -336,10 +408,33 @@ a {
     width: 1440px;
     height: 237px;
     text-align: center;
+    z-index: 0;
+}
+
+.next::before {
+    content: "";
+    position: absolute;
+    /* full-bleed: extend past the 1440px frame to both screen edges */
+    left: min(0px, calc(720px - 50vw));
+    right: min(0px, calc(720px - 50vw));
+    top: -63px;
+    bottom: -96px;
+    background: var(--sc-teal);
+    z-index: -1;
+}
+
+.next-corner {
+    top: -63px;
+    right: min(0px, calc(720px - 50vw));
+    width: 300px;
+    height: 301px;
+    background: var(--sc-sage);
+    opacity: 0.5;
 }
 
 .next .eyebrow {
     text-align: center;
+    color: var(--sc-sage);
 }
 
 .next-title {
@@ -349,8 +444,9 @@ a {
     width: 1110px;
     margin: 0;
     font-size: 56px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 68px;
+    color: var(--sc-cream);
 }
 
 .next-sub {
@@ -362,13 +458,35 @@ a {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-    color: #616161;
+    color: var(--sc-cream);
 }
 
 .next-actions {
     left: 472px;
     top: 185px;
 }
+
+.next .btn {
+    border-color: var(--sc-cream);
+    color: var(--sc-cream);
+}
+
+.next .btn:hover {
+    background: rgba(255, 252, 247, 0.12);
+}
+
+.next .btn-primary {
+    background: var(--sc-cream);
+    color: var(--sc-teal);
+}
+
+.next .btn-primary:hover {
+    background: var(--sc-mist);
+    border-color: var(--sc-mist);
+    color: var(--sc-navy);
+}
+
+/* ---------- Contact ---------- */
 
 .contact {
     position: absolute;
@@ -378,10 +496,7 @@ a {
     height: 465px;
 }
 
-.contact-eyebrow,
-.contact-title,
-.contact-lede,
-.contact h3,
+.contact .journey-title,
 .contact-note,
 .rule {
     position: absolute;
@@ -389,25 +504,14 @@ a {
     margin: 0;
 }
 
-.contact-eyebrow {
-    top: 0;
+.contact-head {
+    width: 520px;
 }
 
-.contact-title {
-    top: 33px;
-    width: 537px;
-    font-size: 40px;
-    font-weight: 600;
-    line-height: 48px;
-}
-
-.contact-lede {
-    top: 97px;
-    width: 379px;
+.contact-head .section-sub {
     font-size: 18px;
-    font-weight: 400;
     line-height: 22px;
-    color: #616161;
+    margin-top: 6px;
 }
 
 .rule {
@@ -415,7 +519,7 @@ a {
     width: 486px;
     height: 0;
     border: 0;
-    border-top: 1px solid #bdbdbd;
+    border-top: 1.5px solid var(--sc-sage);
 }
 
 .rule-lower {
@@ -424,10 +528,11 @@ a {
 
 .journey-title {
     top: 192px;
-    width: 172px;
+    width: 240px;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 24px;
+    color: var(--sc-teal);
 }
 
 .contact-note {
@@ -435,7 +540,7 @@ a {
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
-    color: #616161;
+    color: var(--sc-charcoal);
 }
 
 .note-partner {
@@ -465,9 +570,9 @@ a {
 .area {
     display: block;
     background: #fff;
-    border: 1.5px solid #bdbdbd;
+    border: 1.5px solid var(--sc-sage);
     border-radius: 12px;
-    color: #212121;
+    color: var(--sc-charcoal);
     font-size: 16px;
     font-weight: 400;
     line-height: 19px;
@@ -481,15 +586,20 @@ a {
 
 .field::placeholder,
 .area::placeholder {
-    color: #9e9e9e;
+    color: rgba(71, 71, 71, 0.6);
     opacity: 1;
 }
 
 .field:focus,
-.area:focus,
+.area:focus {
+    border-color: var(--sc-teal);
+    outline: 2px solid rgba(0, 109, 143, 0.25);
+    outline-offset: 1px;
+}
+
 .btn:focus-visible,
 .menu-links a:focus-visible {
-    outline: 1.5px solid #212121;
+    outline: 2px solid var(--sc-navy);
     outline-offset: 2px;
 }
 
@@ -504,8 +614,9 @@ a {
     position: static;
     margin: 0;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 24px;
+    color: var(--sc-teal);
 }
 
 .message-grid {
@@ -519,8 +630,9 @@ a {
     display: block;
     margin: 0 0 8px;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 17px;
+    color: var(--sc-charcoal);
 }
 
 .message .field,
@@ -539,5 +651,6 @@ a {
 }
 
 .message .btn {
+    width: 168px;
     margin-top: 24px;
 }
