@@ -1,4 +1,4 @@
-/* SCI home frame (Figma node 2:2), 1440 × 4096
+/* SCI home frame (Figma node 2:2), 1440 × 5000
    Styled to the Second Chance brand book:
    Roboto / Roboto Bold, teal #006D8F text, #00466C emphasis,
    sage #AFC8A0 outlines, #EBEBEB shapes, cream #FFFCF7 background. */
@@ -56,7 +56,7 @@ a {
 
 .viewport {
     width: 1440px;
-    height: 4096px;
+    height: 5000px;
     margin: 0 auto;
     /* clip vertically to the scaled frame, but let full-bleed bands run past the sides */
     overflow-x: visible;
@@ -66,7 +66,7 @@ a {
 .home {
     position: relative;
     width: 1440px;
-    height: 4096px;
+    height: 5000px;
     background: var(--sc-cream);
     transform-origin: top left;
 }
@@ -114,8 +114,6 @@ a {
     font-size: 40px;
     font-weight: 700;
     line-height: 48px;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
     color: var(--sc-teal);
 }
 
@@ -125,6 +123,131 @@ a {
     font-weight: 400;
     line-height: 26px;
     color: var(--sc-teal);
+}
+
+/* ---------- Page wash ----------
+   One full-bleed background behind every section, so the cream, the light teal
+   washes, the teal band and the footer all blend with long, eased fades. */
+
+.page-wash {
+    position: absolute;
+    top: 0;
+    left: min(0px, calc(720px - 50vw));
+    right: min(0px, calc(720px - 50vw));
+    height: 5000px;
+    pointer-events: none;
+    background: linear-gradient(to bottom,
+        rgba(0, 109, 143, 0) 0px,
+        rgba(0, 109, 143, 0.0) 1297px,
+        rgba(0, 109, 143, 0.0004) 1317px,
+        rgba(0, 109, 143, 0.0025) 1337px,
+        rgba(0, 109, 143, 0.0072) 1357px,
+        rgba(0, 109, 143, 0.0147) 1377px,
+        rgba(0, 109, 143, 0.0243) 1397px,
+        rgba(0, 109, 143, 0.035) 1417px,
+        rgba(0, 109, 143, 0.0457) 1437px,
+        rgba(0, 109, 143, 0.0553) 1457px,
+        rgba(0, 109, 143, 0.0628) 1477px,
+        rgba(0, 109, 143, 0.0675) 1497px,
+        rgba(0, 109, 143, 0.0696) 1517px,
+        rgba(0, 109, 143, 0.07) 1537px,
+        rgba(0, 109, 143, 0.07) 1880px,
+        rgba(0, 109, 143, 0.0716) 1900px,
+        rgba(0, 109, 143, 0.0765) 1920px,
+        rgba(0, 109, 143, 0.0855) 1940px,
+        rgba(0, 109, 143, 0.0993) 1960px,
+        rgba(0, 109, 143, 0.1182) 1980px,
+        rgba(0, 109, 143, 0.1424) 2000px,
+        rgba(0, 109, 143, 0.1719) 2020px,
+        rgba(0, 109, 143, 0.2064) 2040px,
+        rgba(0, 109, 143, 0.2455) 2060px,
+        rgba(0, 109, 143, 0.2887) 2080px,
+        rgba(0, 109, 143, 0.3353) 2100px,
+        rgba(0, 109, 143, 0.3847) 2120px,
+        rgba(0, 109, 143, 0.436) 2140px,
+        rgba(0, 109, 143, 0.4885) 2160px,
+        rgba(0, 109, 143, 0.5413) 2180px,
+        rgba(0, 109, 143, 0.5936) 2200px,
+        rgba(0, 109, 143, 0.6448) 2220px,
+        rgba(0, 109, 143, 0.6942) 2240px,
+        rgba(0, 109, 143, 0.7414) 2260px,
+        rgba(0, 109, 143, 0.7858) 2280px,
+        rgba(0, 109, 143, 0.8273) 2300px,
+        rgba(0, 109, 143, 0.866) 2320px,
+        rgba(0, 109, 143, 0.902) 2340px,
+        rgba(0, 109, 143, 0.9357) 2360px,
+        rgba(0, 109, 143, 0.9681) 2380px,
+        rgba(0, 109, 143, 1) 2400px,
+        rgba(0, 109, 143, 1.0) 2796px,
+        rgba(0, 109, 143, 0.9681) 2816px,
+        rgba(0, 109, 143, 0.9359) 2836px,
+        rgba(0, 109, 143, 0.9025) 2856px,
+        rgba(0, 109, 143, 0.8672) 2876px,
+        rgba(0, 109, 143, 0.8295) 2896px,
+        rgba(0, 109, 143, 0.7892) 2916px,
+        rgba(0, 109, 143, 0.7461) 2936px,
+        rgba(0, 109, 143, 0.7005) 2956px,
+        rgba(0, 109, 143, 0.6525) 2976px,
+        rgba(0, 109, 143, 0.6025) 2996px,
+        rgba(0, 109, 143, 0.5511) 3016px,
+        rgba(0, 109, 143, 0.4987) 3036px,
+        rgba(0, 109, 143, 0.4459) 3056px,
+        rgba(0, 109, 143, 0.3936) 3076px,
+        rgba(0, 109, 143, 0.3423) 3096px,
+        rgba(0, 109, 143, 0.2927) 3116px,
+        rgba(0, 109, 143, 0.2456) 3136px,
+        rgba(0, 109, 143, 0.2015) 3156px,
+        rgba(0, 109, 143, 0.1611) 3176px,
+        rgba(0, 109, 143, 0.1248) 3196px,
+        rgba(0, 109, 143, 0.093) 3216px,
+        rgba(0, 109, 143, 0.066) 3236px,
+        rgba(0, 109, 143, 0.0439) 3256px,
+        rgba(0, 109, 143, 0.0267) 3276px,
+        rgba(0, 109, 143, 0.0142) 3296px,
+        rgba(0, 109, 143, 0.006) 3316px,
+        rgba(0, 109, 143, 0.0015) 3336px,
+        rgba(0, 109, 143, 0) 3356px,
+        rgba(0, 109, 143, 0.0) 3831px,
+        rgba(0, 109, 143, 0.0004) 3851px,
+        rgba(0, 109, 143, 0.0025) 3871px,
+        rgba(0, 109, 143, 0.0072) 3891px,
+        rgba(0, 109, 143, 0.0147) 3911px,
+        rgba(0, 109, 143, 0.0243) 3931px,
+        rgba(0, 109, 143, 0.035) 3951px,
+        rgba(0, 109, 143, 0.0457) 3971px,
+        rgba(0, 109, 143, 0.0553) 3991px,
+        rgba(0, 109, 143, 0.0628) 4011px,
+        rgba(0, 109, 143, 0.0675) 4031px,
+        rgba(0, 109, 143, 0.0696) 4051px,
+        rgba(0, 109, 143, 0.07) 4071px,
+        rgba(0, 109, 143, 0.07) 4321px,
+        rgba(0, 109, 143, 0.0716) 4341px,
+        rgba(0, 109, 143, 0.0765) 4361px,
+        rgba(0, 109, 143, 0.0855) 4381px,
+        rgba(0, 109, 143, 0.0993) 4401px,
+        rgba(0, 109, 143, 0.1182) 4421px,
+        rgba(0, 109, 143, 0.1424) 4441px,
+        rgba(0, 109, 143, 0.1719) 4461px,
+        rgba(0, 109, 143, 0.2064) 4481px,
+        rgba(0, 109, 143, 0.2455) 4501px,
+        rgba(0, 109, 143, 0.2887) 4521px,
+        rgba(0, 109, 143, 0.3353) 4541px,
+        rgba(0, 109, 143, 0.3847) 4561px,
+        rgba(0, 109, 143, 0.436) 4581px,
+        rgba(0, 109, 143, 0.4885) 4601px,
+        rgba(0, 109, 143, 0.5413) 4621px,
+        rgba(0, 109, 143, 0.5936) 4641px,
+        rgba(0, 109, 143, 0.6448) 4661px,
+        rgba(0, 109, 143, 0.6942) 4681px,
+        rgba(0, 109, 143, 0.7414) 4701px,
+        rgba(0, 109, 143, 0.7858) 4721px,
+        rgba(0, 109, 143, 0.8273) 4741px,
+        rgba(0, 109, 143, 0.866) 4761px,
+        rgba(0, 109, 143, 0.902) 4781px,
+        rgba(0, 109, 143, 0.9357) 4801px,
+        rgba(0, 109, 143, 0.9681) 4821px,
+        rgba(0, 109, 143, 1) 4841px,
+        rgba(0, 109, 143, 1) 5000px);
 }
 
 /* ---------- Hero ---------- */
@@ -167,7 +290,7 @@ a {
 
 .hero-title em {
     font-style: normal;
-    color: var(--sc-navy);
+    color: inherit;
 }
 
 .hero-actions,
@@ -192,6 +315,18 @@ a {
 .hero-actions {
     left: 120px;
     top: 626px;
+}
+
+/* soft fade from the hero into the page (also blends the future hero photo) */
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 260px;
+    background: linear-gradient(to bottom, rgba(255, 252, 247, 0), var(--sc-cream));
+    pointer-events: none;
 }
 
 /* ---------- Buttons ---------- */
@@ -294,12 +429,93 @@ a {
     background: transparent;
 }
 
+/* ---------- Features: Intelligent Support / Everyday Independence ---------- */
+
+.features {
+    position: absolute;
+    left: 0;
+    top: 1457px;
+    width: 1440px;
+    height: 540px;
+    z-index: 0;
+}
+
+.feature {
+    position: absolute;
+    top: 0;
+    width: 580px;
+}
+
+.feature-1 {
+    left: 120px;
+}
+
+.feature-2 {
+    left: 740px;
+}
+
+.feature-shot {
+    box-shadow: 0 18px 40px rgba(0, 70, 108, 0.08);
+    width: 580px;
+    height: 400px;
+    border-radius: 16px;
+    background:
+        linear-gradient(to top right, transparent calc(50% - 0.75px), #c4ccbe calc(50% - 0.75px), #c4ccbe calc(50% + 0.75px), transparent calc(50% + 0.75px)),
+        linear-gradient(to bottom right, transparent calc(50% - 0.75px), #c4ccbe calc(50% - 0.75px), #c4ccbe calc(50% + 0.75px), transparent calc(50% + 0.75px)),
+        var(--sc-mist);
+}
+
+.feature-title {
+    margin: 32px 0 0;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 40px;
+    color: var(--sc-teal);
+}
+
+.feature-copy {
+    margin: 12px 0 0;
+    max-width: 520px;
+    font-size: 18px;
+    line-height: 28px;
+    color: var(--sc-charcoal);
+}
+
+/* ---------- Scroll reveal (only when JS is running) ---------- */
+
+html {
+    scroll-behavior: smooth;
+}
+
+.reveal-ready .reveal {
+    opacity: 0;
+    translate: 0 28px;
+    transition: opacity 0.8s ease, translate 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal-ready .reveal.is-in {
+    opacity: 1;
+    translate: 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .reveal-ready .reveal {
+        opacity: 1;
+        translate: none;
+        transition: none;
+    }
+}
+
 /* ---------- News ---------- */
 
 .news {
     position: absolute;
     left: 0;
-    top: 1465px;
+    top: 3188px;
     width: 1440px;
     height: 643px;
 }
@@ -318,9 +534,10 @@ a {
 }
 
 .featured-shot {
+    box-shadow: 0 18px 40px rgba(0, 70, 108, 0.08);
     position: absolute;
     left: 120px;
-    top: 129px;
+    top: 128px;
     width: 690px;
     height: 431px;
     background-size: 132px;
@@ -349,7 +566,7 @@ a {
 .news-list {
     position: absolute;
     left: 834px;
-    top: 129px;
+    top: 128px;
     width: 486px;
     margin: 0;
     padding: 0;
@@ -404,32 +621,30 @@ a {
 .next {
     position: absolute;
     left: 0;
-    top: 2268px;
+    top: 2463px;
     width: 1440px;
     height: 237px;
     text-align: center;
     z-index: 0;
 }
 
-.next::before {
-    content: "";
-    position: absolute;
-    /* full-bleed: extend past the 1440px frame to both screen edges */
-    left: min(0px, calc(720px - 50vw));
-    right: min(0px, calc(720px - 50vw));
-    top: -63px;
-    bottom: -96px;
-    background: var(--sc-teal);
-    z-index: -1;
-}
 
 .next-corner {
-    top: -63px;
+    top: -140px;
     right: min(0px, calc(720px - 50vw));
-    width: 300px;
-    height: 301px;
+    width: 340px;
+    height: 341px;
     background: var(--sc-sage);
     opacity: 0.5;
+    /* circuit shape, faded in at the top and out at the bottom */
+    -webkit-mask:
+        url("../public/brand-corner.svg") no-repeat top right / contain,
+        linear-gradient(to bottom, transparent 0%, #000 45%, #000 65%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask:
+        url("../public/brand-corner.svg") no-repeat top right / contain,
+        linear-gradient(to bottom, transparent 0%, #000 45%, #000 65%, transparent 100%);
+    mask-composite: intersect;
 }
 
 .next .eyebrow {
@@ -490,8 +705,9 @@ a {
 
 .contact {
     position: absolute;
+    z-index: 0;
     left: 0;
-    top: 2665px;
+    top: 3991px;
     width: 1440px;
     height: 465px;
 }
@@ -653,4 +869,46 @@ a {
 .message .btn {
     width: 168px;
     margin-top: 24px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+    position: absolute;
+    left: 120px;
+    right: 120px;
+    top: 4891px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: var(--sc-cream);
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.footer-links {
+    display: flex;
+    gap: 32px;
+    font-weight: 500;
+}
+
+.site-footer a {
+    color: var(--sc-cream);
+}
+
+.site-footer a:hover {
+    color: var(--sc-sage);
 }

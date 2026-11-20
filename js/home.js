@@ -6,11 +6,25 @@
         var scale = Math.min(1, document.documentElement.clientWidth / 1440);
         home.style.transform = 'scale(' + scale + ')';
         viewport.style.width = (1440 * scale) + 'px';
-        viewport.style.height = (4096 * scale) + 'px';
+        viewport.style.height = (5000 * scale) + 'px';
     }
 
     fit();
     window.addEventListener('resize', fit);
+
+    // Gentle fade-up as each section scrolls into view
+    if ('IntersectionObserver' in window) {
+        document.documentElement.classList.add('reveal-ready');
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-in');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    }
 
     document.querySelectorAll('a[href="#"]').forEach(function (link) {
         link.addEventListener('click', function (event) {
