@@ -1,12 +1,20 @@
 (function () {
-    var viewport = document.getElementById('viewport');
-    var home = document.getElementById('top');
+    // The page is two fixed 1440px-wide frames (hero + partners, and
+    // news + contact + footer) scaled to fit the window, with the Rebo story
+    // flowing normally between them.
+    var frames = [
+        { vp: document.getElementById('viewport'), el: document.getElementById('top'), h: 1024 },
+        { vp: document.getElementById('viewport-lower'), el: document.getElementById('lower'), h: 1789 }
+    ];
 
     function fit() {
         var scale = Math.min(1, document.documentElement.clientWidth / 1440);
-        home.style.transform = 'scale(' + scale + ')';
-        viewport.style.width = (1440 * scale) + 'px';
-        viewport.style.height = (5000 * scale) + 'px';
+        frames.forEach(function (f) {
+            if (!f.vp || !f.el) return;
+            f.el.style.transform = 'scale(' + scale + ')';
+            f.vp.style.width = (1440 * scale) + 'px';
+            f.vp.style.height = (f.h * scale) + 'px';
+        });
     }
 
     fit();

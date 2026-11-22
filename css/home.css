@@ -1,8 +1,13 @@
-/* SCI home frame (Figma node 2:2), 1440 × 5000
+/* SCI home frame (Figma node 2:2), 1440 wide: hero/partners frame and news/contact/footer frame
    Styled to the Second Chance brand book:
    Roboto / Roboto Bold, teal #006D8F text, #00466C emphasis,
    sage #AFC8A0 outlines, #EBEBEB shapes, cream #FFFCF7 background. */
 :root {
+    --sc-ink: #0b2a3a;
+    --sc-sand: #f4ecdf;
+    --sc-tide: #e4f1f3;
+    --sc-clay: #e07a4f;
+    --sc-clay-text: #9e4a26;
     --sc-teal: #006d8f;
     --sc-navy: #00466c;
     --sc-sage: #afc8a0;
@@ -56,7 +61,7 @@ a {
 
 .viewport {
     width: 1440px;
-    height: 5000px;
+    height: 1024px;
     margin: 0 auto;
     /* clip vertically to the scaled frame, but let full-bleed bands run past the sides */
     overflow-x: visible;
@@ -66,9 +71,15 @@ a {
 .home {
     position: relative;
     width: 1440px;
-    height: 5000px;
+    height: 1024px;
     background: var(--sc-cream);
     transform-origin: top left;
+}
+
+/* lower frame: news, contact and footer */
+.viewport-lower,
+.home-lower {
+    height: 1789px;
 }
 
 /* ---------- Brand motifs ---------- */
@@ -104,7 +115,7 @@ a {
 
 .section-head {
     position: absolute;
-    left: 96px;
+    left: 120px;
     top: 0;
     margin: 0;
 }
@@ -112,8 +123,9 @@ a {
 .section-head h2 {
     margin: 0;
     font-size: 40px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 48px;
+    letter-spacing: -0.02em;
     color: var(--sc-teal);
 }
 
@@ -134,120 +146,49 @@ a {
     top: 0;
     left: min(0px, calc(720px - 50vw));
     right: min(0px, calc(720px - 50vw));
-    height: 5000px;
+    height: 1789px;
     pointer-events: none;
     background: linear-gradient(to bottom,
-        rgba(0, 109, 143, 0) 0px,
-        rgba(0, 109, 143, 0.0) 1297px,
-        rgba(0, 109, 143, 0.0004) 1317px,
-        rgba(0, 109, 143, 0.0025) 1337px,
-        rgba(0, 109, 143, 0.0072) 1357px,
-        rgba(0, 109, 143, 0.0147) 1377px,
-        rgba(0, 109, 143, 0.0243) 1397px,
-        rgba(0, 109, 143, 0.035) 1417px,
-        rgba(0, 109, 143, 0.0457) 1437px,
-        rgba(0, 109, 143, 0.0553) 1457px,
-        rgba(0, 109, 143, 0.0628) 1477px,
-        rgba(0, 109, 143, 0.0675) 1497px,
-        rgba(0, 109, 143, 0.0696) 1517px,
-        rgba(0, 109, 143, 0.07) 1537px,
-        rgba(0, 109, 143, 0.07) 1880px,
-        rgba(0, 109, 143, 0.0716) 1900px,
-        rgba(0, 109, 143, 0.0765) 1920px,
-        rgba(0, 109, 143, 0.0855) 1940px,
-        rgba(0, 109, 143, 0.0993) 1960px,
-        rgba(0, 109, 143, 0.1182) 1980px,
-        rgba(0, 109, 143, 0.1424) 2000px,
-        rgba(0, 109, 143, 0.1719) 2020px,
-        rgba(0, 109, 143, 0.2064) 2040px,
-        rgba(0, 109, 143, 0.2455) 2060px,
-        rgba(0, 109, 143, 0.2887) 2080px,
-        rgba(0, 109, 143, 0.3353) 2100px,
-        rgba(0, 109, 143, 0.3847) 2120px,
-        rgba(0, 109, 143, 0.436) 2140px,
-        rgba(0, 109, 143, 0.4885) 2160px,
-        rgba(0, 109, 143, 0.5413) 2180px,
-        rgba(0, 109, 143, 0.5936) 2200px,
-        rgba(0, 109, 143, 0.6448) 2220px,
-        rgba(0, 109, 143, 0.6942) 2240px,
-        rgba(0, 109, 143, 0.7414) 2260px,
-        rgba(0, 109, 143, 0.7858) 2280px,
-        rgba(0, 109, 143, 0.8273) 2300px,
-        rgba(0, 109, 143, 0.866) 2320px,
-        rgba(0, 109, 143, 0.902) 2340px,
-        rgba(0, 109, 143, 0.9357) 2360px,
-        rgba(0, 109, 143, 0.9681) 2380px,
-        rgba(0, 109, 143, 1) 2400px,
-        rgba(0, 109, 143, 1.0) 2796px,
-        rgba(0, 109, 143, 0.9681) 2816px,
-        rgba(0, 109, 143, 0.9359) 2836px,
-        rgba(0, 109, 143, 0.9025) 2856px,
-        rgba(0, 109, 143, 0.8672) 2876px,
-        rgba(0, 109, 143, 0.8295) 2896px,
-        rgba(0, 109, 143, 0.7892) 2916px,
-        rgba(0, 109, 143, 0.7461) 2936px,
-        rgba(0, 109, 143, 0.7005) 2956px,
-        rgba(0, 109, 143, 0.6525) 2976px,
-        rgba(0, 109, 143, 0.6025) 2996px,
-        rgba(0, 109, 143, 0.5511) 3016px,
-        rgba(0, 109, 143, 0.4987) 3036px,
-        rgba(0, 109, 143, 0.4459) 3056px,
-        rgba(0, 109, 143, 0.3936) 3076px,
-        rgba(0, 109, 143, 0.3423) 3096px,
-        rgba(0, 109, 143, 0.2927) 3116px,
-        rgba(0, 109, 143, 0.2456) 3136px,
-        rgba(0, 109, 143, 0.2015) 3156px,
-        rgba(0, 109, 143, 0.1611) 3176px,
-        rgba(0, 109, 143, 0.1248) 3196px,
-        rgba(0, 109, 143, 0.093) 3216px,
-        rgba(0, 109, 143, 0.066) 3236px,
-        rgba(0, 109, 143, 0.0439) 3256px,
-        rgba(0, 109, 143, 0.0267) 3276px,
-        rgba(0, 109, 143, 0.0142) 3296px,
-        rgba(0, 109, 143, 0.006) 3316px,
-        rgba(0, 109, 143, 0.0015) 3336px,
-        rgba(0, 109, 143, 0) 3356px,
-        rgba(0, 109, 143, 0.0) 3831px,
-        rgba(0, 109, 143, 0.0004) 3851px,
-        rgba(0, 109, 143, 0.0025) 3871px,
-        rgba(0, 109, 143, 0.0072) 3891px,
-        rgba(0, 109, 143, 0.0147) 3911px,
-        rgba(0, 109, 143, 0.0243) 3931px,
-        rgba(0, 109, 143, 0.035) 3951px,
-        rgba(0, 109, 143, 0.0457) 3971px,
-        rgba(0, 109, 143, 0.0553) 3991px,
-        rgba(0, 109, 143, 0.0628) 4011px,
-        rgba(0, 109, 143, 0.0675) 4031px,
-        rgba(0, 109, 143, 0.0696) 4051px,
-        rgba(0, 109, 143, 0.07) 4071px,
-        rgba(0, 109, 143, 0.07) 4321px,
-        rgba(0, 109, 143, 0.0716) 4341px,
-        rgba(0, 109, 143, 0.0765) 4361px,
-        rgba(0, 109, 143, 0.0855) 4381px,
-        rgba(0, 109, 143, 0.0993) 4401px,
-        rgba(0, 109, 143, 0.1182) 4421px,
-        rgba(0, 109, 143, 0.1424) 4441px,
-        rgba(0, 109, 143, 0.1719) 4461px,
-        rgba(0, 109, 143, 0.2064) 4481px,
-        rgba(0, 109, 143, 0.2455) 4501px,
-        rgba(0, 109, 143, 0.2887) 4521px,
-        rgba(0, 109, 143, 0.3353) 4541px,
-        rgba(0, 109, 143, 0.3847) 4561px,
-        rgba(0, 109, 143, 0.436) 4581px,
-        rgba(0, 109, 143, 0.4885) 4601px,
-        rgba(0, 109, 143, 0.5413) 4621px,
-        rgba(0, 109, 143, 0.5936) 4641px,
-        rgba(0, 109, 143, 0.6448) 4661px,
-        rgba(0, 109, 143, 0.6942) 4681px,
-        rgba(0, 109, 143, 0.7414) 4701px,
-        rgba(0, 109, 143, 0.7858) 4721px,
-        rgba(0, 109, 143, 0.8273) 4741px,
-        rgba(0, 109, 143, 0.866) 4761px,
-        rgba(0, 109, 143, 0.902) 4781px,
-        rgba(0, 109, 143, 0.9357) 4801px,
-        rgba(0, 109, 143, 0.9681) 4821px,
-        rgba(0, 109, 143, 1) 4841px,
-        rgba(0, 109, 143, 1) 5000px);
+        rgb(240, 215, 197) 0px,
+        rgb(240, 215, 197) 17px,
+        rgb(240, 216, 198) 33px,
+        rgb(240, 217, 200) 50px,
+        rgb(241, 219, 202) 67px,
+        rgb(241, 222, 206) 83px,
+        rgb(242, 226, 210) 100px,
+        rgb(243, 229, 214) 117px,
+        rgb(243, 232, 218) 133px,
+        rgb(244, 234, 220) 150px,
+        rgb(244, 235, 222) 167px,
+        rgb(244, 236, 223) 183px,
+        rgb(244, 236, 223) 200px,
+        rgb(244, 236, 223) 300px,
+        rgb(244, 236, 223) 313px,
+        rgb(243, 236, 224) 327px,
+        rgb(242, 237, 225) 340px,
+        rgb(241, 237, 227) 353px,
+        rgb(238, 238, 230) 367px,
+        rgb(236, 238, 233) 380px,
+        rgb(234, 239, 236) 393px,
+        rgb(231, 240, 239) 407px,
+        rgb(230, 240, 241) 420px,
+        rgb(229, 241, 242) 433px,
+        rgb(228, 241, 243) 447px,
+        rgb(228, 241, 243) 460px,
+        rgb(228, 241, 243) 1078px,
+        rgb(228, 241, 243) 1093px,
+        rgb(229, 241, 242) 1108px,
+        rgb(230, 240, 241) 1123px,
+        rgb(231, 240, 239) 1138px,
+        rgb(234, 239, 236) 1153px,
+        rgb(236, 238, 233) 1168px,
+        rgb(238, 238, 230) 1183px,
+        rgb(241, 237, 227) 1198px,
+        rgb(242, 237, 225) 1213px,
+        rgb(243, 236, 224) 1228px,
+        rgb(244, 236, 223) 1243px,
+        rgb(244, 236, 223) 1258px,
+        rgb(244, 236, 223) 1789px);
 }
 
 /* ---------- Hero ---------- */
@@ -258,7 +199,11 @@ a {
     top: 0;
     width: 1440px;
     height: 1024px;
-    background: var(--sc-cream);
+    /* placeholder backdrop until the hero photo goes in: sand, cream and tide */
+    background:
+        radial-gradient(60% 70% at 100% 0%, rgba(228, 241, 243, 0.95), rgba(228, 241, 243, 0) 70%),
+        radial-gradient(55% 60% at 0% 100%, rgba(244, 236, 223, 0.95), rgba(244, 236, 223, 0) 70%),
+        var(--sc-cream);
     overflow: hidden;
 }
 
@@ -282,9 +227,9 @@ a {
     width: 900px;
     margin: 0;
     font-size: 72px;
-    font-weight: 700;
-    line-height: 84px;
-    letter-spacing: -0.005em;
+    font-weight: 500;
+    line-height: 80px;
+    letter-spacing: -0.03em;
     color: var(--sc-teal);
 }
 
@@ -306,15 +251,63 @@ a {
     top: 560px;
     width: 869px;
     margin: 0;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
-    line-height: 30px;
+    line-height: 32px;
     color: var(--sc-charcoal);
 }
 
 .hero-actions {
     left: 120px;
     top: 626px;
+}
+
+/* Hero text reveal (after the intro):
+   - the headline rises line by line out of hidden strips (like aurora.tech),
+   - the subtitle follows after a pause long enough to read the headline,
+   - the buttons come in a shorter beat after that. */
+.hero-title .line {
+    display: block;
+    overflow: hidden;
+    /* room for descenders inside the clipping strip */
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+}
+
+.hero-title .line > span {
+    display: block;
+    transition: translate 1.1s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+.hero-title .line:nth-child(2) > span {
+    transition-delay: 0.16s;
+}
+
+.hero-title .line:nth-child(3) > span {
+    transition-delay: 0.32s;
+}
+
+.hero-sub,
+.hero-actions {
+    transition: opacity 0.7s ease, translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.hero-sub {
+    transition-delay: 1.5s;
+}
+
+.hero-actions {
+    transition-delay: 2.2s;
+}
+
+.intro-playing .hero-title .line > span {
+    translate: 0 110%;
+}
+
+.intro-playing .hero-sub,
+.intro-playing .hero-actions {
+    opacity: 0;
+    translate: 0 16px;
 }
 
 /* soft fade from the hero into the page (also blends the future hero photo) */
@@ -343,9 +336,9 @@ a {
     background: transparent;
     color: var(--sc-teal);
     font-size: 16px;
-    font-weight: 700;
-    line-height: 19px;
-    letter-spacing: 0.02em;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.01em;
     cursor: pointer;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
@@ -386,10 +379,10 @@ a {
 
 .eyebrow {
     margin: 0;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 17px;
-    letter-spacing: 0.12em;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0.14em;
     color: var(--sc-teal);
     text-transform: uppercase;
 }
@@ -399,7 +392,7 @@ a {
 .supporters {
     position: absolute;
     left: 0;
-    top: 1184px;
+    top: 160px;
     width: 1440px;
     height: 121px;
 }
@@ -515,7 +508,7 @@ html {
 .news {
     position: absolute;
     left: 0;
-    top: 3188px;
+    top: 433px;
     width: 1440px;
     height: 643px;
 }
@@ -537,7 +530,7 @@ html {
     box-shadow: 0 18px 40px rgba(0, 70, 108, 0.08);
     position: absolute;
     left: 120px;
-    top: 128px;
+    top: 96px;
     width: 690px;
     height: 431px;
     background-size: 132px;
@@ -546,7 +539,7 @@ html {
 }
 
 .featured-date {
-    top: 584px;
+    top: 552px;
     width: 690px;
     font-size: 14px;
     font-weight: 400;
@@ -555,18 +548,18 @@ html {
 }
 
 .featured-title {
-    top: 609px;
+    top: 577px;
     width: 690px;
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 34px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
     color: var(--sc-teal);
 }
 
 .news-list {
     position: absolute;
     left: 834px;
-    top: 128px;
+    top: 96px;
     width: 486px;
     margin: 0;
     padding: 0;
@@ -600,9 +593,9 @@ html {
 
 .news-item-title {
     margin: 8px 0 0;
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 34px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 30px;
     color: var(--sc-teal);
 }
 
@@ -707,7 +700,7 @@ html {
     position: absolute;
     z-index: 0;
     left: 0;
-    top: 3991px;
+    top: 1204px;
     width: 1440px;
     height: 465px;
 }
@@ -731,7 +724,7 @@ html {
 }
 
 .rule {
-    top: 159px;
+    top: 141px;
     width: 486px;
     height: 0;
     border: 0;
@@ -739,14 +732,14 @@ html {
 }
 
 .rule-lower {
-    top: 346px;
+    top: 328px;
 }
 
 .journey-title {
-    top: 192px;
+    top: 174px;
     width: 240px;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 24px;
     color: var(--sc-teal);
 }
@@ -760,11 +753,11 @@ html {
 }
 
 .note-partner {
-    top: 228px;
+    top: 210px;
 }
 
 .note-volunteer {
-    top: 379px;
+    top: 361px;
 }
 
 .subscribe-row {
@@ -775,11 +768,11 @@ html {
 }
 
 .subscribe-partner {
-    top: 262px;
+    top: 244px;
 }
 
 .subscribe-volunteer {
-    top: 413px;
+    top: 395px;
 }
 
 .field,
@@ -830,7 +823,7 @@ html {
     position: static;
     margin: 0;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 24px;
     color: var(--sc-teal);
 }
@@ -871,44 +864,107 @@ html {
     margin-top: 24px;
 }
 
-/* ---------- Footer ---------- */
+/* ---------- Partners and News, using the extended palette ---------- */
+
+.supporters .eyebrow {
+    color: var(--sc-clay-text);
+}
+
+/* logos sit on the sand: let their white backgrounds blend in */
+.supporter-logo {
+    mix-blend-mode: multiply;
+}
+
+.news .section-head h2 {
+    color: var(--sc-navy);
+}
+
+.featured-date,
+.news-date {
+    color: var(--sc-clay-text);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.featured-title,
+.news-item-title {
+    color: var(--sc-ink);
+}
+
+.news-list li,
+.news-list li:last-child {
+    border-color: rgba(0, 109, 143, 0.22);
+}
+
+.featured-shot,
+.news-thumb {
+    background-color: #fffcf7;
+}
+
+.featured-shot {
+    box-shadow: 0 24px 48px rgba(11, 42, 58, 0.10);
+}
+
+/* ---------- Footer (normal page flow, full width) ----------
+   Sand to match the contact section above, with soft clay and teal glows
+   rising from the bottom corners. */
 
 .site-footer {
-    position: absolute;
-    left: 120px;
-    right: 120px;
-    top: 4891px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    color: var(--sc-ink);
+    background:
+        radial-gradient(70% 90% at 0% 110%, rgba(224, 122, 79, 0.85), rgba(224, 122, 79, 0.35) 40%, rgba(224, 122, 79, 0) 72%),
+        radial-gradient(70% 100% at 100% 110%, rgba(0, 109, 143, 0.95), rgba(79, 209, 224, 0.45) 40%, rgba(0, 109, 143, 0) 75%),
+        radial-gradient(45% 55% at 52% 115%, rgba(175, 200, 160, 0.6), rgba(175, 200, 160, 0) 70%),
+        var(--sc-sand);
+}
+
+.footer-inner {
+    box-sizing: content-box;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px clamp(20px, 5vw, 48px) 32px;
+}
+
+.footer-top {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    color: var(--sc-cream);
-    font-size: 15px;
-    line-height: 20px;
+    gap: 32px 48px;
+    padding-bottom: 140px;
 }
 
-.footer-brand {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.footer-name {
-    font-size: 20px;
-    font-weight: 700;
+.footer-logo img {
+    display: block;
+    height: 34px;
+    width: auto;
 }
 
 .footer-links {
     display: flex;
-    gap: 32px;
-    font-weight: 500;
+    flex-wrap: wrap;
+    gap: 16px 40px;
 }
 
-.site-footer a {
-    color: var(--sc-cream);
+.footer-links a {
+    font-size: 18px;
+    line-height: 24px;
+    color: var(--sc-ink);
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
-.site-footer a:hover {
-    color: var(--sc-sage);
+.footer-links a:hover {
+    color: var(--sc-teal);
 }
+
+.footer-bottom {
+    border-top: 1px solid rgba(0, 70, 108, 0.5);
+    padding-top: 24px;
+    font-size: 14px;
+    color: var(--sc-ink);
+}
+

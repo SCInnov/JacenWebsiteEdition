@@ -13,9 +13,14 @@
         return;
     }
 
-    // Matches the logo's own wipe timeline: last layer starts at 2.7s and
-    // takes 0.8s, so the wipe is fully drawn at 3.5s.
-    var wipeFinish = 3500;
+    // Hide the hero's text while the intro plays; the hero background is
+    // revealed through the logo first, and the text fades in afterwards.
+    var root = document.documentElement;
+    root.classList.add('intro-playing');
+
+    // Matches the logo's blooming reveal: the outermost trace starts at 0.9s
+    // and takes 1.5s, so the mark is fully drawn at 2.4s.
+    var wipeFinish = 2400;
     // Brief pause once formed, then drop the backdrop so the site shows
     // through the logo's negative space, then hold a beat before zooming.
     var revealDelay = 150;
@@ -28,6 +33,12 @@
     setTimeout(function () {
         overlay.classList.add('intro-zoom');
     }, wipeFinish + revealDelay + zoomDelay);
+
+    // Start the headline while the zoom is finishing (the zoom takes 1.1s), so
+    // it overlaps slightly with the background coming into view.
+    setTimeout(function () {
+        root.classList.remove('intro-playing');
+    }, wipeFinish + revealDelay + zoomDelay + 750);
 
     overlay.addEventListener('transitionend', function handleEnd(e) {
         if (e.propertyName === 'transform') {
