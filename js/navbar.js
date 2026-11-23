@@ -24,4 +24,5 @@
     }
 
     navLinks.forEach((link) => link.addEventListener('click', scrollToSection));
+
 })();

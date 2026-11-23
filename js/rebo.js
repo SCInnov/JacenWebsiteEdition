@@ -103,7 +103,7 @@
     var ctaH = $('#cta h2');
     function glow(pIntro) {
         var anchors = $$('[data-anchor]', sec), mid = innerHeight * 0.5, box = sec.getBoundingClientRect();
-        var cols = [[0, 109, 143, 0.22 + 0.12 * pIntro], [0, 109, 143, 0.3], [224, 122, 79, 0.45], [224, 122, 79, 1]];
+        var cols = [[0, 109, 143, 0.14 + 0.12 * pIntro], [0, 109, 143, 0.26], [224, 122, 79, 0.3], [0, 109, 143, 0.12]];
         var pts = anchors.map(function (a) {
             var r = a.getBoundingClientRect();
             return [r.left + r.width / 2 - box.left, r.top + r.height / 2 - box.top, r.top + r.height / 2];
@@ -127,6 +127,63 @@
         }
         var cr = cta.getBoundingClientRect();
         cta.style.setProperty('--ca', reduce ? 1 : ease(clamp((innerHeight * 0.95 - cr.top) / (innerHeight * 0.6))).toFixed(3));
+    }
+
+    // spotlight: a soft light follows the cursor over the dark stage
+    var pin = $('.intro-pin', story);
+    if (pin && !reduce && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        pin.addEventListener('pointermove', function (e) {
+            var b = pin.getBoundingClientRect();
+            pin.style.setProperty('--mx', (e.clientX - b.left) + 'px');
+            pin.style.setProperty('--my', (e.clientY - b.top) + 'px');
+            pin.style.setProperty('--spot-on', '1');
+        });
+        pin.addEventListener('pointerleave', function () { pin.style.setProperty('--spot-on', '0'); });
+    }
+
+    // flow field: faint aqua particles drift along slow invisible currents on the
+    // dark stage, like signals moving through the body. Runs only while visible.
+    if (pin && !reduce && window.HTMLCanvasElement) {
+        var cv = document.createElement('canvas');
+        cv.className = 'flow'; cv.setAttribute('aria-hidden', 'true');
+        pin.insertBefore(cv, pin.firstChild);
+        var cx = cv.getContext('2d'), dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, ps = [], run = false, t0 = performance.now();
+        function size() {
+            W = cv.clientWidth; H = cv.clientHeight;
+            cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            var n = Math.round(Math.min(220, W * H / 7000));
+            ps = [];
+            for (var i = 0; i < n; i++) ps.push({ x: Math.random() * W, y: Math.random() * H, a: Math.random() * 0.5 + 0.2, life: Math.random() * 400 });
+        }
+        function field(x, y, t) {
+            return Math.sin(x * 0.0022 + t * 0.00011) * Math.cos(y * 0.0028 - t * 0.00008) * Math.PI + 0.35;
+        }
+        function step(now) {
+            if (!run) return;
+            var t = now - t0;
+            cx.globalCompositeOperation = 'destination-out';
+            cx.fillStyle = 'rgba(0,0,0,0.07)';
+            cx.fillRect(0, 0, W, H);
+            cx.globalCompositeOperation = 'lighter';
+            cx.lineWidth = 1.2;
+            for (var i = 0; i < ps.length; i++) {
+                var p = ps[i], ang = field(p.x, p.y, t), nx = p.x + Math.cos(ang) * 0.9, ny = p.y + Math.sin(ang) * 0.9;
+                cx.strokeStyle = 'rgba(120, 220, 232,' + (p.a * 0.55).toFixed(3) + ')';
+                cx.beginPath(); cx.moveTo(p.x, p.y); cx.lineTo(nx, ny); cx.stroke();
+                p.x = nx; p.y = ny; p.life--;
+                if (p.life < 0 || nx < -10 || nx > W + 10 || ny < -10 || ny > H + 10) {
+                    p.x = Math.random() * W; p.y = Math.random() * H; p.life = 200 + Math.random() * 400;
+                }
+            }
+            requestAnimationFrame(step);
+        }
+        size(); addEventListener('resize', size);
+        new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                if (e.isIntersecting && !run) { run = true; requestAnimationFrame(step); }
+                else if (!e.isIntersecting) run = false;
+            });
+        }).observe(story);
     }
 
     var tick = false;

@@ -4,11 +4,15 @@
     // flowing normally between them.
     var frames = [
         { vp: document.getElementById('viewport'), el: document.getElementById('top'), h: 1024 },
-        { vp: document.getElementById('viewport-lower'), el: document.getElementById('lower'), h: 1789 }
+        { vp: document.getElementById('viewport-lower'), el: document.getElementById('lower'), h: 1589 }
     ];
 
     function fit() {
         var scale = Math.min(1, document.documentElement.clientWidth / 1440);
+        // the hero fills exactly one screen height (above the fold)
+        var heroH = Math.max(640, Math.round(window.innerHeight / scale));
+        frames[0].h = heroH;
+        if (frames[0].el) frames[0].el.style.setProperty('--hero-h', heroH + 'px');
         frames.forEach(function (f) {
             if (!f.vp || !f.el) return;
             f.el.style.transform = 'scale(' + scale + ')';
@@ -19,6 +23,23 @@
 
     fit();
     window.addEventListener('resize', fit);
+
+    // Parallax hero: as you scroll away, the hero text drifts up more slowly than the page
+    var heroEl = document.querySelector('.hero');
+    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pTick = false;
+    function parallax() {
+        pTick = false;
+        var scale = Math.min(1, document.documentElement.clientWidth / 1440);
+        var y = window.scrollY / scale;
+        if (y > frames[0].h * 1.2) return;
+        heroEl.style.setProperty('--py', y.toFixed(1));
+    }
+    if (heroEl && !calm) {
+        window.addEventListener('scroll', function () {
+            if (!pTick) { pTick = true; requestAnimationFrame(parallax); }
+        }, { passive: true });
+    }
 
     // Gentle fade-up as each section scrolls into view
     if ('IntersectionObserver' in window) {
